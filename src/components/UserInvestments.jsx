@@ -240,7 +240,7 @@ const UserInvestments = ({ userId }) => {
 
 
   if (loading) return <LoadingText>Loading investments...</LoadingText>;
-  if (error) return <ErrorText>Error: {error}</ErrorText>;
+  if (error) return <ErrorText>{error}</ErrorText>;
 
   return (
     <Container>

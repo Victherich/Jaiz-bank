@@ -400,16 +400,24 @@ return ()=>clearInterval(id);
       }
     };
 
-    useEffect(() => {
-    checkPayouts();
-  }, []);
+  //   useEffect(() => {
+  //   checkPayouts();
+  // }, []);
 
 
-  useEffect(()=>{
+  // useEffect(()=>{
+  //   const id = setInterval(() => {
+  //     checkPayouts();
+  //   }, 60000);
+  // },[])
+
+  useEffect(() => {
     const id = setInterval(() => {
       checkPayouts();
     }, 60000);
-  },[])
+    return () => clearInterval(id);
+  }, []);
+  
   
 
   if (!user) return <div>Loading...</div>;

@@ -102,6 +102,103 @@ const PendingWithdrawals = () => {
 
 
 
+
+    const deleteTransaction = async (transactionId, userId) => {
+      if (!transactionId) {
+        Swal.fire('Error', 'Transaction ID is required', 'error');
+        return;
+      }
+    
+      // Ask for confirmation first
+      const confirm = await Swal.fire({
+        title: 'Are you sure?',
+        text: 'This transaction will be permanently deleted.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'Cancel',
+      });
+    
+      if (!confirm.isConfirmed) return;
+    
+      // Show loading spinner
+      Swal.fire({
+        title: 'Please wait...',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      });
+    
+      try {
+        const response = await fetch('https://elitewealthglobal.com/api/delete_transaction.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ transaction_id: transactionId }),
+        });
+    
+        const result = await response.json();
+    
+        if (result.success) {
+          Swal.fire('Declined and Deleted!', result.message, 'success');
+          setWithdrawals(prev => prev.filter(w => w.id !== transactionId));
+          fetchPendingWithdrawals();
+          handleNotify(userId)
+          
+        } else {
+          Swal.fire('Error', result.error || 'Failed to delete transaction.', 'error');
+        }
+      } catch (error) {
+        Swal.fire('Error', 'An unexpected error occurred.', 'error');
+      }
+    };
+    
+
+
+
+
+    const handleNotify = async (userId) => {
+      if (!userId) {
+        Swal.fire('Missing Info', 'Please enter a valid user ID.', 'warning');
+        return;
+      }
+  
+      try {
+        Swal.fire({
+          title: 'Processing...',
+          text: 'Sending withdrawal decline notification...',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          }
+        });
+  
+        const response = await fetch('https://elitewealthglobal.com/api/notify_user_withdrawal_declined.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ user_id: parseInt(userId) }),
+        });
+  
+        const result = await response.json();
+        Swal.close();
+  
+        if (result.success) {
+          Swal.fire('Success', result.message, 'success');
+        } else {
+          Swal.fire('Error', result.error || 'Something went wrong.', 'error');
+        }
+      } catch (error) {
+        Swal.close();
+        Swal.fire('Network Error', 'Could not connect to the server.', 'error');
+      }
+    };
+
+
+
     if (loading) return <p>Loading...</p>;
 
     return (
@@ -123,6 +220,20 @@ const PendingWithdrawals = () => {
                             <button style={styles.button} onClick={() => approveWithdrawal(w.id, w.user_id)}>
                                 Approve
                             </button>
+
+                            <button style={{
+                               marginTop: '12px',
+                               padding: '10px',
+                               backgroundColor: 'gray',
+                               color: '#fff',
+                               border: 'none',
+                               borderRadius: '5px',
+                               cursor: 'pointer',
+                               fontWeight: 'bold',
+                            }}  onClick={() => deleteTransaction(w.id, w.user_id)}>
+                                Decline
+                            </button>
+                            
                         </div>
                     ))
                 )}

@@ -253,9 +253,9 @@ const Footer = () => {
 
         <FooterColumn>
           <SectionHeading>Contact Info</SectionHeading>
-          <ContactItem>📍 45 Capital Heights, New York, NY</ContactItem>
-          <ContactItem>📞 +1 (212) 456-7890</ContactItem>
-          <ContactItem>✉️ support@elitewealthglobal.com</ContactItem>
+          <ContactItem>📍 Ramistrasse 31, 8001 Zurich, Switzerland</ContactItem>
+          {/* <ContactItem>📞 +1 (212) 456-7890</ContactItem> */}
+          <ContactItem>✉️ contact@elitewealthglobal.com</ContactItem>
         </FooterColumn>
       </FooterGrid>
 

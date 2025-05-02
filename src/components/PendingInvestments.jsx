@@ -104,6 +104,103 @@ const PendingInvestments = () => {
 
 
 
+
+
+
+    const deleteInvestment = async (investmentId, userId) => {
+      if (!investmentId) {
+        Swal.fire('Error', 'Investment ID is required.', 'error');
+        return;
+      }
+    
+      // Confirm with the user
+      const confirm = await Swal.fire({
+        title: 'Delete Investment?',
+        text: 'This will permanently remove the investment record.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+      });
+    
+      if (!confirm.isConfirmed) return;
+    
+      // Loading state
+      Swal.fire({
+        title: 'Deleting...',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+      });
+    
+      try {
+        const response = await fetch('https://elitewealthglobal.com/api/delete_investment.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ investment_id: investmentId })
+        });
+    
+        const result = await response.json();
+    
+        if (result.success) {
+          Swal.fire('Deleted!', result.message, 'success');
+          setInvestments(prev => prev.filter(w => w.id !== investmentId));
+          fetchPendingInvestments();
+          // Optionally refresh data or update UI here
+          handleNotify(userId);
+        } else {
+          Swal.fire('Error', result.error || 'Failed to delete investment.', 'error');
+        }
+      } catch (error) {
+        Swal.fire('Error', 'An unexpected error occurred.', 'error');
+      }
+    };
+    
+
+
+
+
+
+    const handleNotify = async (userId) => {
+      if (!userId) {
+        Swal.fire('Missing Info', 'Please enter a valid user ID.', 'warning');
+        return;
+      }
+  
+      try {
+        Swal.fire({
+          title: 'Processing...',
+          text: 'Sending investment request decline notification...',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          }
+        });
+  
+        const response = await fetch('https://elitewealthglobal.com/api/notify_user_investment_declined.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ user_id: parseInt(userId) }),
+        });
+  
+        const result = await response.json();
+        Swal.close();
+  
+        if (result.success) {
+          Swal.fire('Success', result.message, 'success');
+        } else {
+          Swal.fire('Error', result.error || 'Something went wrong.', 'error');
+        }
+      } catch (error) {
+        Swal.close();
+        Swal.fire('Network Error', 'Could not connect to the server.', 'error');
+      }
+    };
+
+
+
+
     if (loading) return <p>Loading...</p>;
 
     return (
@@ -132,6 +229,20 @@ const PendingInvestments = () => {
                                  fontWeight: 'bold',
                              }}>
     Approve
+</button>
+
+<button onClick={() => deleteInvestment(investment.id, investment.user_id)} 
+                            style={{ marginTop: '10px',
+                                 marginTop: '12px',
+                                 padding: '10px',
+                                 backgroundColor: 'gray',
+                                 color: '#fff',
+                                 border: 'none',
+                                 borderRadius: '5px',
+                                 cursor: 'pointer',
+                                 fontWeight: 'bold',
+                             }}>
+    Decline
 </button>
 
                         </div>

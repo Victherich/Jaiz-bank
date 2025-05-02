@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 const Container = styled.div`
   min-height: 100vh;
-  background: #f2f2f2;
+  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +22,7 @@ const FormWrapper = styled.div`
 const Title = styled.h2`
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  color: green;
+  color: #000050;
   text-align: center;
 `;
 
@@ -38,14 +38,14 @@ const Input = styled.input`
   border-radius: 8px;
   font-size: 1rem;
   &:focus {
-    border-color: green;
+    border-color: #000050;
     outline: none;
   }
 `;
 
 const Button = styled.button`
   padding: 0.75rem;
-  background-color:green;
+  background-color:#000050;
   color: white;
   font-size: 1rem;
   border: none;
@@ -53,13 +53,13 @@ const Button = styled.button`
   cursor: pointer;
   transition: 0.3s;
   &:hover {
-    background-color: lightgreen;
+    background-color: gray;
   }
 `;
 
 const Message = styled.p`
   margin-top: 1rem;
-  color: ${({ success }) => (success ? 'green' : 'red')};
+  color: ${({ success }) => (success ? '#000050' : 'red')};
   text-align: center;
   font-size: 0.95rem;
 `;
@@ -88,7 +88,7 @@ const AdminForgotPassword = () => {
     });
   
     try {
-      const res = await fetch('https://www.cwmsrfupre.com.ng/api/admin_forgot_password.php', {
+      const res = await fetch('https://elitewealthglobal.com/api/admin_forgot_password.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -138,7 +138,7 @@ const AdminForgotPassword = () => {
           <Button type="submit">{buttonText}</Button>
 
         </Form>
-        <p onClick={()=>navigate("/adminlogin")} style={{color:"green", cursor:"pointer"}}>Back to Login</p>
+        <p onClick={()=>navigate("/adminlogin")} style={{color:"#000050", cursor:"pointer"}}>Back to Login</p>
         {message && <Message success={success}>{message}</Message>}
       </FormWrapper>
     </Container>

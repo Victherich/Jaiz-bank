@@ -1,17 +1,17 @@
 /* General Styling */
 .partners-section {
-    background: #f9f9f9;
+  background: linear-gradient(to right, #f1f5f9, #e2e8f0);
     padding: 60px 20px;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
-    background-image: url('../Images/partnerbg.jpg');
+    /* background-image: url('../Images/partnerbg.jpg'); */
     background-position: bottom;
     background-size: cover;
   }
   
   .partners-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: white;
     margin-bottom: 30px;
     text-transform: uppercase;

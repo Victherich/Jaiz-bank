@@ -34,7 +34,7 @@ const handleSubmit = async (e) => {
   });
 
   try {
-    const response = await fetch('https://www.cwmsrfupre.com.ng/api/contact_form_endpoint.php', {
+    const response = await fetch('https://elitewealthglobal.com/api/contact_form_endpoint.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
@@ -86,10 +86,8 @@ const handleSubmit = async (e) => {
 
       
       <div className="contact-content">
-        <div style={{textAlign:"center", padding:"20px 10px", color:"green"}}>
-          <h4>
-          Wish to enquire about admissions, syllabus, or anything else? We welcome inquiries, partnerships, and collaborations. Please reach out to us using the following contact details:
-          </h4>
+        <div style={{textAlign:"center", padding:"20px 10px", color:"#000050"}}>
+         
           
         </div>
         <br/>
@@ -136,7 +134,7 @@ const handleSubmit = async (e) => {
           {feedback && <p>{feedback}</p>}
         </div>
 <br/>
-        <div style={{textAlign:"center"}}>
+        {/* <div style={{textAlign:"center"}}>
           <h4>
           Office Hours: 
           </h4>
@@ -150,9 +148,9 @@ For specific inquiries regarding collaboration, research opportunities, or acade
  
 </p>
          
-        </div>
+        </div> */}
 
-        <div className="contact-info">
+        {/* <div className="contact-info">
           <div className="info-item">
             <FaPhone className="contact-icon" />
             
@@ -176,7 +174,7 @@ For specific inquiries regarding collaboration, research opportunities, or acade
             <p>Federal University of Petroleum Resources,<br/> Effurun (FUPRE),<br/> Delta State, Nigeria.</p>
 
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

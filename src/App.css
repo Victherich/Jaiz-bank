@@ -47,13 +47,13 @@
 }
 
 .swal2-popup{
-  z-index: 9999999999;
+  z-index: 99999999999999999999999999999;
 }
 
 
 .swal2-popup .swal2-title {
   font-family: sans-serif;
-  color: orange;   
+  color: #000050;   
   font-size: 1.5rem;
 }
 

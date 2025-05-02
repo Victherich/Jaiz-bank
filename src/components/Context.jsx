@@ -234,15 +234,65 @@ const courses = [
 
 
 
+const color1 = "#000050"
 
 
+
+const plans = [
+  {
+    id: 1,
+    name: '💎 Diamond Plan',
+    roi: '10% every hour for 20 hours',
+    range: '$5,000 - $9,999',
+    min: 5000,
+    max: 9999,
+    roi_percent: 10,
+    interval_minutes: 60,
+    duration: 20
+  },
+  
+  {
+    id: 2,
+    name: '🎓 Master Plan',
+    roi: '30% every hour for 20 hours',
+    range: '$10,000 - $19,999',
+    min: 10000,
+    max: 19999,
+    roi_percent: 30,         // Corrected from 15
+    interval_minutes: 60,
+    duration: 20             // Corrected from 24
+  },  
+  {
+    id: 3,
+    name: '🛡️ Metal Plan',
+    roi: '50% every hour for 20 hours',
+    range: '$20,000 and above',
+    min: 20000,
+    max: Infinity,
+    roi_percent: 50,
+    interval_minutes: 60,
+    duration: 20
+  },  
+  {
+    id: 4,
+    name: '🚀 Development plan',
+    roi: '5% every 2 minutes for 10 minutes',
+    range: '$100 - $999',
+    min: 100,
+    max: 999,
+    roi_percent: 5,
+    interval_minutes: 2,
+    duration: 5
+  }
+  
+];
 
 
 
   return (
     <Context.Provider value={{adminToken,setAdminToken,admin,setAdmin,adminMenu,
     setAdminMenu,trackingID,setTrackingID,
-    programs, levels, semesters, courses}}>
+    programs, levels, semesters, courses, color1, plans}}>
 
         {children}
     </Context.Provider>
@@ -258,8 +308,9 @@ export default ContextProvider
 
 
 // database 
-// pw: cwmsr@fupre2025
-// User “cwmsrfuprecom_cwmsrfuprecom” was added to the database “cwmsrfuprecom_cwmsrfuprecom”.
+// pw: elite@global
+// User: “elitewealthgloba_db1     ”
+// database: elitewealthgloba_db1
 
 
 

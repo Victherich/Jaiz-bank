@@ -23,7 +23,7 @@ const FormWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  color: green;
+  color: #000050;
   text-align: center;
   margin-bottom: 1.5rem;
 `;
@@ -58,14 +58,14 @@ const Select = styled.select`
   font-size: 1rem;
 
   &:focus {
-    border-color: green;
+    border-color: #000050;
     outline: none;
   }
 `;
 
 const Button = styled.button`
   width: 100%;
-  background: green;
+  background: #000050;
   color: white;
   padding: 0.75rem;
   font-size: 1rem;
@@ -75,7 +75,7 @@ const Button = styled.button`
   transition: 0.3s;
 
   &:hover {
-    background: orange;
+    background: gray;
   }
 `;
 
@@ -88,7 +88,7 @@ const AdminSignup = () => {
     phone: '',
     password: '',
     confirmPassword: '',
-    role: '',
+    role: 'Admin',
   });
 
   const handleChange = e => {
@@ -117,7 +117,7 @@ const AdminSignup = () => {
     });
 
     try {
-      const response = await fetch('https://www.cwmsrfupre.com.ng/api/admin_signup.php', {
+      const response = await fetch('https://elitewealthglobal.com/api/admin_signup.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ const AdminSignup = () => {
   return (
     <Container>
       <FormWrapper>
-        <Title>Admin / Lecturer Register</Title>
+        <Title> Register Admin</Title>
         <form onSubmit={handleSubmit}>
           <Label>Full Name</Label>
           <Input name="name" value={form.name} onChange={handleChange} required />
@@ -170,12 +170,12 @@ const AdminSignup = () => {
           <Label>Confirm Password</Label>
           <Input name="confirmPassword" type="password" value={form.confirmPassword} onChange={handleChange} required />
 
-          <Label>Role</Label>
+          {/* <Label>Role</Label>
 <Select name="role" value={form.role} onChange={handleChange} required>
-  <option value="" disabled>--Select Role--</option> {/* Default empty option */}
+  <option value="" disabled>--Select Role--</option>
   <option value="Admin">Admin</option>
   <option value="Lecturer">Lecturer</option>
-</Select>
+</Select> */}
 
 
           <Button type="submit">Create Account</Button>

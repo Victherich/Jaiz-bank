@@ -116,7 +116,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="logo" onClick={() => navigate('/')}>
-        <img src={logo} alt="logo" />
+        <h3 style={{cursor:"pointer"}}>🌐 ELITE WEALTH GLOBAL </h3>
       </div>
 
       <nav ref={navRef} className={menuOpen ? "nav-menu active" : "nav-menu"}>
@@ -129,37 +129,13 @@ const Header = () => {
               }}
               className={location.pathname === "/" ? "active" : ""}
             >
-              Home
+              HOME
             </a>
           </li>
 
-          {/* ABOUT US with dropdown */}
-          <li className="dropdown">
-            <a
-              onClick={toggleAboutDropdown}
-              className={
-                location.pathname.includes("aboutus") ||
-                location.pathname.includes("directormessage") ||
-                location.pathname.includes("staffteam") ||
-                location.pathname.includes('shortcourses')
-                  ? "active"
-                  : ""
-              }
-            >
-              About ▾
-            </a>
-            {aboutDropdownOpen && (
-              <ul className="dropdown-menu">
-                <li onClick={() => { navigate('/aboutus'); closeMenus(); }}>About Us</li>
-                <li onClick={() => { navigate('/directormessage'); closeMenus(); }}>Director’s Message</li>
-                <li onClick={() => { navigate('/staffteam'); closeMenus(); }}>Our Staff Team</li>
-                <li onClick={() => { navigate('/shortcourses'); closeMenus(); }}>Short Courses</li>
-              </ul>
-            )}
-          </li>
 
           {/* Regular nav items */}
-          {['Academics','Admissions','Application','Portal', 'Events', 'Gallery',  'Contact Us'].map((text, index) => {
+          {['ABOUT US','SERVICES','APPLY_FOR_LOAN','INVESTMENTS',  'CONTACT US'].map((text, index) => {
             const path = `/${text.toLowerCase().replace(' ', '')}`;
             return (
               <li key={index}>

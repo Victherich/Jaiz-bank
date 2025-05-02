@@ -7,8 +7,8 @@ const MySlice = createSlice({
     adminInfo: null,
     adminToken: null,
 
-    studentInfo:null,
-    studentToken:null,
+    userInfo:null,
+    userToken:null,
   },
   reducers: {
     adminLogin: (state, { payload }) => {
@@ -25,18 +25,18 @@ const MySlice = createSlice({
       }
     },
 
-    studentLogin: (state, { payload }) => {
-      state.studentInfo = payload.studentInfo;
-      state.studentToken = payload.studentToken;
+    userLogin: (state, { payload }) => {
+      state.userInfo = payload.userInfo;
+      state.userToken = payload.userToken;
     },
-    studentLogout: (state) => {
-      state.studentInfo = null;
-      state.studentToken = null;
+    userLogout: (state) => {
+      state.userInfo = null;
+      state.userToken = null;
     },
 
   },
 });
 
-export const { adminLogin, adminLogout, updateAdminInfo , studentLogin, studentLogout} = MySlice.actions;
+export const { adminLogin, adminLogout, updateAdminInfo , userLogin, userLogout} = MySlice.actions;
 export default MySlice.reducer;
 

@@ -30,7 +30,7 @@
   
   .about-us-brief-text h2 {
     font-size: 2rem;
-    color: green;
+    color: #000050;
     margin-bottom: 20px;
   }
   
@@ -58,7 +58,7 @@
     padding: 10px 20px;
     font-size: 1.2rem;
     color: white;
-    background-color: green;
+    background-color: #000050;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -68,14 +68,14 @@
   }
   
   .more-about-btn:hover {
-    background-color: greenyellow;
-    color: #333;
+    background-color: gray;
+
   }
 
   .about-us-brief-image{
     width: 40%;
     height:600px;
-    background-image: url("../Images/pic6.jpeg");
+    background-image: url("../Images2/about.jpg");
     background-size: cover;
     border-radius: 10px;
   }

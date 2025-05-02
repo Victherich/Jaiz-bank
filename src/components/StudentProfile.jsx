@@ -120,7 +120,7 @@ const StudentProfile = ({id, setStudentProfileId, handleGetAllstudents}) => {
  
 
     const handleGetStudentById = ()=>{
-    axios.get(`https://www.cwmsrfupre.com.ng/api/get_student_by_id.php?id=${id}`)
+    axios.get(`https://elitewealthglobal.com/api/get_student_by_id.php?id=${id}`)
       .then(res => {
         if (res.data.success) {
           setStudent(res.data.student);
@@ -168,7 +168,7 @@ const deleteStudent = async (studentId) => {
     });
 
     try {
-      const res = await axios.post('https://www.cwmsrfupre.com.ng/api/delete_student.php', { id: studentId });
+      const res = await axios.post('https://elitewealthglobal.com/api/delete_student.php', { id: studentId });
       
       if (res.data.success) {
         Swal.fire('Deleted!', 'Student has been deleted.', 'success');
@@ -218,7 +218,7 @@ const admitStudent = async (studentId) => {
     });
 
     try {
-      const response = await axios.post('https://www.cwmsrfupre.com.ng/api/admit_student.php', {
+      const response = await axios.post('https://elitewealthglobal.com/api/admit_student.php', {
         id: studentId
       });
 
@@ -275,7 +275,7 @@ const cancelStudentAdmission = async (studentId) => {
         },
       });
 
-      const response = await axios.post('https://www.cwmsrfupre.com.ng/api/cancel_student_admission.php', {
+      const response = await axios.post('https://elitewealthglobal.com/api/cancel_student_admission.php', {
         id: studentId,
       });
 
@@ -337,7 +337,7 @@ const suspendStudent = async (studentId) => {
         }
       });
 
-      const response = await axios.post('https://www.cwmsrfupre.com.ng/api/suspend_student.php', {
+      const response = await axios.post('https://elitewealthglobal.com/api/suspend_student.php', {
         id: studentId
       });
 
@@ -388,7 +388,7 @@ const unsuspendStudent = (studentId) => {
 
       // Make the API call to unsuspend the student
       axios
-        .post('https://www.cwmsrfupre.com.ng/api/unsuspend_student.php', { id: studentId })
+        .post('https://elitewealthglobal.com/api/unsuspend_student.php', { id: studentId })
         .then((response) => {
           setLoading(false);
           if (response.data.success) {
@@ -465,7 +465,7 @@ const graduateStudent = async (studentId) => {
     });
 
     try {
-      const response = await axios.post('https://www.cwmsrfupre.com.ng/api/graduate_student.php', {
+      const response = await axios.post('https://elitewealthglobal.com/api/graduate_student.php', {
         id: studentId
       });
 
@@ -522,7 +522,7 @@ const graduateStudent = async (studentId) => {
     
     
     <ButtonWrap>
-    <Button onClick={() => window.open(`https://www.cwmsrfupre.com.ng/api/${student.file_path}`, '_blank')}>
+    <Button onClick={() => window.open(`https://elitewealthglobal.com/api/${student.file_path}`, '_blank')}>
   View Application Documents
 </Button>
 

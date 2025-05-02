@@ -100,7 +100,7 @@ const AllAdminsAndLecturers = () => {
   const [searchEmail, setSearchEmail] = useState('');
 
   useEffect(() => {
-    axios.get('https://www.cwmsrfupre.com.ng/api/get_all_admin.php')
+    axios.get('https://elitewealthglobal.com/api/get_all_admin.php')
       .then(res => {
         if (res.data.success) {
           setAdmins(res.data.admins);

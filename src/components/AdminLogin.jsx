@@ -13,7 +13,7 @@ const Container = styled.div`
   align-items: center;
   height: 100vh;
   background-color: white;
-  color:green;
+  color:#000050;
 `;
 
 const Form = styled.form`
@@ -37,7 +37,7 @@ const Input = styled.input`
 const Button = styled.button`
   width: 100%;
   padding: 12px;
-  background-color: green;
+  background-color: #000050;
   color: white;
   border-radius: 5px;
   font-size: 16px;
@@ -45,7 +45,7 @@ const Button = styled.button`
   border: none;
   
   &:hover {
-    background-color: darkorange;
+    background-color: gray;
   }
 `;
 
@@ -97,7 +97,7 @@ const AdminLogin = () => {
     });
 
     try {
-      const response = await axios.post('https://www.cwmsrfupre.com.ng/api/admin_login.php', { email, password });
+      const response = await axios.post('https://elitewealthglobal.com/api/admin_login.php', { email, password });
 
       if (response.data.success) {
         Swal.fire({
@@ -136,7 +136,7 @@ const AdminLogin = () => {
   return (
     <Container>
       <Form onSubmit={handleLogin}>
-        <Title>Login</Title>
+        <Title>Admin Login</Title>
         
         <div>
           <Label>Email</Label>

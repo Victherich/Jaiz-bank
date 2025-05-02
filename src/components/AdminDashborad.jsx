@@ -1,116 +1,29 @@
-// import React, { useContext } from 'react';
-// import Swal from 'sweetalert2';
-// import AdminPostShipment from './AdminPostShipment';
-// import "../CSS/AdminDashboard.css";
-// import AdminProfile from './AdminProfile';
-// import ManageShipments from './ManageShipments';
-// import { Context } from './Context';
-// import AdminSignup from './AdminSignUp';
-// import { adminLogout } from '../Features/Slice';
-// import { useDispatch } from 'react-redux';
-
-
-// const AdminDashboard = () => {
-//   const { adminMenu, setAdminMenu, setAdminToken } = useContext(Context);
-//   const dispatch = useDispatch()
-//   const handleLogout = () => {
-//     Swal.fire({
-//       // title: 'Are you sure?',
-//       text: 'Do you want to log out?',
-//       icon: 'warning',
-//       showCancelButton: true,
-//       confirmButtonColor: '#3085d6',
-//       cancelButtonColor: '#d33',
-//       confirmButtonText: 'Yes, log out!',
-//       cancelButtonText: 'Cancel'
-//     }).then((result) => {
-//       if (result.isConfirmed) {
-//        dispatch(adminLogout()); // Perform the logout action
-//         Swal.fire(
-//           'Logged Out!',
-//           'You have been logged out.',
-//           'success'
-//         );
-//       }
-//     });
-//   };
-
-//   return (
-//     <div className='AdminDashboard'>
-//       <div className='AdminDashboardMenu'>
-//         <p className="AdminDashboardMenuP" style={{ color: "rgba(0,0,0,0.7", cursor: "none" }}>Hi, Admin Name </p>
-//         <p onClick={() => setAdminMenu(0)} className={adminMenu === 0 ? 'AdminDashboardMenuPActive' : 'AdminDashboardMenuP'}>Admin Info</p>
-//         <p onClick={() => setAdminMenu(1)} className={adminMenu === 1 ? 'AdminDashboardMenuPActive' : 'AdminDashboardMenuP'}>Post Shipment</p>
-//         <p onClick={() => setAdminMenu(2)} className={adminMenu === 2 ? 'AdminDashboardMenuPActive' : 'AdminDashboardMenuP'}>Manage Shipments</p>
-//         <p onClick={() => setAdminMenu(3)} className={adminMenu === 3 ? 'AdminDashboardMenuPActive' : 'AdminDashboardMenuP'}>Register an Admin</p>
-//         <p onClick={handleLogout} className='AdminDashboardMenuP'>Logout</p>
-//       </div>
-//       <div className='AdminDashboardContentWrap'>
-//         {adminMenu === 0 && <AdminProfile />}
-//         {adminMenu === 1 && <AdminPostShipment />}
-//         {adminMenu === 2 && <ManageShipments />}
-//         {adminMenu === 3 &&<AdminSignup/>}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AdminDashboard;
-
-
-
 
 
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaUserCircle } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-// import ManagementUserDetails from './ManagementUserDetails';
+
 import Swal from 'sweetalert2';
 import { adminLogout } from '../Features/Slice';
 import AdminDetailsPage from './AdminProfile';
-import AllAdminsAndLecturers from './AllAdminAndLecturers';
-import AllStudents from './AllStudents';
-import LecturerScoring from './LecturerScoring';
-import Announcements from './Announcements';
-import LiveLecture from './LiveLecture';
-import PostAssignment from './Assignments.jsx';
-import PostLectureNotes from './PostLectureNotes.jsx';
-import LecturerOnlineClass from './LecturerOnlineClass.jsx';
-import MeetingLinkUploader from './MeetingLinkUploader.jsx';
+
 import AdminSignup from './AdminSignUp.jsx';
-// import Departments from './Departments';
-// import Classes from './Classes';
-// import Subjects from './Subjects';
-// import Students from './Students';
-// import Semesters from './SemesterOrTerms';
-// import SearchStudent from './SearchStudent';
-// import SchoolFees from './SchoolFees';
-// import CurrentSemesterOrTerm from './CurrentSemesterOrTerm';
-// import StudentsByClass from './StudentsByClass';
-// import ManagementAnnouncements from './ManagementAnnouncements';
-// import ManageFeesPayments from './ManageFeesPayments';
-// import StudentSignup from './StudentSignup';
-// import SchoolWeekManager from './SchoolTermCalender';
-// import SchoolManagementSignup from './SchoolManagementSignup';
-// import TeacherSignup from './TeacherSignup';
-// import TeacherList from './AllTeachers';
-// import StudentFeedbacks from './StudentFeedbacks';
-// import TeacherFeedbacks from './TeacherFeedbacks';
+import UserList from './UserList.jsx';
+import PendingDeposits from './PendingDeposits.jsx';
+import PendingWithdrawals from './PendingWithdrawals.jsx';
+import PendingInvestments from './PendingInvestments.jsx';
 
 // Styled Components
 const DashboardContainer = styled.div`
   display: flex;
   min-height: 100vh;
-  // background: #f8f9fa;
   overflow: hidden;
 `;
 
 const Sidebar = styled.div`
-  // background: #4caf50;
-  // background:rgba(128,0,128,0.3);
-  // background:rgba(255,0,43,0.2);
   background:#F4F4F4;
   color: white;
   width: ${(props) => (props.isOpen ? '250px' : '0')};
@@ -121,7 +34,7 @@ const Sidebar = styled.div`
   position: fixed;
   height: 100%;
   min-height:100vh;
-  z-index: 999;
+  z-index: 7;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   @media (min-width: 768px) {
@@ -136,8 +49,8 @@ const SidebarHeader = styled.div`
   font-size: 1.5rem;
   text-align: center;
   font-weight: bold;
-  color:green;
-  // background: #3b8d41;
+  color:#000050;
+
 `;
 
 const SidebarMenu = styled.ul`
@@ -152,16 +65,16 @@ const SidebarMenu = styled.ul`
 const SidebarMenuItem = styled.li`
   padding: 15px 20px;
   cursor: pointer;
-  background: ${(props) => (props.active ? 'lightgreen;' : 'transparent')};
-  color: ${(props)=>(props.active ? 'white':"green")};
-  // color:white;
+  background: ${(props) => (props.active ? 'gray;' : 'transparent')};
+  color: ${(props)=>(props.active ? 'white':"#000050")};
+
 
   font-weight: ${(props) => (props.active ? 'bold' : 'normal')};
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    // background: #3b8d41;
-    background:lightgreen;
+
+    background:gray;
   }
 `;
 
@@ -170,9 +83,14 @@ const ContentArea = styled.div`
   margin-left: ${(props) => (props.isOpen ? '250px' : '0')};
   transition: margin-left 0.3s ease-in-out;
   padding: 20px;
+  width:100%;
 
   @media (min-width: 768px) {
     // margin-left: 250px;
+  }
+
+  @media (max-width:428px){
+    padding:0px;
   }
 `;
 
@@ -180,8 +98,8 @@ const Hamburger = styled.div`
   position: fixed;
   top: 70px;
   left: 20px;
-  // background: #4caf50;
-  background:green;
+
+  background:#000050;
   color: white;
   padding: 10px;
   border-radius: 50%;
@@ -204,7 +122,7 @@ const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 900;
+  z-index: 6;
 `;
 
 // Content Components
@@ -270,41 +188,21 @@ const SchoolManagementDashboard = () => {
     switch (activeMenu) {
       case 'profile':
         return <AdminDetailsPage adminId={adminInfo.id}/>;
-        case 'alladminsandlecturers':
-        return <AllAdminsAndLecturers />;
-        case 'allstudents':
-        return <AllStudents />;
-        case 'scoring':
-        return <LecturerScoring />;
-        case 'announcements':
-        return <Announcements />;
-        case 'LiveLecture':
-          return <LecturerOnlineClass lecturerId={adminInfo.id}/>
-        // return <LiveLecture roomName={adminInfo.name} userName={adminInfo.name} />;
-        case 'assignments':
-        return <PostAssignment/>;
-        case 'lecturenotes':
-        return <PostLectureNotes />;
-      case 'meetinglinkupload':
-        return <MeetingLinkUploader lecturerId={adminInfo.id}/>;
+        case 'allusers':
+          return <UserList/>;
+
+          case 'pendingdeposits':
+            return <PendingDeposits/>;
+
+            case 'pendingwithdrawals':
+              return <PendingWithdrawals/>;
+
+              case 'pendinginvestments':
+                return <PendingInvestments/>;
+
         case 'adminsignup':
         return <AdminSignup/>;
-      //   case 'schoolFeesManagement':
-      //     return <ManageFeesPayments />;
-      //     case 'registerStudent':
-      //       return <StudentSignup />;
-      //       case 'schoolCalender':
-      //         return <SchoolWeekManager />;
-      //         case 'registerAdmin':
-      //           return <SchoolManagementSignup/>;
-      //           case 'registerTeacher':
-      //             return <TeacherSignup/>;
-      //             case 'allTeacher':
-      //             return <TeacherList/>;
-      //             case 'studentsFeedbacks':
-      //               return <StudentFeedbacks/>;
-      //               case 'teachersFeedbacks':
-      //               return <TeacherFeedbacks/>;
+   
       default:
         return <h1 style={{color:"green",textAlign:"center",width:"100%"}}>Welcome to your Dashboard</h1>;
     }
@@ -317,116 +215,55 @@ const SchoolManagementDashboard = () => {
       </Hamburger>
       <Overlay isOpen={menuOpen} onClick={closeMenuOnOutsideClick} />
       <Sidebar isOpen={menuOpen}>
-        <SidebarHeader>Management Dashboard</SidebarHeader>
+        <SidebarHeader>Admin Dashboard</SidebarHeader>
         <SidebarMenu>
        
           <SidebarMenuItem
             active={activeMenu === 'profile'}
             onClick={() => handleMenuClick('profile')}
           >
-            Hi, {adminInfo.name}
+           <FaUserCircle/> Hi, {adminInfo.name.slice(0,6)}
           </SidebarMenuItem>
 
          <SidebarMenuItem
-            active={activeMenu === 'alladminsandlecturers'}
-            onClick={() => handleMenuClick('alladminsandlecturers')}
+            active={activeMenu === 'allusers'}
+            onClick={() => handleMenuClick('allusers')}
           >
-            Lecturers / Admins
+            All Users
           </SidebarMenuItem>
 
           <SidebarMenuItem
-            active={activeMenu === 'allstudents'}
-            onClick={() => handleMenuClick('allstudents')}
+            active={activeMenu === 'pendingdeposits'}
+            onClick={() => handleMenuClick('pendingdeposits')}
           >
-            All Students
+            Pending Deposits
           </SidebarMenuItem>
  
           <SidebarMenuItem
-            active={activeMenu === 'scoring'}
-            onClick={() => handleMenuClick('scoring')}
+            active={activeMenu === 'pendingwithdrawals'}
+            onClick={() => handleMenuClick('pendingwithdrawals')}
           >
-            Scoring
+            Pending Withdrawals
           </SidebarMenuItem>
    
 
           <SidebarMenuItem
-            active={activeMenu === 'announcements'}
-            onClick={() => handleMenuClick('announcements')}
+            active={activeMenu === 'pendinginvestments'}
+            onClick={() => handleMenuClick('pendinginvestments')}
           >
-            Announcements
+            Pending Investments
           </SidebarMenuItem>
  
-          <SidebarMenuItem
-            active={activeMenu === 'LiveLecture'}
-            onClick={() => handleMenuClick('LiveLecture')}
-          >
-
-            LiveLecture
-          </SidebarMenuItem>
-
-          <SidebarMenuItem
-            active={activeMenu === 'assignments'}
-            onClick={() => handleMenuClick('assignments')}
-          >
-
-            Assignments
-          </SidebarMenuItem>
-
-          <SidebarMenuItem
-            active={activeMenu === 'lecturenotes'}
-            onClick={() => handleMenuClick('lecturenotes')}
-          >
-            Lecture Notes
-          </SidebarMenuItem>
-
-         {adminInfo?.name?.trim()==="Esther Nnenna Esom" &&<SidebarMenuItem
-            active={activeMenu === 'meetinglinkupload'}
-            onClick={() => handleMenuClick('meetinglinkupload')}
-          >
-            Upload Meeting Link
-          </SidebarMenuItem>}
+  
 
           <SidebarMenuItem
             active={activeMenu === 'adminsignup'}
             onClick={() => handleMenuClick('adminsignup')}
           >
-            Register Admin / Lecturer
+            Register Admin
           </SidebarMenuItem>
 
-  {/*        <SidebarMenuItem
-            active={activeMenu === 'registerTeacher'}
-            onClick={() => handleMenuClick('registerTeacher')}
-          >
-            Register Teacher
-          </SidebarMenuItem>
 
-          <SidebarMenuItem
-            active={activeMenu === 'registerAdmin'}
-            onClick={() => handleMenuClick('registerAdmin')}
-          >
-            Register Admin / Management staff
-          </SidebarMenuItem>
-
-          <SidebarMenuItem
-            active={activeMenu === 'schoolCalender'}
-            onClick={() => handleMenuClick('schoolCalender')}
-          >
-           School week Manager / Calender
-          </SidebarMenuItem>
-
-          <SidebarMenuItem
-            active={activeMenu === 'studentsFeedbacks'}
-            onClick={() => handleMenuClick('studentsFeedbacks')}
-          >
-           Students Feedbacks
-          </SidebarMenuItem>
-
-          <SidebarMenuItem
-            active={activeMenu === 'teachersFeedbacks'}
-            onClick={() => handleMenuClick('teachersFeedbacks')}
-          >
-           Teachers Feedbacks
-          </SidebarMenuItem> */}
           
           <SidebarMenuItem
             onClick={handleLogout}

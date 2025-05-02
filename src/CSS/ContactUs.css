@@ -5,7 +5,7 @@
   }
   
   .contact-heading {
-    background: url('../Images/8920.jpg') no-repeat center center/cover;
+    background: url('../Images2/contactus.jpg') no-repeat center center/cover;
     padding: 80px 0;
     color: white;
     text-align: center;
@@ -44,7 +44,7 @@
   }
   
   .contact-button {
-    background-color: #2E8B57;
+    background-color: #000080;
     color: white;
     padding: 15px 20px;
     border-radius: 10px;

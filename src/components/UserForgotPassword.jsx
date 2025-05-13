@@ -138,7 +138,7 @@ const UserForgotPassword = () => {
           <Button type="submit">{buttonText}</Button>
 
         </Form>
-        <p onClick={()=>navigate("/investments")} style={{color:"#000050", cursor:"pointer"}}>Back to Login</p>
+        <p onClick={()=>navigate("/login")} style={{color:"#000050", cursor:"pointer"}}>Back to Login</p>
         {message && <Message success={success}>{message}</Message>}
       </FormWrapper>
     </Container>

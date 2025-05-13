@@ -98,6 +98,12 @@ import PrivateUserDashboard from './components/PrivateUserDashboard';
 import LoanApplication from './components/ApplyForLoan';
 import AboutUs from './components/AboutUs';
 import ServicesPage from './components/ServicesPage';
+import GoogleTranslate from './components/GoogleTranslate';
+import EmailVerification from './components/EmailVerification';
+import RequestVerificationCode from './components/RequestVerificationCode';
+import InvestmentPlans from './components/InvestmentPlanPage';
+import AppUdate from './components/AppUpdate';
+import UserSignUp2 from './components/UserSignUp2';
 
 
 function App() {
@@ -118,9 +124,12 @@ function App() {
 
   return (
     <BrowserRouter>
+    <AppUdate/>
       <ScrollToTop />
       {/* {showOverlay&& <ChristmasOverlay/>} */}
+      <GoogleTranslate/>
       <Header />
+      {/* <div id="google_translate_element"></div> */}
 
       <Routes>
         
@@ -130,14 +139,18 @@ function App() {
         <Route path="/contactus" element={<Contact />} />
         <Route path='/apply_for_loan' element={<LoanApplication/>}/>
         <Route path='/services' element={<ServicesPage/>}/>
+        <Route path='/verifyemail' element={<EmailVerification/>}/>
+        <Route path='/requestverificationcode' element={<RequestVerificationCode/>}/>
+        <Route path='/investments' element={<InvestmentPlans/>}/>
 
 
         <Route path='/userforgotpassword' element={<UserForgotPassword/>}/>
         <Route path='/userresetpassword/:token' element={<UserResetPassword/>}/>
        
 
-        <Route path='/investments' element={<UserLogin/>}/>
-        <Route path='/usersignup' element={<UserSignUp/>}/>
+        <Route path='/login' element={<UserLogin/>}/>
+        <Route path='/signup' element={<UserSignUp/>}/>
+        <Route path='/signup2/:referrer' element={<UserSignUp2/>}/>
 
         <Route path='/userdashboard' element={<PrivateUserDashboard/>}>
           <Route path='' element={<UserDashboard/>}/>

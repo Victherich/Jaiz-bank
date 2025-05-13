@@ -1,0 +1,74 @@
+
+
+.theirabout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 100px 5px;
+    gap:20px;
+
+    @media screen and (max-width:884px) {
+        flex-direction: column;
+    }
+    
+}
+
+.theiraboutleft{
+    width: 50%;
+    background-image: url('../Images3/mi3.jpg');
+    height: 300px;
+    border-radius: 20px;
+    @media screen and (max-width:884px) {
+        width: 100%;
+    }
+}
+
+.theiraboutright{
+    width: 50%;
+
+    @media screen and (max-width:884px) {
+        width: 100%;
+        padding: 30px 5px;
+    }
+}
+
+.theiraboutright p{
+    color:#222;
+    font-size: 1.2rem;
+}
+
+.theiraboutrightmid{
+    width: 100%;
+    padding: 30px;
+    background-color: #000050;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin: 30px;
+    font-size: 2rem;
+
+    @media screen and (max-width:884px) {
+       margin: 0px;
+       margin-top: 30px;
+       margin-bottom: 30px;
+    }
+}
+
+.theiraboutrightmid p{
+    color: white;
+}
+
+.theiraboutright button{
+    padding: 30px;
+    border: none;
+    background-color: rgba(0,0,255,0.5);
+    color: white;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 30px;
+}

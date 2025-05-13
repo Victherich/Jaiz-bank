@@ -103,7 +103,7 @@ const Hamburger = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 1100;
+  z-index: 9;
 
   @media (min-width: 768px) {
     display: none;
@@ -252,10 +252,11 @@ useEffect(() => {
         <SidebarMenu>
        
           <SidebarMenuItem
+          style={{fontSize:"0.9rem"}}
             active={activeMenu === 'profile'}
             onClick={() => handleMenuClick('profile')}
           >
-          <FaUserCircle/>  Hi, {userInfo.name.slice(0,6)}
+          <FaUserCircle/>  Hi, {userInfo?.username.toUpperCase()}
           </SidebarMenuItem>
 
         

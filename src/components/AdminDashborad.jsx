@@ -41,6 +41,12 @@ const Sidebar = styled.div`
     width: 250px;
     position: static;
     transition: none;
+
+  }
+
+  @media(max-width:320px){
+    overflow-y:scroll;
+     overflow:scroll;
   }
 `;
 

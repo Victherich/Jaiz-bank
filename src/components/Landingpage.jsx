@@ -17,6 +17,15 @@ import ChampionsDay from './ChampionsDay';
 import ServicesHeadings from './ServicesHeadings';
 import WhyChooseUs from './WhyChooseUs';
 import PlanPage from './PlanPage';
+import ServicesPage from './ServicesPage';
+import ThierAbout from './ThierAbout';
+import Hero2 from './Hero2';
+import YouTubeShowcase from './YouTubeShowcase';
+import TestimonialCarousel from './TestimonialCarousel';
+import Testimonial2 from './TestimonialCarousel2';
+import WhyChooseUs2 from './WhyChooseUs2';
+import InfoCards from './InfoCards';
+import AutoPlayVideo from './AutoPlayVideo'
 
 const Landingpage = () => {
 
@@ -44,9 +53,15 @@ const Landingpage = () => {
       <div className='LandingPage'>
      <Hero/>
         <AboutUsBrief />
-        <ServicesHeadings/>
-        <PlanPage/>
-        <WhyChooseUs/>
+        <ThierAbout/>
+        <TestimonialCarousel/>
+        <ServicesPage/>
+        {/* <ServicesHeadings/> */}
+        {/* <PlanPage/> */}
+        {/* <WhyChooseUs/> */}
+        <WhyChooseUs2/>
+        <InfoCards/>
+        <Hero2/>
         {/* <Academics/> */}
         {/* <FacultyLecturers/> */}
         
@@ -55,7 +70,9 @@ const Landingpage = () => {
         {/* <GalleryComponent/> */}
         {/* <ChampionsDay/> */}
         {/* <OnlineCourses/> */}
-  
+        <Testimonial2/>
+  {/* <YouTubeShowcase/> */}
+  <AutoPlayVideo/>
       </div>
     )
   );

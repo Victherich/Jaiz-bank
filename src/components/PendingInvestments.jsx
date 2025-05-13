@@ -1,5 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
+import axios from 'axios'
+
 
 import Swal from 'sweetalert2';
 
@@ -58,8 +60,9 @@ const PendingInvestments = () => {
           Swal.fire('Approved!', 'Investment approved.', 'success');
           // Optionally refresh list
           fetchPendingInvestments();
-          notifyUserInvestmentApproved(userId)
+          notifyUserInvestmentApproved(id, userId)
           setInvestments(prev => prev.filter(w => w.id !== id));
+          
         } else {
           Swal.fire('Error', data.error || 'Approval failed.', 'error');
         }
@@ -73,7 +76,7 @@ const PendingInvestments = () => {
 
 
 
-    const notifyUserInvestmentApproved = async (userId) => {
+    const notifyUserInvestmentApproved = async (id, userId) => {
       try {
         // Sending POST request to notify the user
         const response = await fetch('https://elitewealthglobal.com/api/notify_user_investment_approved.php', {
@@ -89,6 +92,7 @@ const PendingInvestments = () => {
         if (data.success) {
           // Show success notification using SweetAlert
           Swal.fire('Success', 'Investment approved and user has been notified via email.', 'success');
+          handlePayCommission(id);
         } else {
           // Show error notification using SweetAlert
           Swal.fire('Error', data.error || 'Failed to notify the user.', 'error');
@@ -100,6 +104,32 @@ const PendingInvestments = () => {
     };
     
 
+
+
+    const handlePayCommission = async (investmentId) => {
+      if (!investmentId) {
+        // setError('Investment ID is required');
+        return;
+      }
+  
+      try {
+        const response = await axios.post('https://elitewealthglobal.com/api/pay_commission.php', {
+          id: investmentId
+        });
+  
+        if (response.data.success) {
+          // setMessage('Investment approved successfully and payouts scheduled!');
+        } else {
+          console.log(response.data.error || 'An error occurred');
+        }
+      } catch (err) {
+        console.error('Error:', err);
+        // setError('Failed to approve investment. Please try again.');
+      } finally {
+        // setLoading(false);
+      }
+    };
+  
 
 
 
@@ -213,8 +243,9 @@ const PendingInvestments = () => {
                     investments.map((investment) => (
                         <div key={investment.id} style={styles.card}>
                             <p><strong style={{color:"#000050"}}>Investment ID:</strong> {investment.id}</p>
-                            <p><strong style={{color:"#000050"}}>User ID:</strong> {investment.user_id}</p>
-                            <p><strong style={{color:"#000050"}}>Amount:</strong> ₦{parseFloat(investment.amount).toFixed(2)}</p>
+                            {/* <p><strong style={{color:"#000050"}}>User ID:</strong> {investment.user_id}</p> */}
+                            <p><strong style={{color:"#000050"}}>Username:</strong> {investment.username}</p>
+                            <p><strong style={{color:"#000050"}}>Amount:</strong> ${parseFloat(investment.amount).toFixed(2)}</p>
                             <p><strong style={{color:"#000050"}}>Status:</strong> {investment.status}</p>
                             <p><strong style={{color:"#000050"}}>Date:</strong> {new Date(investment.created_at).toLocaleString()}</p>
                             <button onClick={() => approveInvestment(investment.id, investment.user_id)} 

@@ -10,6 +10,11 @@ const AboutContainer = styled.div`
   color: #f1f1f1;
   padding: 4rem 2rem;
   font-family: 'Segoe UI', sans-serif;
+
+@media(max-width:428px){
+  padding:50px 5px;
+}
+
 `;
 
 const SectionTitle = styled.h2`
@@ -21,7 +26,7 @@ const SectionTitle = styled.h2`
 
 const FlexGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
 `;
@@ -60,7 +65,7 @@ const Text = styled.p`
 const CompanyAbout2 = () => {
   return (
     <AboutContainer>
-      <SectionTitle>🏢 Our Company</SectionTitle>
+      <SectionTitle>Our Company</SectionTitle>
       <FlexGrid>
         <Card>
           <Image src={holdingImage} alt="Holding Company" />

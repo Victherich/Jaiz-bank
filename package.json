@@ -30,6 +30,7 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.16",
     "sweetalert2": "^11.14.0",
+    "swiper": "^10.3.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

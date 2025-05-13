@@ -188,7 +188,7 @@ const LoadingText = styled.div`
 `;
 
 const ErrorText = styled.div`
-  color: red;
+  color: #222;
   font-size: 1.2rem;
   text-align: center;
 `;
@@ -234,7 +234,7 @@ const UserInvestments = ({ userId }) => {
   useEffect(()=>{
     const id = setInterval(()=>{
       fetchInvestments();
-    },60000);
+    },10000);
     return ()=>clearInterval(id)
   },[])
 

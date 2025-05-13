@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
+    padding: 10px 30px;
     background-color: white;
     color: #000050;
     position: sticky;
@@ -73,7 +73,7 @@
   }
   
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 884px) {
     .nav-menu ul {
       display: none;
       flex-direction: column;

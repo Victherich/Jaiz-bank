@@ -12,7 +12,7 @@ const PrivateUserDashboard = () => {
 console.log(userToken)
     
   return (
-   userToken?<Outlet/>:<Navigate to="/investments"/>
+   userToken?<Outlet/>:<Navigate to="/login"/>
   )
 }
 

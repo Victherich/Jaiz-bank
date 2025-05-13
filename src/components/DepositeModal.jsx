@@ -84,10 +84,11 @@ const DepositModal = ({ isOpen, onClose, fetchTransactions }) => {
   const [amount, setAmount] = useState('');
   const [screenshot, setScreenshot] = useState(null);
   const [preview, setPreview] = useState(null);
-  const userInfo = useSelector(state=>state.userInfo)
+  const userInfo = useSelector(state=>state.userInfo);
+  console.log(userInfo)
 
 
-  const walletAddress = '0x1234567890ABCDEF1234567890abcdef12345678'; // replace with actual
+  const walletAddress = 'TNq237vbZZqAyYuE1ksuEQphf6HqUb9E81'; 
 
   const handleProceed = () => {
     if (!amount || parseFloat(amount) <= 0) {
@@ -121,6 +122,7 @@ const DepositModal = ({ isOpen, onClose, fetchTransactions }) => {
     formData.append('name', userInfo.name);
     formData.append('email', userInfo.email);
     formData.append('phone', userInfo.phone);
+    formData.append('username', userInfo.username);
 
     Swal.fire({text:"Please wait..."});
     Swal.showLoading();
@@ -136,6 +138,7 @@ const DepositModal = ({ isOpen, onClose, fetchTransactions }) => {
         setScreenshot(null);
         setPreview(null);
         onClose();
+        handleNotify();
       } else {
         Swal.fire('Error', response.data.error || 'Something went wrong.', 'error');
       }
@@ -152,6 +155,41 @@ const DepositModal = ({ isOpen, onClose, fetchTransactions }) => {
     setPreview(null);
     onClose();
   };
+
+
+  
+    const handleNotify = async () => {
+      try {
+        Swal.fire({
+          title: 'Notifying Admin...',
+          text: 'Please wait while we notify the admin about the deposit request.',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
+  
+        const response = await fetch('https://elitewealthglobal.com/api/notify_admin_deposit.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+  
+        const result = await response.json();
+        Swal.close();
+  
+        if (result.success) {
+          Swal.fire('Success', result.message, 'success');
+        } else {
+          Swal.fire('Error', result.error || 'Notification failed.', 'error');
+        }
+      } catch (error) {
+        Swal.close();
+        Swal.fire('Network Error', 'Could not connect to the server.', 'error');
+      }
+    };
+
 
 
 

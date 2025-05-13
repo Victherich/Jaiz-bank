@@ -53,7 +53,7 @@ root.render(
     </ContextProvider>
     </PersistGate>
     </Provider>
-  </React.StrictMode>
+   </React.StrictMode>
 );
 
 // Unregister the service worker (disables offline support)

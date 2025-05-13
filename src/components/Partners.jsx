@@ -7,7 +7,7 @@ import partner2 from "../Images2/pt2.jpeg";
 import partner3 from "../Images2/pt3.jpeg";
 import partner4 from '../Images2/pt4.jpeg'
 import { useLocation, useNavigate } from "react-router-dom";
-import partner5 from "../Images2/pt5.jpeg";
+// import partner5 from "../Images2/pt5.jpeg";
 import partner6 from "../Images2/pt6.jpeg";
 import partner7 from "../Images2/pt7.jpeg";
 import partner8 from "../Images2/pt8.jpeg";
@@ -21,7 +21,7 @@ const Partners = () => {
     { name: "Green Future Tech", logo: partner2 },
     { name: "Waste Innovations", logo: partner3 },
     {name:"Royal Iwere Foundation", logo: partner4},
-    { name: "Sustainable Energy Inc.", logo: partner5 },
+    // { name: "Sustainable Energy Inc.", logo: partner5 },
     { name: "Eco-Friendly Materials", logo: partner6 },
     { name: "Recycling Experts", logo: partner7 },
     { name: "Sustainable Energy Inc.", logo: partner8 },

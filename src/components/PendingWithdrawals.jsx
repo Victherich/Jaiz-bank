@@ -211,9 +211,12 @@ const PendingWithdrawals = () => {
                     withdrawals.map((w) => (
                         <div key={w.id} style={styles.card}>
                             <p><strong style={{color:"#000050"}}>Ref:</strong> {w.reference}</p>
-                            <p><strong style={{color:"#000050"}}>User ID:</strong> {w.user_id}</p>
-                            <p><strong style={{color:"#000050"}}>Amount:</strong> ₦{parseFloat(w.amount).toFixed(2)}</p>
-                            <p><strong style={{color:"#000050"}}>Description:</strong> {w.description}</p>
+                            {/* <p><strong style={{color:"#000050"}}>User ID:</strong> {w.user_id}</p> */}
+                            <p><strong style={{color:"#000050"}}>Username:</strong> {w.username}</p>
+                            <p><strong style={{color:"#000050"}}>Email:</strong> {w.email}</p>
+                            <p><strong style={{color:"#000050"}}>Phone:</strong> {w.phone}</p>
+                            <p><strong style={{color:"#000050"}}>Amount:</strong> ${parseFloat(w.amount).toFixed(2)}</p>
+                            {/* <p><strong style={{color:"#000050"}}>Description:</strong> {w.description}</p> */}
                             <p><strong style={{color:"#000050"}}>Reference:</strong> {w.reference}</p>
                             <p><strong style={{color:"#000050"}}>User wallet:</strong> {w.wallet}</p>
                             <p><strong style={{color:"#000050"}}>Date:</strong> {new Date(w.created_at).toLocaleString()}</p>

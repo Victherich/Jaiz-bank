@@ -221,6 +221,7 @@ import InvestmentModal from './InvestmentModal';
 import { useSelector } from 'react-redux';
 import WithdrawalModal from './WidrawalModal';
 import UserInvestments from './UserInvestments';
+import Swal from 'sweetalert2'
 
 const DashboardContainer = styled.div`
   display: flex;
@@ -321,6 +322,42 @@ const TransactionTable = styled.table`
   }
 `;
 
+
+
+
+
+
+
+
+// coipy link
+
+const Card2 = styled.div`
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 20px;
+`;
+
+const Button2 = styled.button`
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;
+
+const ReferralLink = styled.span`
+  font-weight: bold;
+   word-break: break-all;
+  display: inline-block;
+`;
+
 const UserProfile2 = ({userId}) => {
   const [user, setUser] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -336,6 +373,7 @@ const UserProfile2 = ({userId}) => {
         const res = await axios.get(`https://elitewealthglobal.com/api/get_user_by_id.php?id=${userId}`);
         if (res.data.success) {
           setUser(res.data.user);
+          console.log(res.data.user)
         } else {
           console.error(res.data.error);
         }
@@ -353,6 +391,7 @@ const UserProfile2 = ({userId}) => {
     useEffect(() => {
     const id = setInterval(()=>{
       fetchUser();
+      fetchTransactions();
     },10000)
 return ()=>clearInterval(id);
   }, []);
@@ -384,21 +423,21 @@ return ()=>clearInterval(id);
   // chek an dupddat paypout
 
 
-    const checkPayouts = async () => {
-      try {
-        const res = await axios.post('https://elitewealthglobal.com/api/check_and_update_payouts.php', {
-          user_id: userId
-        });
+    // const checkPayouts = async () => {
+    //   try {
+    //     const res = await axios.post('https://elitewealthglobal.com/api/check_and_update_payouts.php', {
+    //       user_id: userId
+    //     });
         
-        if (res.data.success && res.data.updated.length > 0) {
-          console.log('Updated payouts:', res.data.updated);
-          // Optionally refresh balance from backend
+    //     if (res.data.success && res.data.updated.length > 0) {
+    //       console.log('Updated payouts:', res.data.updated);
+    //       // Optionally refresh balance from backend
           
-        }
-      } catch (err) {
-        console.error('Payout update failed:', err);
-      }
-    };
+    //     }
+    //   } catch (err) {
+    //     console.error('Payout update failed:', err);
+    //   }
+    // };
 
   //   useEffect(() => {
   //   checkPayouts();
@@ -411,13 +450,84 @@ return ()=>clearInterval(id);
   //   }, 60000);
   // },[])
 
-  useEffect(() => {
-    const id = setInterval(() => {
-      checkPayouts();
-    }, 60000);
-    return () => clearInterval(id);
-  }, []);
+  // useEffect(() => {
+  //   const id = setInterval(() => {
+  //     checkPayouts();
+  //   }, 60000);
+  //   return () => clearInterval(id);
+  // }, []);
+
+
+
+
+
+
+  // copy link logic
+
+  const [buttonText, setButtonText] = useState('Copy Link');
+
+  const copyReferralLink = () => {
+    const referralLink = `https://elitewealthglobal.com/signup2/${user.username}`;
+
+    // Create a temporary textarea element to copy the link
+    const tempInput = document.createElement('textarea');
+    tempInput.value = referralLink;
+    document.body.appendChild(tempInput);
+
+    // Select and copy the text
+    tempInput.select();
+    document.execCommand('copy');
+
+    // Remove the temporary input element
+    document.body.removeChild(tempInput);
+
+    // Change the button text to indicate the link was copied
+    setButtonText('Link Copied!');
+
+    // Reset button text after 2 seconds
+    setTimeout(() => {
+      setButtonText('Copy Link');
+    }, 2000);
+  };
   
+
+
+
+
+
+  const runPayoutProcessor = async () => {
+    try {
+      const response = await fetch('https://elitewealthglobal.com/api/execute_due_payouts2.php');
+      const data = await response.json();
+  
+      if (data.success) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: data.message,
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: data.error || 'Something went wrong',
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Network Error',
+        text: 'Request failed. Please check your connection.',
+      });
+    }
+  };
+  
+
+
+
+
+
   
 
   if (!user) return <div>Loading...</div>;
@@ -426,12 +536,16 @@ return ()=>clearInterval(id);
     <DashboardContainer>
       <Main>
         <Card>
-          <Label>Welcome back, {user.name}</Label>
+          <Label>Welcome back, {user?.username.toUpperCase()}</Label>
           <Balance>Balance: ${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(user.balance))}
           </Balance>
-          <p>Email: {user.email}</p>
-          <p>Phone: {user.phone}</p>
+          {/* <p>
+            From Commission: ${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(user.commissions))}
+          </p> */}
+          {/* <p>Email: {user.email}</p> */}
+          {/* <p>Phone: {user.phone}</p> */}
         </Card>
+        {/* <button onClick={runPayoutProcessor}>Test</button> */}
 
         <Card>
           <h3>Actions</h3>
@@ -440,10 +554,16 @@ return ()=>clearInterval(id);
           <Button onClick={()=>setWithdrawModalOpen(true)}>Withdraw Funds</Button>
         </Card>
 
-        {/* <Card>
-          <h3>Investment Summary</h3>
-          <p>(Coming soon: Show active investments, returns, maturity date, etc.)</p>
-        </Card> */}
+
+      
+
+     
+         <Card2>
+      <h3 style={{color:"#000050"}}>
+        Referral Link: <ReferralLink>{`https://elitewealthglobal.com/signup2/${user.username}`}</ReferralLink>
+      </h3>
+      <Button2 onClick={copyReferralLink}>{buttonText}</Button2>
+    </Card2>
 
         <UserInvestments userId={userId}/>
 

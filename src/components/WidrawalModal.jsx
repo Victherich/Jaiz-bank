@@ -81,6 +81,7 @@ const WithdrawalModal = ({ isOpen, onClose, userInfo, fetchTransactions }) => {
           email: userInfo.email,
           phone: userInfo.phone,
           amount: enteredAmount,
+          username:userInfo.username,
           wallet
         });
   

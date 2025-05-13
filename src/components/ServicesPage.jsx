@@ -10,6 +10,9 @@ import r1 from '../Images2/r1.jpg'
 import r2 from '../Images2/r2.jpg'
 import r3 from '../Images2/r3.jpg'
 import r4 from '../Images2/r4.jpg'
+import r5 from '../Images3/mi4.jpg'
+import r6 from '../Images3/mi5.jpg'
+import r7 from '../Images3/mi6.jpg'
 
 
 
@@ -41,6 +44,27 @@ const services = [
     description:
       'Streamline your property management with our expert services. From tenant screening to maintenance and rent collection, we handle every aspect of your investment with care and professionalism.',
     image: r4,
+  },
+  {
+    id: 5,
+    title: 'REAL ESTATE INVESTMENT',
+    description:
+      'Maximize your returns with our tailored real estate investment opportunities. We guide you through every step, from market analysis to property aquisition, ensuring smart and profitable decisions.',
+    image: r5,
+  },
+  {
+    id: 6,
+    title: 'CURRENCY EXCHANGE AND SMART TRADING',
+    description:
+      'Owning a digital assets is the smartest way to own a part of the future. Our investors are really smart because not only do they yeild high returns, but their investments also grant them ownership of the future and we trade in cryptocurrencies and offer its investment opportunities to our investors, so they can benefit from this highly profitable industry.',
+    image: r6,
+  },
+  {
+    id: 7,
+    title: 'NFTs',
+    description:
+      'Non-fungible tokens (NFTs) are cryptographic assets on a blockchain with unique identification codes and metadata that distinguish them from each other. Unlike cryptocurrencies, they cannot be traded or exchanged at equivalency. This differs from fungible tokens like cryptocurrencies which areidentical to each other and therefore can serve as a medium for commercial transactions.',
+    image: r7,
   },
 ];
 
@@ -89,28 +113,67 @@ const HeroSubtitle = styled.p`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 `;
 
-const ServicesGrid = styled.section`
+// const ServicesGrid = styled.section`
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+//   gap: 40px;
+//   padding: 60px 20px;
+//   max-width: 1200px;
+//   margin: 0 auto;
+// `;
+
+// const ServiceCard = styled.div`
+//   background: white;
+//   border-radius: 12px;
+//   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+//   overflow: hidden;
+//   transition: transform 0.3s ease, box-shadow 0.3s ease;
+//   animation: ${fadeInUp} 1s ease-out forwards;
+
+//   &:hover {
+//     transform: translateY(-10px);
+//     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+//   }
+// `;
+
+
+
+const ServicesGrid = styled.div`
+  max-width: 1200px;
+  margin: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
-  padding: 60px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 50px;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
 `;
 
 const ServiceCard = styled.div`
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: ${fadeInUp} 1s ease-out forwards;
+  background: #ffffff;
+  color: #000050;
+  padding: 20px;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  
+
+  @media (max-width: 480px) {
+    padding: 15px;
   }
 `;
+
+
+
 
 const ServiceImage = styled.img`
   width: 100%;
@@ -129,7 +192,7 @@ const ServiceTitle = styled.h3`
 `;
 
 const ServiceDescription = styled.p`
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #4b5563;
 `;
 
@@ -147,7 +210,29 @@ const ServicesPage = () => {
         </HeroSubtitle>
       </HeroSection>
       <ServicesGrid>
-        {services.map((service) => (
+        {services.slice(0,3).map((service) => (
+          <ServiceCard key={service.id} data-aos="fade-up">
+            <ServiceImage src={service.image} alt={service.title} />
+            <ServiceContent>
+              <ServiceTitle>{service.title}</ServiceTitle>
+              <ServiceDescription>{service.description}</ServiceDescription>
+            </ServiceContent>
+          </ServiceCard>
+        ))}
+      </ServicesGrid>
+      <ServicesGrid>
+        {services.slice(3,6).map((service) => (
+          <ServiceCard key={service.id} data-aos="fade-up">
+            <ServiceImage src={service.image} alt={service.title} />
+            <ServiceContent>
+              <ServiceTitle>{service.title}</ServiceTitle>
+              <ServiceDescription>{service.description}</ServiceDescription>
+            </ServiceContent>
+          </ServiceCard>
+        ))}
+      </ServicesGrid>
+      <ServicesGrid>
+        {services.slice(6,7).map((service) => (
           <ServiceCard key={service.id} data-aos="fade-up">
             <ServiceImage src={service.image} alt={service.title} />
             <ServiceContent>

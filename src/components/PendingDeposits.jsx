@@ -241,9 +241,12 @@ if(deposits.length==0){
       {deposits.map((deposit) => (
         <Card key={deposit.id}>
           <h3 style={{color:"#000050"}}>Reference: {deposit.reference}</h3>
-          <p><strong style={{color:"#000050"}}>User ID:</strong> {deposit.user_id}</p>
+          {/* <p><strong style={{color:"#000050"}}>User ID:</strong> {deposit.user_id}</p> */}
+          <p><strong style={{color:"#000050"}}>Username:</strong> {deposit.username}</p>
+          <p><strong style={{color:"#000050"}}>Email:</strong> {deposit.email}</p>
+          <p><strong style={{color:"#000050"}}>phone:</strong> {deposit.phone}</p>
           <p><strong style={{color:"#000050"}}>Amount:</strong> ${parseFloat(deposit.amount).toFixed(2)}</p>
-          <p><strong style={{color:"#000050"}}>Description:</strong> {deposit.description}</p>
+          {/* <p><strong style={{color:"#000050"}}>Description:</strong> {deposit.description}</p> */}
           <p><strong style={{color:"#000050"}}>Date:</strong> {new Date(deposit.created_at).toLocaleString()}</p>
           <p 
           onClick={()=>window.open(`https://elitewealthglobal.com/api/${deposit.screenshot_path}`, '_blank')}

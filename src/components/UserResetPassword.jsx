@@ -32,16 +32,26 @@ const Form = styled.form`
   flex-direction: column;
 `;
 
+// const Input = styled.input`
+//   padding: 0.75rem;
+//   margin-bottom: 1rem;
+//   border: 1px solid #ddd;
+//   border-radius: 8px;
+//   font-size: 1rem;
+//   &:focus {
+//     border-color: #000050;
+//     outline: none;
+//   }
+// `;
+
+
 const Input = styled.input`
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  &:focus {
-    border-color: #000050;
-    outline: none;
-  }
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
 `;
 
 const Button = styled.button`
@@ -63,6 +73,19 @@ const UserResetPassword = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+
+
+
+  
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setConfirmPasswordVisible(!confirmPasswordVisible);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -101,7 +124,7 @@ const UserResetPassword = () => {
           title: 'Success',
           text: data.message || 'Password reset successfully!',
         }).then(() => {
-          navigate('/investments');
+          navigate('/login');
         });
       } else {
         Swal.fire({
@@ -125,23 +148,62 @@ const UserResetPassword = () => {
       <FormWrapper>
         <Title>Reset Your Password</Title>
         <Form onSubmit={handleSubmit}>
+        <div style={{ position: 'relative' }}>
           <Input
-            type="password"
-            placeholder="New password"
-            required
+            type={passwordVisible ? 'text' : 'password'}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          />
-          <Input
-            type="password"
-            placeholder="Confirm new password"
+            placeholder="Enter password"
             required
+          />
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            style={{
+              position: 'absolute',
+              right: '10px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              border: 'none',
+              background: 'transparent',
+              cursor: 'pointer',
+            }}
+          >
+            {passwordVisible ? '🙈' : '👁️'}
+          </button>
+        </div>
+      
+          {/* <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" required /> */}
+
+      
+          {/* <Input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm password" required /> */}
+          <div style={{ position: 'relative' }}>
+          <Input
+            type={confirmPasswordVisible ? 'text' : 'password'}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Confirm password"
+            required
           />
+          <button
+            type="button"
+            onClick={toggleConfirmPasswordVisibility}
+            style={{
+              position: 'absolute',
+              right: '10px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              border: 'none',
+              background: 'transparent',
+              cursor: 'pointer',
+            }}
+          >
+            {confirmPasswordVisible ? '🙈' : '👁️'}
+          </button>
+        </div>
           <Button type="submit">Reset Password</Button>
         </Form>
-        <p onClick={() => navigate("/investments")} style={{ color: "#000050", cursor: "pointer" }}>Back to Login</p>
+        <p onClick={() => navigate("/login")} style={{ color: "#000050", cursor: "pointer" }}>Back to Login</p>
       </FormWrapper>
     </Container>
   );

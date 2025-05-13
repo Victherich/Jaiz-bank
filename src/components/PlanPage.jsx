@@ -14,6 +14,11 @@ const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+
+  @media(max-width:320px){
+    padding:4rem 1rem;
+  }
 `;
 
 const PageTitle = styled.h1`
@@ -97,14 +102,14 @@ const PlanPage = () => {
     <PageWrapper>
       <PageTitle>🌌 Our Investment Plans 🌌</PageTitle>
       <CardsGrid>
-        {plans.slice(0,3).map((plan) => (
+        {plans.map((plan) => (
           <PlanCard key={plan.id}>
             <PlanName>{plan.name}</PlanName>
             <PlanDetails><strong>ROI:</strong> {plan.roi}</PlanDetails>
             <PlanDetails><strong>Investment Range:</strong> {plan.range}</PlanDetails>
             {/* <PlanDetails><strong>Duration:</strong> {plan.duration} intervals</PlanDetails> */}
             {/* <PlanDetails><strong>Payout Interval:</strong> Every {plan.interval_minutes} mins</PlanDetails> */}
-            <InvestButton onClick={() => navigate('/investments')}>Invest Now 🚀</InvestButton>
+            <InvestButton onClick={() => navigate('/userdashboard')}>Invest Now 🚀</InvestButton>
           </PlanCard>
         ))}
       </CardsGrid>

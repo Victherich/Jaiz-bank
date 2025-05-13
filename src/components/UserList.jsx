@@ -83,13 +83,13 @@ const UserList = () => {
       <Table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
+            {/* <th>ID</th> */}
+            <th>User Name</th>
             <th>Email</th>
             <th>Phone</th>
          
             <th>Balance</th>
-
+            <th>Country</th>
             <th>Created At</th>
           </tr>
         </thead>
@@ -97,8 +97,8 @@ const UserList = () => {
           {filteredUsers.length > 0 ? (
             filteredUsers.map(user => (
               <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
+                {/* <td>{user.id}</td> */}
+                <td>{user.username}</td>
                 <td>{user.email}</td>
                 <td>{user.phone}</td>
     
@@ -106,7 +106,7 @@ const UserList = () => {
   {new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(user.balance))}
 
 </td>
-      
+<td>{user.country}</td>
                 <td>{new Date(user.created_at).toLocaleString()}</td>
               </tr>
             ))

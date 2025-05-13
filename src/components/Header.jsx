@@ -75,15 +75,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import logo from "../Images/logo2.png";
+// import logo from "../Images/logo2.png";
 import 'animate.css';  
 import '../CSS/Header.css'
+import { useSelector } from 'react-redux';
+import logo from '../Images2/logo3.jpeg'
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const userToken = useSelector(state=>state.userToken);
+  const userInfo = useSelector(state=>state.userInfo)
 
   const navRef = useRef(null);
 
@@ -115,8 +119,9 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="logo" onClick={() => navigate('/')}>
-        <h3 style={{cursor:"pointer"}}>🌐 ELITE WEALTH GLOBAL </h3>
+      <div className="logo" onClick={() => navigate('/')} style={{display:"flex", justifyContent:"center", alignItems:"center", gap:"10px"}}>
+        <img src={logo} alt='logo' style={{width:"50px", borderRadius:"50%"}}/>
+        <h3 style={{cursor:"pointer"}}>ELITE WEALTH GLOBAL </h3>
       </div>
 
       <nav ref={navRef} className={menuOpen ? "nav-menu active" : "nav-menu"}>
@@ -135,22 +140,96 @@ const Header = () => {
 
 
           {/* Regular nav items */}
-          {['ABOUT US','SERVICES','APPLY_FOR_LOAN','INVESTMENTS',  'CONTACT US'].map((text, index) => {
-            const path = `/${text.toLowerCase().replace(' ', '')}`;
-            return (
-              <li key={index}>
-                <a
-                  onClick={() => {
-                    navigate(path);
-                    closeMenus();
-                  }}
-                  className={location.pathname === path ? "active" : ""}
-                >
-                  {text}
-                </a>
-              </li>
-            );
-          })}
+          <li>
+  <a
+    onClick={() => {
+      navigate('/aboutus');
+      closeMenus();
+    }}
+    className={location.pathname === '/aboutus' ? 'active' : ''}
+  >
+    ABOUT US
+  </a>
+</li>
+
+<li>
+  <a
+    onClick={() => {
+      navigate('/services');
+      closeMenus();
+    }}
+    className={location.pathname === '/services' ? 'active' : ''}
+  >
+    SERVICES
+  </a>
+</li>
+
+<li>
+  <a
+    onClick={() => {
+      navigate('/apply_for_loan');
+      closeMenus();
+    }}
+    className={location.pathname === '/apply_for_loan' ? 'active' : ''}
+  >
+    APPLY_FOR_LOAN
+  </a>
+</li>
+
+<li>
+  <a
+    onClick={() => {
+      navigate('/investments');
+      closeMenus();
+    }}
+    className={location.pathname === '/investments' ? 'active' : ''}
+  >
+    INVESTMENTS
+  </a>
+</li>
+
+{!userToken && (
+  <li>
+    <a
+      onClick={() => {
+        navigate('/signup');
+        closeMenus();
+      }}
+      className={location.pathname === '/signup' ? 'active' : ''}
+    >
+      SIGNUP
+    </a>
+  </li>
+)}
+
+<li>
+  <a
+    onClick={() => {
+      navigate(userToken ? `/userdashboard` : '/login');
+      closeMenus();
+    }}
+    className={
+      location.pathname === (userToken ? `/hi${userInfo?.username}` : '/login')
+        ? 'active'
+        : ''
+    }
+  >
+    {userToken ? `👤 Hi ${userInfo?.username?.toUpperCase()}` : 'LOGIN'}
+  </a>
+</li>
+
+<li>
+  <a
+    onClick={() => {
+      navigate('/contactus');
+      closeMenus();
+    }}
+    className={location.pathname === '/contactus' ? 'active' : ''}
+  >
+    CONTACT US
+  </a>
+</li>
+
         </ul>
       </nav>
 

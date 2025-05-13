@@ -68,7 +68,7 @@ const SubTitle = styled.h3`
 const ActiveOwners = () => {
   return (
     <SectionWrapper>
-      <SectionTitle>🔍 Active Owners</SectionTitle>
+      <SectionTitle>Active Owners</SectionTitle>
       <Layout>
         <LeftSide>
           <Image src={activeImg} alt="Active Ownership" />

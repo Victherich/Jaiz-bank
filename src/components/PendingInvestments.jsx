@@ -35,7 +35,7 @@ const PendingInvestments = () => {
 
 
 
-    const approveInvestment = async (id, userId) => {
+    const approveInvestment = async (id, userId, amount) => {
       const result = await Swal.fire({
         title: 'Are you sure?',
         text: 'Do you want to approve this investment?',
@@ -60,7 +60,7 @@ const PendingInvestments = () => {
           Swal.fire('Approved!', 'Investment approved.', 'success');
           // Optionally refresh list
           fetchPendingInvestments();
-          notifyUserInvestmentApproved(id, userId)
+          notifyUserInvestmentApproved(id, userId, amount)
           setInvestments(prev => prev.filter(w => w.id !== id));
           
         } else {
@@ -76,7 +76,7 @@ const PendingInvestments = () => {
 
 
 
-    const notifyUserInvestmentApproved = async (id, userId) => {
+    const notifyUserInvestmentApproved = async (id, userId, amount) => {
       try {
         // Sending POST request to notify the user
         const response = await fetch('https://elitewealthglobal.com/api/notify_user_investment_approved.php', {
@@ -84,7 +84,7 @@ const PendingInvestments = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ user_id: userId })  // Send the user_id to the backend
+          body: JSON.stringify({ user_id: userId, amount:amount })  // Send the user_id to the backend
         });
     
         const data = await response.json();
@@ -137,7 +137,7 @@ const PendingInvestments = () => {
 
 
 
-    const deleteInvestment = async (investmentId, userId) => {
+    const deleteInvestment = async (investmentId, userId, amount) => {
       if (!investmentId) {
         Swal.fire('Error', 'Investment ID is required.', 'error');
         return;
@@ -176,7 +176,7 @@ const PendingInvestments = () => {
           setInvestments(prev => prev.filter(w => w.id !== investmentId));
           fetchPendingInvestments();
           // Optionally refresh data or update UI here
-          handleNotify(userId);
+          handleNotify(userId, amount);
         } else {
           Swal.fire('Error', result.error || 'Failed to delete investment.', 'error');
         }
@@ -190,7 +190,7 @@ const PendingInvestments = () => {
 
 
 
-    const handleNotify = async (userId) => {
+    const handleNotify = async (userId, amount) => {
       if (!userId) {
         Swal.fire('Missing Info', 'Please enter a valid user ID.', 'warning');
         return;
@@ -211,7 +211,7 @@ const PendingInvestments = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ user_id: parseInt(userId) }),
+          body: JSON.stringify({ user_id: parseInt(userId) , amount:amount}),
         });
   
         const result = await response.json();
@@ -248,7 +248,7 @@ const PendingInvestments = () => {
                             <p><strong style={{color:"#000050"}}>Amount:</strong> ${parseFloat(investment.amount).toFixed(2)}</p>
                             <p><strong style={{color:"#000050"}}>Status:</strong> {investment.status}</p>
                             <p><strong style={{color:"#000050"}}>Date:</strong> {new Date(investment.created_at).toLocaleString()}</p>
-                            <button onClick={() => approveInvestment(investment.id, investment.user_id)} 
+                            <button onClick={() => approveInvestment(investment.id, investment.user_id, investment.amount)} 
                             style={{ marginTop: '10px',
                                  marginTop: '12px',
                                  padding: '10px',
@@ -262,7 +262,7 @@ const PendingInvestments = () => {
     Approve
 </button>
 
-<button onClick={() => deleteInvestment(investment.id, investment.user_id)} 
+<button onClick={() => deleteInvestment(investment.id, investment.user_id, investment.amount)} 
                             style={{ marginTop: '10px',
                                  marginTop: '12px',
                                  padding: '10px',

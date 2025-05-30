@@ -33,7 +33,7 @@ const PendingWithdrawals = () => {
 
 
 
-    const approveWithdrawal = async (id, userId) => {
+    const approveWithdrawal = async (id, userId, amount, walletAddress) => {
       const result = await Swal.fire({
         title: 'Are you sure?',
         text: 'Do you want to approve this withdrawal?',
@@ -58,7 +58,7 @@ const PendingWithdrawals = () => {
           Swal.fire('Approved!', data.message || 'Withdrawal approved.', 'success');
           setWithdrawals(prev => prev.filter(w => w.id !== id));
           fetchPendingWithdrawals();
-          notifyUserWithdrawalApproved(userId)
+          notifyUserWithdrawalApproved(userId, amount, walletAddress)
         } else {
           Swal.fire('Error', data.error || 'Approval failed.', 'error');
         }
@@ -72,7 +72,7 @@ const PendingWithdrawals = () => {
 
 
 
-    const notifyUserWithdrawalApproved = async (userId) => {
+    const notifyUserWithdrawalApproved = async (userId, amount, walletAddress) => {
       try {
         // Sending POST request to notify the user
         const response = await fetch('https://elitewealthglobal.com/api/notify_user_withdrawal_approved.php', {
@@ -80,7 +80,7 @@ const PendingWithdrawals = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ user_id: userId })  // Send the user_id to the backend
+          body: JSON.stringify({ user_id: userId, amount:amount, wallet_address:walletAddress })  // Send the user_id to the backend
         });
     
         const data = await response.json();
@@ -103,7 +103,7 @@ const PendingWithdrawals = () => {
 
 
 
-    const deleteTransaction = async (transactionId, userId) => {
+    const deleteTransaction = async (transactionId, userId, amount) => {
       if (!transactionId) {
         Swal.fire('Error', 'Transaction ID is required', 'error');
         return;
@@ -145,7 +145,7 @@ const PendingWithdrawals = () => {
           Swal.fire('Declined and Deleted!', result.message, 'success');
           setWithdrawals(prev => prev.filter(w => w.id !== transactionId));
           fetchPendingWithdrawals();
-          handleNotify(userId)
+          handleNotify(userId, amount)
           
         } else {
           Swal.fire('Error', result.error || 'Failed to delete transaction.', 'error');
@@ -159,7 +159,7 @@ const PendingWithdrawals = () => {
 
 
 
-    const handleNotify = async (userId) => {
+    const handleNotify = async (userId, amount) => {
       if (!userId) {
         Swal.fire('Missing Info', 'Please enter a valid user ID.', 'warning');
         return;
@@ -180,7 +180,7 @@ const PendingWithdrawals = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ user_id: parseInt(userId) }),
+          body: JSON.stringify({ user_id: parseInt(userId), amount:amount }),
         });
   
         const result = await response.json();
@@ -220,7 +220,7 @@ const PendingWithdrawals = () => {
                             <p><strong style={{color:"#000050"}}>Reference:</strong> {w.reference}</p>
                             <p><strong style={{color:"#000050"}}>User wallet:</strong> {w.wallet}</p>
                             <p><strong style={{color:"#000050"}}>Date:</strong> {new Date(w.created_at).toLocaleString()}</p>
-                            <button style={styles.button} onClick={() => approveWithdrawal(w.id, w.user_id)}>
+                            <button style={styles.button} onClick={() => approveWithdrawal(w.id, w.user_id, w.amount, w.wallet)}>
                                 Approve
                             </button>
 
@@ -233,7 +233,7 @@ const PendingWithdrawals = () => {
                                borderRadius: '5px',
                                cursor: 'pointer',
                                fontWeight: 'bold',
-                            }}  onClick={() => deleteTransaction(w.id, w.user_id)}>
+                            }}  onClick={() => deleteTransaction(w.id, w.user_id, w.amount)}>
                                 Decline
                             </button>
                             

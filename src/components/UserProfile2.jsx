@@ -253,6 +253,7 @@ const Card = styled.div`
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
   margin-bottom: 20px;
+  // overflow-y:scroll;
 
   @media(max-width: 428px){
     padding: 15px 10px;
@@ -364,6 +365,10 @@ const UserProfile2 = ({userId}) => {
   const [transactions, setTransactions] = useState([]);
   const [isInvestmentModalOpen, setInvestmentModalOpen] = useState(false);
   const [withdrawModalOpen, setWithdrawModalOpen]=useState(false);
+  const [referees, setReferees] = useState([]);
+console.log(referees)
+
+  console.log(user)
 
   
 
@@ -522,6 +527,37 @@ return ()=>clearInterval(id);
       });
     }
   };
+
+
+
+
+
+
+
+
+
+
+const getUserReferrees = async () => {
+  if (!user?.referees) return;
+
+  try {
+    const response = await axios.get(`https://elitewealthglobal.com/api/get_referees.php?ids=${user?.referees}`);
+    if (response.data.success) {
+      setReferees(response.data.referees);
+      
+    
+    } else {
+      console.warn("No referees found.");
+    }
+  } catch (error) {
+    console.error("Error fetching referees:", error);
+  }
+};
+
+useEffect(() => {
+  getUserReferrees();
+}, [user?.referees]);
+
   
 
 
@@ -582,7 +618,7 @@ return ()=>clearInterval(id);
               </thead>
               <tbody>
                 {transactions.length > 0 ? (
-                  transactions.slice(0,10).sort((a,b)=>a.created_at - b.created_at).map((tx, index) => (
+                  transactions.sort((a,b)=>a.created_at - b.created_at).map((tx, index) => (
                     <tr key={index}>
                       <td>{tx.created_at}</td>
                       <td>{tx.type}</td>
@@ -600,6 +636,41 @@ return ()=>clearInterval(id);
             </TransactionTable>
           </TransactionTableWrapper>
         </Card>
+
+         <Card style={{height:"300px"}}>
+          <h3>Your Referrals</h3>
+          <TransactionTableWrapper>
+            <TransactionTable>
+              <thead>
+                <tr>
+                  <th>Username</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  {/* <th>Reference</th> */}
+                </tr>
+              </thead>
+              <tbody>
+                {referees.length > 0 ? (
+                  referees.sort((a,b)=>a.created_at - b.created_at).map((rf, index) => (
+                    <tr key={index}>
+                      <td>{rf.username}</td>
+                      <td>{rf.name}</td>
+                      <td>{rf.email}</td>
+                      <td>{rf.phone}</td>
+                      {/* <td>{tx.reference}</td> */}
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4">No Referrals yet.</td>
+                  </tr>
+                )}
+              </tbody>
+            </TransactionTable>
+          </TransactionTableWrapper>
+        </Card>
+
       </Main>
       <DepositModal isOpen={modalOpen} fetchTransactions={fetchTransactions} onClose={() => setModalOpen(false)} userId={userId} />
       <InvestmentModal

@@ -61,7 +61,7 @@ const PendingDeposits = () => {
 
 
 
-const approveDeposit = async (id, userId) => {
+const approveDeposit = async (id, userId, amount) => {
   const result = await Swal.fire({
     title: 'Are you sure?',
     text: 'Do you want to approve this deposit?',
@@ -79,7 +79,7 @@ const approveDeposit = async (id, userId) => {
         
         Swal.fire('Success', 'Deposit approved.', 'success');
         fetchDeposits();
-        notifyUserDepositApproved(userId);
+        notifyUserDepositApproved(userId, amount);
         setDeposits(prev => prev.filter(w => w.id !== id));
       } else {
         Swal.fire('Error', response.data.error, 'error');
@@ -96,7 +96,7 @@ const approveDeposit = async (id, userId) => {
 
 
 
-const notifyUserDepositApproved = async (userId) => {
+const notifyUserDepositApproved = async (userId, amount) => {
   try {
     // Sending POST request to notify the user
     const response = await fetch('https://elitewealthglobal.com/api/notify_user_deposit_approved.php', {
@@ -104,7 +104,7 @@ const notifyUserDepositApproved = async (userId) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ user_id: userId })  // Send the user_id to the backend
+      body: JSON.stringify({ user_id: userId, amount:amount })  // Send the user_id to the backend
     });
 
     const data = await response.json();
@@ -129,7 +129,7 @@ const notifyUserDepositApproved = async (userId) => {
 
 
 
- const deleteTransaction = async (transactionId, userId) => {
+ const deleteTransaction = async (transactionId, userId, amount) => {
       if (!transactionId) {
         Swal.fire('Error', 'Transaction ID is required', 'error');
         return;
@@ -171,7 +171,7 @@ const notifyUserDepositApproved = async (userId) => {
           Swal.fire('Declined and Deleted!', result.message, 'success');
           setDeposits(prev => prev.filter(w => w.id !== transactionId));
           fetchDeposits();
-          handleNotify(userId);
+          handleNotify(userId, amount);
           
         } else {
           Swal.fire('Error', result.error || 'Failed to delete transaction.', 'error');
@@ -184,7 +184,7 @@ const notifyUserDepositApproved = async (userId) => {
 
 
 
-    const handleNotify = async (userId) => {
+    const handleNotify = async (userId, amount) => {
       if (!userId) {
         Swal.fire('Error', 'Please enter a valid user ID', 'error');
         return;
@@ -210,7 +210,7 @@ const notifyUserDepositApproved = async (userId) => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ user_id: parseInt(userId) }),
+          body: JSON.stringify({ user_id: parseInt(userId) , amount:amount}),
         });
   
         const result = await response.json();
@@ -252,7 +252,7 @@ if(deposits.length==0){
           onClick={()=>window.open(`https://elitewealthglobal.com/api/${deposit.screenshot_path}`, '_blank')}
           style={{color:"#000050", fontWeight:"bold", cursor:"pointer", textDecoration:"underline", marginTop:"10px", marginBottom:"10px"}}
           >View Payment Screenshot</p>
-          <Button onClick={() => approveDeposit(deposit.id, deposit.user_id)}>Approve</Button>
+          <Button onClick={() => approveDeposit(deposit.id, deposit.user_id, deposit.amount)}>Approve</Button>
           <button style={{
                                marginTop: '12px',
                                padding: '10px',
@@ -263,7 +263,7 @@ if(deposits.length==0){
                                cursor: 'pointer',
                                fontWeight: 'bold',
                                margin:"5px"
-                            }}  onClick={() => deleteTransaction(deposit.id, deposit.user_id)}>
+                            }}  onClick={() => deleteTransaction(deposit.id, deposit.user_id, deposit.amount)}>
                                 Decline
                             </button>
         </Card>

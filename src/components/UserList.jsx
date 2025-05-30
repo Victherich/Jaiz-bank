@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import ManageUser from './ManageUser';
 
 // Styled Components
 const Container = styled.div`
@@ -47,11 +48,30 @@ const Table = styled.table`
   }
 `;
 
+const Button = styled.button`
+  cursor:pointer;
+  background:#000050;
+  border:none;
+  color:white;
+  margin:2px;
+  padding:4px;
+  border-radius:5px;
+
+  &:hover{
+  background:purple;
+  }
+`
+
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const [searchEmail, setSearchEmail] = useState('');
+  const [selectedUser, setSelectedUser] = useState(null);
 
-  useEffect(() => {
+  console.log(users)
+
+ 
+
+    const getUsers=()=>{
     // Fetch all users on component mount
     axios.get('https://elitewealthglobal.com/api/get_all_users.php')
       .then(response => {
@@ -64,12 +84,19 @@ const UserList = () => {
       .catch(error => {
         console.error('Error fetching users:', error);
       });
+    }
+
+ useEffect(() => {
+      getUsers();
   }, []);
 
   // Filter users based on search input
   const filteredUsers = users.filter(user =>
     user.email.toLowerCase().includes(searchEmail.toLowerCase())
   );
+
+
+
 
   return (
     <Container>
@@ -91,6 +118,8 @@ const UserList = () => {
             <th>Balance</th>
             <th>Country</th>
             <th>Created At</th>
+            <th>Suspended?</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -108,6 +137,11 @@ const UserList = () => {
 </td>
 <td>{user.country}</td>
                 <td>{new Date(user.created_at).toLocaleString()}</td>
+                <td style={{backgroundColor:user.suspended==='1'?"red":'', color:user.suspended==="1"?"white":""}}>{user.suspended==='1'?'YES':'NO'}</td>
+                <td>
+                  <Button onClick={() => setSelectedUser(user)}>Manage User</Button>
+                </td>
+              
               </tr>
             ))
           ) : (
@@ -117,6 +151,9 @@ const UserList = () => {
           )}
         </tbody>
       </Table>
+      {selectedUser && (
+        <ManageUser user={selectedUser} onClose={() => setSelectedUser(null)} getUsers={getUsers}/>
+      )}
     </Container>
   );
 };

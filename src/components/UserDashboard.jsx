@@ -138,7 +138,7 @@ const UserDashboard = () => {
   const [error, setError]=useState('')
   
   
-  // console.log(managementInfo)
+  console.log(user)
 
   const dispatch = useDispatch();
 
@@ -199,14 +199,17 @@ const UserDashboard = () => {
   };
 
 // get studen info
-useEffect(() => {
+
+
+const getUserInfo = ()=>{
     if (!userId) return;
 
     axios.get(`https://elitewealthglobal.com/api/get_user_by_id.php?id=${userId}`)
       .then(res => {
         if (res.data.success) {
-          setUser(res.data.student);
-        //   console.log(res.data.student)
+          setUser(res.data.user);
+  
+        suspendUI();
         
         } else {
           setError(res.data.error);
@@ -215,28 +218,59 @@ useEffect(() => {
       .catch(() => {
         setError('Failed to fetch admin details.');
       });
-  }, [userId]);
+
+    }
+
+    useEffect(() => {
+      const id = setInterval(() => {
+        getUserInfo();
+      }, 10000);
+
+      return ()=>clearInterval(id)
+  }, []);
+
+  useEffect(()=>{
+    getUserInfo();
+  },[userId])
+
+
+
+  // useEffect(()=>{
+  //   if(user?.suspended){
+  //     Swal.fire({
+  //       icon:"info",
+  //       text:"Your account has been suspended, Kindly Contact our support.",
+  //       allowOutsideClick:false,
+  //       showConfirmButton:false,
+  //     })
+  //   }
+  // },[user])
 
 
 // run suspended ui
-  useEffect(()=>{
-    if(location.pathname==='/studentdashboard'&&user.suspension==="suspended"){
+  const suspendUI = ()=>{
+    if(location.pathname==='/userdashboard'&&user?.suspended==="1"){
         Swal.fire({
             icon:"warning",
             title:"Suspended",
-            text:"You have been suspended, kindly contact the management.",
+            text:"You have been suspended, kindly contact the admin.",
             allowOutsideClick:false,
             confirmButtonText:"Logout",
         }).then((result)=>{if(result.isConfirmed){
             dispatch(userLogout());
         }})
     }
-  },[user])
+
+  }
 
 
 
 
-
+if(user?.suspended){
+  return <div style={{display:"flex", justifyContent:"center", alignItems:"center", width:"100%", height:"300px", flexDirection:"column"}}><h2>Your Account has been suspended. Please Contact our support team</h2>
+  <button onClick={()=>dispatch(userLogout())} style={{padding:"10px", cursor:"pointer", border:"none", backgroundColor:"#000050", color:"white"}}>Logout</button></div>
+  
+}
   
 
 

@@ -8,42 +8,43 @@ import { FaQuoteLeft } from "react-icons/fa";
 
 const testimonials = [
   {
-    text: "Elite Wealth Global completely changed my financial future. Their team helped me diversify my investments and now I feel confident about retirement.",
-    image: "https://randomuser.me/api/portraits/men/12.jpg",
-    name: "Mark Robinson",
-    position: "Entrepreneur, United States",
+    text: "Jaiz Bank transformed the way I manage my finances. With their expert support, I’ve built a stronger and more secure future for my family.",
+    image: "https://randomuser.me/api/portraits/men/45.jpg",
+    name: "David Okoro",
+    position: "Business Owner, Nigeria",
   },
   {
-    text: "I was hesitant to invest internationally, but the advisors at Elite Wealth made the process so clear and secure. I've seen impressive returns within months.",
-    image: "https://randomuser.me/api/portraits/women/16.jpg",
-    name: "Anita Fernandez",
-    position: "Real Estate Developer, Mexico",
+    text: "I never imagined banking could be this personal and empowering. Jaiz’s team guided me through investments I used to find intimidating.",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    name: "Camila Torres",
+    position: "Interior Designer, Colombia",
   },
   {
-    text: "Their personalized financial strategies helped me grow my portfolio while minimizing risk. I trust them with every major investment decision now.",
-    image: "https://randomuser.me/api/portraits/men/28.jpg",
-    name: "Richard Kim",
-    position: "Tech Consultant, Singapore",
+    text: "Thanks to Jaiz Bank's tailored financial solutions, I've grown my savings confidently and responsibly. They’ve earned my full trust.",
+    image: "https://randomuser.me/api/portraits/men/33.jpg",
+    name: "Jae Min Park",
+    position: "Software Engineer, South Korea",
   },
   {
-    text: "As a new investor, I was overwhelmed. Elite Wealth guided me through every step with patience and clarity. I'm so glad I started this journey with them.",
-    image: "https://randomuser.me/api/portraits/women/31.jpg",
-    name: "Sara Ahmed",
-    position: "Marketing Executive, UAE",
+    text: "As a first-time investor, I had so many questions. Jaiz’s advisors were incredibly patient, transparent, and helpful every step of the way.",
+    image: "https://randomuser.me/api/portraits/women/25.jpg",
+    name: "Fatima Yusuf",
+    position: "HR Manager, United Arab Emirates",
   },
   {
-    text: "Their global expertise helped me allocate funds into emerging markets I hadn’t considered before. The results speak for themselves.",
-    image: "https://randomuser.me/api/portraits/men/43.jpg",
-    name: "Carlos Mendes",
-    position: "Private Investor, Brazil",
+    text: "Jaiz Bank opened doors to opportunities I hadn't considered. Their insights into ethical and smart investment strategies are unmatched.",
+    image: "https://randomuser.me/api/portraits/men/18.jpg",
+    name: "Liam Thompson",
+    position: "Independent Consultant, Australia",
   },
   {
-    text: "I was looking for a partner who could grow my family's wealth responsibly. Elite Wealth Global did exactly that and more.",
-    image: "https://randomuser.me/api/portraits/women/50.jpg",
-    name: "Olivia Chen",
-    position: "Wealth Heir & Philanthropist, Hong Kong",
+    text: "I was looking for a reliable bank that aligned with my values. Jaiz offered exactly that—professionalism, transparency, and results.",
+    image: "https://randomuser.me/api/portraits/women/19.jpg",
+    name: "Mei Lin Wu",
+    position: "Philanthropist & Investor, Malaysia",
   },
 ];
+
 
 const Testimonial2 = () => {
   const settings = {
@@ -88,7 +89,7 @@ export default Testimonial2;
 // Styled Components
 
 const CarouselContainer = styled.div`
-  background-color: #0a1a2f;
+  background-color:  #3C9E37;
   width: 100%;
   margin: 0 auto;
   padding: 100px 50px;
@@ -126,7 +127,7 @@ const Card = styled.div`
 `;
 
 const CardInner = styled.div`
-  background: #132b4c;
+  background: #2C4B2F;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 50, 0.7);

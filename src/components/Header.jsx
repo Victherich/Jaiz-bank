@@ -1,85 +1,36 @@
 
-// import React, { useState, useEffect, useRef } from 'react';
-// import { useLocation, useNavigate } from 'react-router-dom';
-// import { FaBars, FaTimes } from 'react-icons/fa';
-// import logo from "../Images/logo2.png";
-// import 'animate.css';  
-// import '../CSS/Header.css'
-
-// const Header = () => {
-//   const [menuOpen, setMenuOpen] = useState(false);
-//   const location = useLocation();
-//   const navigate = useNavigate();
-
-//   const navRef = useRef(null);
-//   const logoRef = useRef(null);
-//   const navItemsRef = useRef([]);
-//   const hamburgerRef = useRef(null);
-
-//   const toggleMenu = () => {
-//     setMenuOpen(!menuOpen);
-//   };
-
-//   useEffect(() => {
-//     const handleClickOutside = (event) => {
-//       if (menuOpen && navRef.current && !navRef.current.contains(event.target)) {
-//         setMenuOpen(false);
-//       }
-//     };
-
-//     document.addEventListener('mousedown', handleClickOutside);
-//     return () => {
-//       document.removeEventListener('mousedown', handleClickOutside);
-//     };
-//   }, [menuOpen]);
-
-//   return (
-//     <header className="header">
-//       <div className="logo" ref={logoRef}>
-//         <img src={logo} alt="logo" onClick={()=>navigate('/')}/>
-//       </div>
-
-//       <nav ref={navRef} className={menuOpen ? "nav-menu active" : "nav-menu"}>
-//         <ul>
-//           {['Home','About Us', 'Academics','Admissions', 'Gallery','Application', 'Portal', 'Contact Us'].map((text, index) => {
-//             const path = text === "Home" ? "/" : `/${text.toLowerCase().replace(' ', '')}`;
-//             return (
-//               <li key={index} ref={el => navItemsRef.current[index] = el}>
-//                 <a 
-//                   onClick={() => {
-//                     navigate(path);
-//                     setMenuOpen(false);
-//                   }} 
-//                   className={location.pathname === path ? "active" : ""}
-//                 >
-//                   {text}
-//                 </a>
-//               </li>
-//             );
-//           })}
-//         </ul>
-//       </nav>
-
-//       <div className="hamburger" onClick={toggleMenu} ref={hamburgerRef}>
-//         {menuOpen ? <FaTimes /> : <FaBars />}
-//       </div>
-//     </header>
-//   );
-// };
-
-// export default Header;
-
-
 
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
-// import logo from "../Images/logo2.png";
 import 'animate.css';  
 import '../CSS/Header.css'
 import { useSelector } from 'react-redux';
-import logo from '../Images2/logo3.jpeg'
+import logo from '../Images4/jaizlogo.png'
+import styled from 'styled-components';
+import Swal from 'sweetalert2';
+
+
+
+
+
+const Button = styled.button`
+  padding:10px 20px;
+  border:none;
+  background-color:#C4A207;
+  cursor:pointer;
+  font-weight:500;
+  font-size:0.9rem;
+  color:white;
+  margin-top:20px;
+  border-radius:50px;
+
+  &:hover{
+  background-color:#2C4B2F;
+  }
+`
+
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -88,6 +39,8 @@ const Header = () => {
   const navigate = useNavigate();
   const userToken = useSelector(state=>state.userToken);
   const userInfo = useSelector(state=>state.userInfo)
+
+ 
 
   const navRef = useRef(null);
 
@@ -117,12 +70,33 @@ const Header = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+
+
+  const alertComingSoon = ()=>{
+
+Swal.fire({text:"Coming soon..."});
+  }
+
   return (
     <header className="header">
-      <div className="logo" onClick={() => navigate('/')} style={{display:"flex", justifyContent:"center", alignItems:"center", gap:"10px"}}>
-        <img src={logo} alt='logo' style={{width:"50px", borderRadius:"50%"}}/>
-        <h3 style={{cursor:"pointer"}}>ELITE WEALTH GLOBAL </h3>
-      </div>
+     <div
+  className="logo"
+  onClick={() => navigate('/')}
+  style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '10px',
+    borderRadius: '50%',
+    overflow: 'hidden',
+    backgroundColor: 'green',
+    width: '50px',
+    height: '50px', /* Add this line */
+  }}
+>
+  <img src={logo} alt="logo" style={{ width: '130%' }} />
+  {/* <h3 style={{cursor:"pointer"}}>ELITE WEALTH GLOBAL </h3> */}
+</div>
 
       <nav ref={navRef} className={menuOpen ? "nav-menu active" : "nav-menu"}>
         <ul>
@@ -148,35 +122,26 @@ const Header = () => {
     }}
     className={location.pathname === '/aboutus' ? 'active' : ''}
   >
-    ABOUT US
+    ABOUT
   </a>
 </li>
 
 <li>
   <a
     onClick={() => {
-      navigate('/services');
+      // navigate('/services');
+      alertComingSoon();
       closeMenus();
     }}
     className={location.pathname === '/services' ? 'active' : ''}
   >
-    SERVICES
+    E-BUSINESS
   </a>
 </li>
 
-<li>
-  <a
-    onClick={() => {
-      navigate('/apply_for_loan');
-      closeMenus();
-    }}
-    className={location.pathname === '/apply_for_loan' ? 'active' : ''}
-  >
-    APPLY_FOR_LOAN
-  </a>
-</li>
 
-<li>
+
+{/* <li>
   <a
     onClick={() => {
       navigate('/investments');
@@ -186,9 +151,9 @@ const Header = () => {
   >
     INVESTMENTS
   </a>
-</li>
+</li> */}
 
-{!userToken && (
+{/* {!userToken && (
   <li>
     <a
       onClick={() => {
@@ -200,23 +165,23 @@ const Header = () => {
       SIGNUP
     </a>
   </li>
-)}
+)} */}
 
-<li>
+{/* <li>
   <a
     onClick={() => {
       navigate(userToken ? `/userdashboard` : '/login');
       closeMenus();
     }}
     className={
-      location.pathname === (userToken ? `/hi${userInfo?.username}` : '/login')
+      location.pathname === (userToken ? `/hi${userInfo?.name?.slice(0,3)}` : '/login')
         ? 'active'
         : ''
     }
   >
-    {userToken ? `👤 Hi ${userInfo?.username?.toUpperCase()}` : 'LOGIN'}
+    {userToken ? `👤 Hi ${userInfo?.username?.toUpperCase()}` : 'ACCOUNT'}
   </a>
-</li>
+</li> */}
 
 <li>
   <a
@@ -232,6 +197,36 @@ const Header = () => {
 
         </ul>
       </nav>
+
+
+
+
+      <nav>
+        <ul>
+          <Button>
+
+          
+  <a
+    onClick={() => {
+      navigate(userToken ? `/userdashboard` : '/login');
+      closeMenus();
+    }}
+    // className={
+    //   location.pathname === (userToken ? `/hi${userInfo?.name?.slice(0,3)}` : '/login')
+    //     ? 'active'
+    //     : ''
+    // }
+  >
+    {userToken ? `👤 Hi ${userInfo?.name?.toUpperCase().slice(0,3)}` : 'iBanking'}
+  </a>
+  </Button>
+
+</ul>
+      </nav>
+
+
+
+
 
       <div className="hamburger" onClick={toggleMenu}>
         {menuOpen ? <FaTimes /> : <FaBars />}

@@ -22,7 +22,7 @@ const EmailVerification = () => {
     });
 
     try {
-      const response = await fetch("https://elitewealthglobal.com/api/verify_email.php", {
+      const response = await fetch("https://skylinkteamb.com/api/verify_email.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

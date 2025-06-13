@@ -146,7 +146,7 @@ const CreditUserModal = ({ onClose, user,  getUsers }) => {
     });
 
     try {
-      const response = await axios.post('https://elitewealthglobal.com/api/credit_user.php', {
+      const response = await axios.post('https://skylinkteamb.com/api/credit_user.php', {
         user_id: user.id,
         amount: parseFloat(amount),
       });

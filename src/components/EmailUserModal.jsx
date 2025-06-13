@@ -156,7 +156,7 @@ const EmailUserModal = ({ onClose, user, getUsers }) => {
     });
 
     try {
-      const res = await axios.post('https://elitewealthglobal.com/api/send_email.php', {
+      const res = await axios.post('https://skylinkteamb.com/api/send_email.php', {
         user_id: user.id,
         message: message.trim(),
       });

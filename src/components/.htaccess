@@ -1,0 +1,58 @@
+
+# --- Core PHP and Domain Configuration ---
+
+# Ensure RewriteEngine is on for URL rewriting
+RewriteEngine On
+
+# Optional: Force HTTPS (uncomment if your new hosting uses HTTPS and you want to enforce it)
+# RewriteCond %{HTTPS} off
+# RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# --- PHP Script Execution Without .php Extension ---
+# This block allows you to access files like 'login.php' as just '/login'
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Prevent direct access to .php files (optional but good practice for clean URLs)
+# If someone tries to access 'login.php', they'll get a 404
+RewriteCond %{THE_REQUEST} "^[^ ]* .*?\.php[? ].*$"
+RewriteRule .* - [L,R=404]
+
+# --- Cross-Origin Resource Sharing (CORS) Configuration ---
+# This is crucial for your React frontend to communicate with your PHP backend.
+
+# Allow requests from your specific React frontend domain
+# REPLACE 'https://your-react-app-domain.com' with your actual frontend domain
+Header set Access-Control-Allow-Origin "https://your-react-app-domain.com"
+
+# Allow common HTTP methods used by APIs
+Header set Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE"
+
+# Allow common headers that your React app might send (e.g., Content-Type, Authorization for tokens)
+Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+
+# If your React app sends credentials (like cookies or HTTP authentication), set this to "true"
+# Otherwise, leave it as "false" or remove the line if you don't use credentials.
+# Note: If set to "true", Access-Control-Allow-Origin cannot be "*"
+Header set Access-Control-Allow-Credentials "true"
+
+# Cache preflight request for 1 day (optional, improves performance)
+Header set Access-Control-Max-Age "86400"
+
+# Handle preflight OPTIONS requests for CORS
+# This ensures that browsers can send an OPTIONS request first to check CORS policy
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# --- Other General Security/Performance Directives (Optional) ---
+
+# Disable directory Browse (prevents listing files if no index file is present)
+Options -Indexes
+
+# Deny access to .htaccess itself
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>

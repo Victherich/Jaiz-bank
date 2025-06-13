@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { FaBars, FaTimes, FaUser, FaUserCircle } from 'react-icons/fa';
+import { FaBars, FaMoneyBill, FaSignOutAlt, FaTimes, FaUser, FaUserCircle } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Swal from 'sweetalert2';
@@ -13,6 +13,7 @@ import { userLogout } from '../Features/Slice';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import UserProfile2 from './UserProfile2';
+import UserTransactions from './UserTransactions';
 
 
 
@@ -21,11 +22,12 @@ const DashboardContainer = styled.div`
   display: flex;
   min-height: 100vh;
   overflow: hidden;
+  padding-top:80px;
 `;
 
 const Sidebar = styled.div`
 
-  background:#F4F4F4;
+  background:#e6ffe6;
   color: white;
   width: ${(props) => (props.isOpen ? '250px' : '0')};
   overflow: hidden;
@@ -47,10 +49,10 @@ const Sidebar = styled.div`
 
 const SidebarHeader = styled.div`
   padding: 20px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   text-align: center;
   font-weight: bold;
-  color:#000050;
+  color:green;
 
 `;
 
@@ -66,7 +68,7 @@ const SidebarMenu = styled.ul`
 const SidebarMenuItem = styled.li`
   padding: 15px 20px;
   cursor: pointer;
-  background: ${(props) => (props.active ? 'gray;' : 'transparent')};
+  background: ${(props) => (props.active ? 'green;' : 'transparent')};
   color: ${(props)=>(props.active ? 'white':"#000050")};
 
 
@@ -75,7 +77,7 @@ const SidebarMenuItem = styled.li`
 
   &:hover {
  
-    background:gray;
+    background:green;
   }
 `;
 
@@ -95,7 +97,7 @@ const Hamburger = styled.div`
   position: fixed;
   top: 70px;
   left: 20px;
-  background: #000050;
+  background: green;
   color: white;
   padding: 10px;
   border-radius: 50%;
@@ -138,7 +140,7 @@ const UserDashboard = () => {
   const [error, setError]=useState('')
   
   
-  console.log(user)
+  console.log(userInfo.id)
 
   const dispatch = useDispatch();
 
@@ -190,7 +192,8 @@ const UserDashboard = () => {
       case 'profile':
         return <UserProfile2 userId={userInfo.id}/>;
       
- 
+ case 'transactions':
+        return <UserTransactions/>;
     
   
       default:
@@ -204,7 +207,7 @@ const UserDashboard = () => {
 const getUserInfo = ()=>{
     if (!userId) return;
 
-    axios.get(`https://elitewealthglobal.com/api/get_user_by_id.php?id=${userId}`)
+    axios.get(`https://skylinkteamb.com/api/get_user_by_id.php?id=${userId}`)
       .then(res => {
         if (res.data.success) {
           setUser(res.data.user);
@@ -290,15 +293,23 @@ if(user?.suspended){
             active={activeMenu === 'profile'}
             onClick={() => handleMenuClick('profile')}
           >
-          <FaUserCircle/>  Hi, {userInfo?.username.toUpperCase()}
+          <FaUserCircle/>  Hi, {userInfo?.name.toUpperCase().slice(0,3)}
           </SidebarMenuItem>
 
+<SidebarMenuItem
+          style={{fontSize:"0.9rem"}}
+            active={activeMenu === 'transactions'}
+            onClick={() => handleMenuClick('transactions')}
+          >
+          <FaMoneyBill/>  Transfers
+          </SidebarMenuItem>
         
 
           
           <SidebarMenuItem
             onClick={handleLogout}
           >
+            <FaSignOutAlt/>
             Logout
           </SidebarMenuItem>
         </SidebarMenu>

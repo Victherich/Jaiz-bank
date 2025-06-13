@@ -1,330 +1,112 @@
-
-
-
-
-
-
-// import React, { useContext, useState } from 'react';
-// import axios from 'axios';
-// import Swal from 'sweetalert2';
-// import styled from 'styled-components';
-// import { useNavigate } from 'react-router-dom';
-// import { Context } from './Context';
-
-// // Styled Components
-// const Page = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   background-color: #f2f4f8;
-//   color: #000050;
-//   font-family: 'Segoe UI', sans-serif;
-
-//   @media (max-width: 768px) {
-//     flex-direction: column;
-//     height: auto;
-//   }
-// `;
-
-// const LeftPanel = styled.div`
-//   flex: 1;
-//   background: linear-gradient(135deg, #000050, #1b1f78);
-//   color: white;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   padding: 40px;
-
-//   @media (max-width: 768px) {
-//     padding: 20px;
-//     text-align: center;
-//     align-items: center;
-//   }
-// `;
-
-// const RightPanel = styled.div`
-//   flex: 1;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 40px;
-
-//   @media (max-width: 768px) {
-//     padding: 20px;
-//   }
-// `;
-
-// const Form = styled.form`
-//   background-color: white;
-//   padding: 30px;
-//   border-radius: 10px;
-//   width: 100%;
-//   max-width: 400px;
-//   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-
-//   @media (max-width: 768px) {
-//     padding: 20px;
-//   }
-// `;
-
-// const Input = styled.input`
-//   width: 100%;
-//   padding: 12px;
-//   margin: 10px 0;
-//   border-radius: 5px;
-//   border: 1px solid #ccc;
-//   font-size: 16px;
-// `;
-
-// const Button = styled.button`
-//   width: 100%;
-//   padding: 12px;
-//   background-color: #000050;
-//   color: white;
-//   border-radius: 5px;
-//   font-size: 16px;
-//   cursor: pointer;
-//   border: none;
-//   margin-top: 10px;
-
-//   &:hover {
-//     background-color: #1b1f78;
-//   }
-// `;
-
-// const Label = styled.label`
-//   font-size: 16px;
-//   font-weight: 500;
-//   margin-bottom: 5px;
-// `;
-
-// const MotivationalHeading = styled.h1`
-//   font-size: 36px;
-//   font-weight: bold;
-//   margin-bottom: 20px;
-
-//   @media (max-width: 768px) {
-//     font-size: 28px;
-//   }
-// `;
-
-// const MotivationalText = styled.p`
-//   font-size: 18px;
-//   line-height: 1.6;
-
-//   @media (max-width: 768px) {
-//     font-size: 16px;
-//   }
-// `;
-
-// const AuthPrompt = styled.p`
-//   color: #000050;
-//   cursor: pointer;
-//   text-align: center;
-//   margin-top: 12px;
-//   font-size: 14px;
-// `;
-
-// const Title = styled.h2`
-//   text-align: center;
-//   margin-bottom: 20px;
-// `;
-
-// const UserSignUp = () => {
-//   const [name, setName] = useState('');
-//   const [email, setEmail] = useState('');
-//   const [confirmEmail, setConfirmEmail] = useState('');
-//   const [phone, setPhone] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [confirmPassword, setConfirmPassword] = useState('');
-//   const navigate = useNavigate();
-//   const { color1 } = useContext(Context);
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     if (!name || !email || !confirmEmail || !phone || !password || !confirmPassword) {
-//       Swal.fire({
-//         icon: 'error',
-//         title: 'Missing fields',
-//         text: 'All fields are required.',
-//       });
-//       return;
-//     }
-
-//     if (email !== confirmEmail) {
-//       Swal.fire({
-//         icon: 'error',
-//         title: 'Email mismatch',
-//         text: 'The emails do not match.',
-//       });
-//       return;
-//     }
-
-//     if (password !== confirmPassword) {
-//       Swal.fire({
-//         icon: 'error',
-//         title: 'Password mismatch',
-//         text: 'The passwords do not match.',
-//       });
-//       return;
-//     }
-
-//     Swal.fire({ text: "Please wait..." });
-//     Swal.showLoading();
-
-//     try {
-//       const res = await axios.post('https://elitewealthglobal.com/api/user_signup.php', {
-//         name,
-//         email,
-//         phone,
-//         password,
-//       });
-
-//       if (res.data.success) {
-//         Swal.fire({
-//           icon: 'success',
-//           title: 'Registration Successful',
-//           text: 'You have successfully registered.',
-//         });
-//         navigate('/investments');
-//       } else {
-//         Swal.fire({
-//           icon: 'error',
-//           title: 'Registration Failed',
-//           text: res.data.error,
-//         });
-//       }
-//     } catch (error) {
-//       console.error(error);
-//       Swal.fire({
-//         icon: 'error',
-//         title: 'Error',
-//         text: 'Could not connect to server.',
-//       });
-//     }
-//   };
-
-//   return (
-//     <Page>
-//       <LeftPanel>
-//         <MotivationalHeading>Start Growing Your Wealth</MotivationalHeading>
-//         <MotivationalText>
-//           Sign up today and take the first step toward financial freedom. 
-//           Our tools and experts will guide you every step of the way.
-//         </MotivationalText>
-//       </LeftPanel>
-
-//       <RightPanel>
-//         <Form onSubmit={handleSubmit}>
-//           <Title>Create Your Account</Title>
-
-//           <Label>Name</Label>
-//           <Input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your full name" required />
-
-//           <Label>Email</Label>
-//           <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" required />
-
-//           <Label>Confirm Email</Label>
-//           <Input type="email" value={confirmEmail} onChange={(e) => setConfirmEmail(e.target.value)} placeholder="Confirm your email" required />
-
-//           <Label>Phone</Label>
-//           <Input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Enter your phone number" required />
-
-//           <Label>Password</Label>
-//           <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" required />
-
-//           <Label>Confirm Password</Label>
-//           <Input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm password" required />
-
-//           <Button type="submit">Sign Up</Button>
-
-//           <AuthPrompt onClick={() => navigate('/investments')}>
-//             Already have an account? <strong>Login</strong>
-//           </AuthPrompt>
-//         </Form>
-//       </RightPanel>
-//     </Page>
-//   );
-// };
-
-// export default UserSignUp;
-
-
-
-
-
-
-
-
-import React, { useContext, useState , useEffect} from 'react';
+// Import background image
+import bgImg from '../Images4/signupbg.png';
+import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { Context } from './Context';
-import logo3 from '../Images2/logo3.jpeg'
 
-// Styled Components
 const Page = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: #f2f4f8;
-  color: #000050;
+  background-color: #f9fff9;
   font-family: 'Segoe UI', sans-serif;
 
-  @media (max-width: 768px) {
+  @media (max-width: 884px) {
     flex-direction: column;
-    height: auto;
   }
 `;
 
 const LeftPanel = styled.div`
-  flex: 1;
-  background: linear-gradient(135deg, #000050, #1b1f78);
+  flex: 0.8;
+  background: url(${bgImg}) no-repeat center center;
+  background-size: cover;
   color: white;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
+  justify-content: center;
+  align-items: center;
   padding: 40px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Adjust transparency here */
+    z-index: 0;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 
   @media (max-width: 768px) {
     padding: 20px;
-    text-align: center;
-    align-items: center;
+    width: 100%;
+    padding-top: 100px;
   }
 `;
 
-
-
 const RightPanel = styled.div`
-  flex: 1;
+  flex: 1.2;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px;
+  color: green;
+  background:rgba(0,255,0,0.1);
+   padding-top:100px;
 
   @media (max-width: 768px) {
     padding: 20px;
+     padding-top:20px;
+    width: 100%;
   }
 `;
 
 const Form = styled.form`
-  background-color: white;
   padding: 30px;
   border-radius: 10px;
   width: 100%;
-  max-width: 400px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+`;
+
+const FormGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 
   @media (max-width: 768px) {
-    padding: 20px;
+    grid-template-columns: 1fr;
   }
+`;
+
+const FormGroup = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const Input = styled.input`
   width: 100%;
   padding: 12px;
-  margin: 10px 0;
+  margin-top: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+`;
+
+const Select = styled.select`
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
@@ -333,52 +115,26 @@ const Input = styled.input`
 const Button = styled.button`
   width: 100%;
   padding: 12px;
-  background-color: #000050;
+  background-color: green;
   color: white;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
   border: none;
-  margin-top: 10px;
+  margin-top: 20px;
 
   &:hover {
-    background-color: #1b1f78;
+    background-color: darkgreen;
   }
+`;
+
+const Checkbox = styled.input`
+  margin-right: 10px;
 `;
 
 const Label = styled.label`
-  font-size: 16px;
   font-weight: 500;
-  margin-bottom: 5px;
-`;
-
-const MotivationalHeading = styled.h1`
-  font-size: 36px;
-  font-weight: bold;
-  margin-bottom: 20px;
- text-align:center;
-
-  @media (max-width: 768px) {
-    font-size: 28px;
-  }
-`;
-
-const MotivationalText = styled.p`
-  font-size: 18px;
-  line-height: 1.6;
-text-align:center;
-
-  @media (max-width: 768px) {
-    font-size: 16px;
-  }
-`;
-
-const AuthPrompt = styled.p`
-  color: #000050;
-  cursor: pointer;
-  text-align: center;
-  margin-top: 12px;
-  font-size: 14px;
+  color: green;
 `;
 
 const Title = styled.h2`
@@ -386,247 +142,233 @@ const Title = styled.h2`
   margin-bottom: 20px;
 `;
 
-const Select = styled.select`
-padding:10px;
-cursor:pointer;
-outline :none;
-width:100%;
-`
-
-
-const Img = styled.img`
-  width:200px;
-  margin:0 auto;
-  // margin-top:
-  border-radius:50%;
-`
+const AuthPrompt = styled.p`
+  color: green;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 12px;
+`;
 
 const UserSignUp = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [confirmEmail, setConfirmEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [country, setCountry] = useState('');
-  const [username, setUsername] = useState('');
+  const [form, setForm] = useState({
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    gender: '',
+    dob: '',
+    accountType: '',
+    address: '',
+    postalCode: '',
+    state: '',
+    country: '',
+    currency: '',
+    password: '',
+    confirmPassword: '',
+    pin: '',
+    agree: false,
+  });
+  const [confirmEmail, setConfirmEmail]=useState('')
+  const [countries, setCountries] = useState([]);
   const navigate = useNavigate();
-  const { color1 } = useContext(Context);
-  const [countries, setCountries]=useState([]);
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
-
-
-  const fetchCountries = async () => {
-    try {
-      const response = await axios.get('https://restcountries.com/v3.1/all');
-      const countryNames = response.data.map((country) => country.name.common);
-      setCountries(countryNames);
-    } catch (error) {
-      console.error('Error fetching countries:', error);
-      // Fallback to the static country list if the API call fails
-      setCountries([
-        'United States',
-        'Canada',
-        'India',
-        'Australia',
-        'United Kingdom',
-        'Germany',
-        'France',
-        'Italy',
-        'Japan',
-        'Brazil',
-      ]);
-    }
-  };
-
-  // Fetch countries on component mount
   useEffect(() => {
-    fetchCountries();
+    axios.get('https://restcountries.com/v3.1/all')
+      .then(res => {
+        const countryNames = res.data.map(c => c.name.common).sort();
+        setCountries(countryNames);
+      })
+      .catch(() => {
+        setCountries(['United States', 'Canada', 'Nigeria', 'India']);
+      });
   }, []);
 
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!name || !email || !confirmEmail || !phone || !password || !confirmPassword || !country || !username) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Missing fields',
-        text: 'All fields are required.',
-      });
-      return;
-    }
-
-    if (email !== confirmEmail) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Email mismatch',
-        text: 'The emails do not match.',
-      });
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Password mismatch',
-        text: 'The passwords do not match.',
-      });
-      return;
-    }
-
-    Swal.fire({ text: "Please wait..." });
-    Swal.showLoading();
-
-    try {
-      const res = await axios.post('https://elitewealthglobal.com/api/user_signup.php', {
-        name,
-        email,
-        phone,
-        password,
-        country,
-        username,
-      });
-
-      if (res.data.success) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Registration Successful',
-          text: 'You have successfully registered. Please check your email inbox or spam folder for otp',
-        });
-        navigate('/verifyemail');
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Registration Failed',
-          text: res.data.error,
-        });
-      }
-    } catch (error) {
-      console.error(error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Could not connect to server.',
-      });
-    }
+  const handleChange = e => {
+    const { name, value, type, checked } = e.target;
+    setForm(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
   };
 
+  const handleSubmit = async e => {
+  e.preventDefault();
+
+  if (!form.agree) {
+    Swal.fire('Error', 'You must agree to the terms and conditions.', 'error');
+    return;
+  }
 
 
+  if (form.email !== confirmEmail) {
+    Swal.fire('Error', 'Emails do not match', 'error');
+    return;
+  }
+  
 
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
+  Swal.fire({
+    title: 'Creating your account...',
+    allowOutsideClick: false,
+    didOpen: () => Swal.showLoading()
+  });
 
-  const toggleConfirmPasswordVisibility = () => {
-    setConfirmPasswordVisible(!confirmPasswordVisible);
-  };
+  try {
+    const response = await axios.post('https://skylinkteamb.com/api2/user_signup.php', form); // 🔁 Replace with your actual backend URL
 
+    if (response.data.success) {
+      Swal.fire({
+        title: 'Success!',
+        text: response.data.message,
+        icon: 'success',
+        confirmButtonText: 'Continue'
+      }).then(() => navigate('/login'));
+    } else {
+      Swal.fire('Error', response.data.error || 'Something went wrong', 'error');
+    }
+  } catch (error) {
+    console.error(error);
+    Swal.fire('Error', 'Network or server error. Please try again.', 'error');
+  }
+};
+ 
 
   return (
     <Page>
       <LeftPanel>
-      <Img src={logo3} alt='logo'/>
-        <MotivationalHeading>Start Growing Your Wealth</MotivationalHeading>
-        
-        <MotivationalText>
-          Sign up today and take the first step toward financial freedom. 
-          Our tools and experts will guide you every step of the way.
-        </MotivationalText>
-        
+        <h1 style={{ fontSize: '2rem', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.9)' }}>Enroll with Skylink Bank</h1>
+        <p>Your journey to smarter banking begins now.</p>
       </LeftPanel>
 
       <RightPanel>
         <Form onSubmit={handleSubmit}>
-          <Title>Create Your Account</Title>
+          <Title>Create Account</Title>
 
-          <Label>Name</Label>
-          <Input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter your full name" required />
+          <FormGrid>
+            <FormGroup>
+              <Label>First Name*</Label>
+              <Input name="firstName" onChange={handleChange} required />
+            </FormGroup>
 
-          <Label>Username</Label>
-          <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Choose a username" required />
+            <FormGroup>
+              <Label>Middle Name</Label>
+              <Input name="middleName" onChange={handleChange} />
+            </FormGroup>
 
-          <Label>Email</Label>
-          <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" required />
+            <FormGroup>
+              <Label>Last Name*</Label>
+              <Input name="lastName" onChange={handleChange} required />
+            </FormGroup>
 
-          <Label>Confirm Email</Label>
-          <Input type="email" value={confirmEmail} onChange={(e) => setConfirmEmail(e.target.value)} placeholder="Confirm your email" required />
+            <FormGroup>
+              <Label>Email*</Label>
+              <Input name="email" type="email" onChange={handleChange} required />
+            </FormGroup>
 
-          <Label>Phone</Label>
-          <Input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Enter your phone number" required />
+            <FormGroup>
+              <Label>Confirm Email*</Label>
+              <Input name="confirmEmail" type="email" onChange={(e)=>setConfirmEmail(e.target.value)} required />
+            </FormGroup>
 
-          <Label>Country</Label>
-          <Select value={country} onChange={(e) => setCountry(e.target.value)} required>
-            <option value="">Select your country</option>
-            {countries.sort().map((country, index) => (
-              <option key={index} value={country}>
-                {country}
-              </option>
-            ))}
-          </Select>
+            <FormGroup>
+              <Label>Phone Number*</Label>
+              <Input name="phone" onChange={handleChange} required />
+            </FormGroup>
 
-          <Label>Password</Label>
-          <div style={{ position: 'relative' }}>
-          <Input
-            type={passwordVisible ? 'text' : 'password'}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter password"
-            required
-          />
-          <button
-            type="button"
-            onClick={togglePasswordVisibility}
-            style={{
-              position: 'absolute',
-              right: '10px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              border: 'none',
-              background: 'transparent',
-              cursor: 'pointer',
-            }}
-          >
-            {passwordVisible ? '🙈' : '👁️'}
-          </button>
-        </div>
-      
-          {/* <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" required /> */}
+            <FormGroup>
+              <Label>Gender*</Label>
+              <Select name="gender" onChange={handleChange} required>
+                <option value="">Select an option</option>
+                <option>Male</option>
+                <option>Female</option>
+              </Select>
+            </FormGroup>
 
-          <Label>Confirm Password</Label>
-          {/* <Input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm password" required /> */}
-          <div style={{ position: 'relative' }}>
-          <Input
-            type={confirmPasswordVisible ? 'text' : 'password'}
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="Confirm password"
-            required
-          />
-          <button
-            type="button"
-            onClick={toggleConfirmPasswordVisibility}
-            style={{
-              position: 'absolute',
-              right: '10px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              border: 'none',
-              background: 'transparent',
-              cursor: 'pointer',
-            }}
-          >
-            {confirmPasswordVisible ? '🙈' : '👁️'}
-          </button>
-        </div>
-          <Button type="submit">Sign Up</Button>
+            <FormGroup>
+              <Label>Date of Birth*</Label>
+              <Input name="dob" type="date" onChange={handleChange} required />
+            </FormGroup>
+
+            <FormGroup>
+              <Label>Account Type*</Label>
+              <Select name="accountType" onChange={handleChange} required>
+                <option value="">Select an option</option>
+                <option>Checking Account</option>
+                <option>Saving Account</option>
+                <option>Fixed Deposit Account</option>
+                <option>Current Account</option>
+                <option>Business Account</option>
+                <option>Non Resident Account</option>
+                <option>Cooperate Business Account</option>
+                <option>Investment Account</option>
+              </Select>
+            </FormGroup>
+
+            <FormGroup>
+              <Label>Residential Address*</Label>
+              <Input name="address" onChange={handleChange} required />
+            </FormGroup>
+
+            <FormGroup>
+              <Label>Postal Code*</Label>
+              <Input name="postalCode" onChange={handleChange} required />
+            </FormGroup>
+
+            <FormGroup>
+              <Label>State*</Label>
+              <Input name="state" onChange={handleChange} required />
+            </FormGroup>
+
+            <FormGroup>
+              <Label>Country*</Label>
+              <Select name="country" onChange={handleChange} required>
+                <option value="">Select a country</option>
+                {countries.map((c, idx) => (
+                  <option key={idx} value={c}>{c}</option>
+                ))}
+              </Select>
+            </FormGroup>
+
+            <FormGroup>
+              <Label>Currency*</Label>
+              <Select name="currency" onChange={handleChange} required>
+                <option value="">Select a currency</option>
+                <option>($) Dollar</option>
+                <option>(€) Euros</option>
+                <option>(£) Pounds</option>
+                <option>(元) Yuan</option>
+                <option>(¥) Yen</option>
+                <option>(₩) Won</option>
+                <option>(₦) Naira</option>
+                <option>(₹) Indian Rupee</option>
+                <option>(₱) Pesos</option>
+              </Select>
+            </FormGroup>
+
+            <FormGroup>
+              <Label>Password*</Label>
+              <Input name="password" type="password" onChange={handleChange} required />
+            </FormGroup>
+
+            <FormGroup>
+              <Label>Confirm Password*</Label>
+              <Input name="confirmPassword" type="password" onChange={handleChange} required />
+            </FormGroup>
+
+            <FormGroup>
+              <Label>Account PIN*</Label>
+              <Input name="pin" type="password" onChange={handleChange} maxLength={6} required />
+            </FormGroup>
+
+            <FormGroup style={{ gridColumn: '1 / -1' }}>
+              <Label>
+                <Checkbox type="checkbox" name="agree" onChange={handleChange} required />
+                I agree with the Terms & Conditions
+              </Label>
+            </FormGroup>
+          </FormGrid>
+
+          <Button type="submit">Create Account</Button>
 
           <AuthPrompt onClick={() => navigate('/login')}>
-            Already have an account? <strong>Login</strong>
+            Have an account? <strong>Sign In</strong>
           </AuthPrompt>
         </Form>
       </RightPanel>

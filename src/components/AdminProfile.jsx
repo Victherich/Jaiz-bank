@@ -132,7 +132,7 @@
 //   useEffect(() => {
 //     if (!adminId) return;
 
-//     axios.get(`https://elitewealthglobal.com/api/get_admin_by_id.php?id=${adminId}`)
+//     axios.get(`https://skylinkteamb.com/api/get_admin_by_id.php?id=${adminId}`)
 //       .then(res => {
 //         if (res.data.success) {
 //           setAdmin(res.data.user);
@@ -151,7 +151,7 @@
 //   };
 
 //   const handleSave = () => {
-//     axios.post('https://elitewealthglobal.com/api/update_admin_phone.php', {
+//     axios.post('https://skylinkteamb.com/api/update_admin_phone.php', {
 //       id: admin.id,
 //       phone: newPhone,
 //     }).then(res => {
@@ -356,7 +356,7 @@ const AdminDetailsPage = ({ adminId }) => {
   useEffect(() => {
     if (!adminId) return;
 
-    axios.get(`https://elitewealthglobal.com/api/get_admin_by_id.php?id=${adminId}`)
+    axios.get(`https://skylinkteamb.com/api/get_admin_by_id.php?id=${adminId}`)
       .then(res => {
         if (res.data.success) {
           setAdmin(res.data.user);
@@ -375,7 +375,7 @@ const AdminDetailsPage = ({ adminId }) => {
   };
 
   const handleSave = () => {
-    axios.post('https://elitewealthglobal.com/api/update_admin_phone.php', {
+    axios.post('https://skylinkteamb.com/api/update_admin_phone.php', {
       id: admin.id,
       phone: newPhone,
     }).then(res => {

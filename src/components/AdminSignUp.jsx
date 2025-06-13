@@ -19,7 +19,7 @@ const FormWrapper = styled.div`
   padding: 2rem;
   width: 100%;
   max-width: 500px;
-  // box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+ 
 `;
 
 const Title = styled.h2`
@@ -117,7 +117,7 @@ const AdminSignup = () => {
     });
 
     try {
-      const response = await fetch('https://elitewealthglobal.com/api/admin_signup.php', {
+      const response = await fetch('https://skylinkteamb.com/api/admin_signup.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

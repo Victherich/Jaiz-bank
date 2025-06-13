@@ -15,7 +15,7 @@ const PendingInvestments = () => {
 
     const fetchPendingInvestments = async () => {
         try {
-            const response = await fetch('https://elitewealthglobal.com/api/get_pending_investments.php');
+            const response = await fetch('https://skylinkteamb.com/api/get_pending_investments.php');
             const data = await response.json();
             if (data.success) {
                 setInvestments(data.investments);
@@ -49,7 +49,7 @@ const PendingInvestments = () => {
       if (!result.isConfirmed) return;
     
       try {
-        const res = await fetch('https://elitewealthglobal.com/api/approve_investment.php', {
+        const res = await fetch('https://skylinkteamb.com/api/approve_investment.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id })
@@ -79,7 +79,7 @@ const PendingInvestments = () => {
     const notifyUserInvestmentApproved = async (id, userId, amount) => {
       try {
         // Sending POST request to notify the user
-        const response = await fetch('https://elitewealthglobal.com/api/notify_user_investment_approved.php', {
+        const response = await fetch('https://skylinkteamb.com/api/notify_user_investment_approved.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ const PendingInvestments = () => {
       }
   
       try {
-        const response = await axios.post('https://elitewealthglobal.com/api/pay_commission.php', {
+        const response = await axios.post('https://skylinkteamb.com/api/pay_commission.php', {
           id: investmentId
         });
   
@@ -163,7 +163,7 @@ const PendingInvestments = () => {
       });
     
       try {
-        const response = await fetch('https://elitewealthglobal.com/api/delete_investment.php', {
+        const response = await fetch('https://skylinkteamb.com/api/delete_investment.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ investment_id: investmentId })
@@ -206,7 +206,7 @@ const PendingInvestments = () => {
           }
         });
   
-        const response = await fetch('https://elitewealthglobal.com/api/notify_user_investment_declined.php', {
+        const response = await fetch('https://skylinkteamb.com/api/notify_user_investment_declined.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

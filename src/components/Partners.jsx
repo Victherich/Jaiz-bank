@@ -63,15 +63,15 @@ const Partners = () => {
 
       <div className="partners-section">
       
-      <h2 className="partners-title">Our Collaborators / Stakeholders</h2>
+      {/* <h2 className="partners-title">Our Collaborators / Stakeholders</h2> */}
       <div className="partners-slider">
         <div className="partners-track">
-          {partners.concat(partners).map((partner, index) => (
+          {/* {partners.concat(partners).map((partner, index) => (
             <div key={index} className="partner-card">
               <img src={partner.logo} alt={partner.name} className="partner-logo" />
-              {/* <p className="partner-name">{partner.name}</p> */}
+              <p className="partner-name">{partner.name}</p>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </div>

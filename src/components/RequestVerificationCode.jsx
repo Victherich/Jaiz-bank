@@ -21,7 +21,7 @@
 //     setLoading(true);
 
 //     try {
-//       const response = await fetch("https://elitewealthglobal.com/api/send_verification_code.php", {
+//       const response = await fetch("https://skylinkteamb.com/api/send_verification_code.php", {
 //         method: "POST",
 //         headers: {
 //           "Content-Type": "application/json",
@@ -178,7 +178,7 @@ const EmailVerificationRequest = () => {
     setLoading(true);
   
     try {
-      const response = await fetch("https://elitewealthglobal.com/api/send_verification_code.php", {
+      const response = await fetch("https://skylinkteamb.com/api/send_verification_code.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

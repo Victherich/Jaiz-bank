@@ -93,7 +93,7 @@
 //   });
 
 //   try {
-//     const response = await axios.post('https://elitewealthglobal.com/api/suspend_user.php', {
+//     const response = await axios.post('https://skylinkteamb.com/api/suspend_user.php', {
 //       user_id: userId,
 //     });
 
@@ -132,7 +132,7 @@
 //   });
 
 //   try {
-//     const response = await axios.post('https://elitewealthglobal.com/api/unsuspend_user.php', {
+//     const response = await axios.post('https://skylinkteamb.com/api/unsuspend_user.php', {
 //       user_id: userId,
 //     });
 
@@ -174,7 +174,7 @@
 //   });
 
 //   try {
-//     const response = await axios.post('https://elitewealthglobal.com/api/delete_user.php', {
+//     const response = await axios.post('https://skylinkteamb.com/api/delete_user.php', {
 //       user_id: userId,
 //     });
 
@@ -312,7 +312,7 @@ const ManageUser = ({ user, onClose, getUsers }) => {
     Swal.fire({ title: 'Suspending...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      const response = await axios.post('https://elitewealthglobal.com/api/suspend_user.php', {
+      const response = await axios.post('https://skylinkteamb.com/api/suspend_user.php', {
         user_id: userId,
       });
 
@@ -345,7 +345,7 @@ const ManageUser = ({ user, onClose, getUsers }) => {
     Swal.fire({ title: 'Unsuspending...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      const response = await axios.post('https://elitewealthglobal.com/api/unsuspend_user.php', {
+      const response = await axios.post('https://skylinkteamb.com/api/unsuspend_user.php', {
         user_id: userId,
       });
 
@@ -378,7 +378,7 @@ const ManageUser = ({ user, onClose, getUsers }) => {
     Swal.fire({ title: 'Deleting user...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      const response = await axios.post('https://elitewealthglobal.com/api/delete_user.php', {
+      const response = await axios.post('https://skylinkteamb.com/api/delete_user.php', {
         user_id: userId,
       });
 

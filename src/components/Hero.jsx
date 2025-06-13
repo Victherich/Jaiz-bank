@@ -2,11 +2,11 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';  
-import h1 from '../Images3/mi33.jpg';
-import h2 from '../Images2/h2.jpg';
-import h3 from '../Images2/h3.jpg';
-import h4 from '../Images2/h4.jpg'
-import h5 from '../Images2/h5.jpg'
+import h1 from '../Images4/h1.jpg';
+import h2 from '../Images4/h2.jpg';
+import h3 from '../Images4/h3.jpg';
+// import h4 from '../Images4/h4.jpg'
+// import h5 from '../Images2/h5.jpg'
 import {useNavigate} from 'react-router-dom'
 // import { useSelector } from 'react-redux';
 
@@ -26,23 +26,32 @@ const HeroContainer = styled.section`
 const HeroContent = styled.div`
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 0%;
+  transform: translate(0%, -50%);
   text-align: center;
   z-index: 2;
-  background:rgba(0,0,0,0.3);
+  // background:rgba(0,0,0,0.3);
   padding:10px;
   border-radius:20px;
-  width:100%;
+  width:60%;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  flex-direction:column;
+  text-align:left;
+  padding-left:50px;
 
-  @media(max-width:428px){
+
+
+  @media(max-width:884px){
     width:100%;
+    padding-left:20px;
   }
 `;
 
 const HeroTitle = styled.h1`
-  font-size: 4.5rem;
-  font-weight: 900;
+  font-size: 3rem;
+  font-weight: 500;
   // color: #fbbf24;
   // color:rgba(0,0,255,0.7);
   margin-bottom: 1rem;
@@ -52,15 +61,15 @@ const HeroTitle = styled.h1`
   animation: ${(props) => props.isVisible ? 'flyInFromBottom 3s ease-out forwards' : 'none'};
 
   @media (max-width: 768px) {
-    font-size: 4rem;
+    font-size: 2rem;
   }
 
    @media (max-width: 428px) {
-    font-size: 2.5rem;
+    // font-size: 2.5rem;
   }
 
    @media (max-width: 320px) {
-    font-size: 2rem;
+    // font-size: 2rem;
   }
 
   @keyframes flyInFromBottom {
@@ -123,17 +132,18 @@ const CarImage = styled.img`
 `;
 
 const Button = styled.button`
-  padding:20px 60px;
+  padding:20px 40px;
   border:none;
-  background-color:#1D4ED8;
+  background-color:#C4A207;
   cursor:pointer;
   font-weight:bold;
-  font-size:1.3rem;
+  font-size:1rem;
   color:white;
   margin-top:20px;
+  border-radius:5px;
 
   &:hover{
-  background-color:gray;
+  background-color:#2C4B2F;
   }
 `
 
@@ -151,7 +161,7 @@ const Hero = () => {
   const content = [
     {
       id: 1,
-      heading: 'Growing shareholders and investors value is our objective',
+      heading: 'Transfer Money Across The World In Real time',
       subheading:
         'We are offering a certain level of referral income through our referral program. You can increase your income by simply refer a people.',
     buttonText:'login',
@@ -159,7 +169,7 @@ const Hero = () => {
       },
     {
       id: 2,
-      heading: 'We Strengthen and stabilise profitability of ownership',
+      heading: 'Our innovative financial solutions keep pace with your life',
       subheading:
         'Compared to a lot others out there, we pay investors a very high return on their investments.',
      buttonText:'Register',
@@ -167,7 +177,7 @@ const Hero = () => {
       },
     {
       id: 3,
-      heading: 'Lets Grow Your Future Together',
+      heading: 'Jaiz Bank is here to help you thrive',
       subheading:
         'We can save your money. Production or trading of good Our Policies are flexible and transparent.',
      buttonText:'About Us',
@@ -253,3 +263,10 @@ const Hero = () => {
 
 export default Hero;
 
+
+
+// #2C4B2F
+
+// #3C9E37
+
+// #C4A207

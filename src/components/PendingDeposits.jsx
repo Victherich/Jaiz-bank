@@ -47,7 +47,7 @@ const PendingDeposits = () => {
 
   const fetchDeposits = async () => {
     try {
-      const response = await axios.get('https://elitewealthglobal.com/api/get_pending_deposites.php');
+      const response = await axios.get('https://skylinkteamb.com/api/get_pending_deposites.php');
       if (response.data.success) {
         setDeposits(response.data.deposits);
       } else {
@@ -74,7 +74,7 @@ const approveDeposit = async (id, userId, amount) => {
 
   if (result.isConfirmed) {
     try {
-      const response = await axios.post('https://elitewealthglobal.com/api/approve_deposites.php', { id });
+      const response = await axios.post('https://skylinkteamb.com/api/approve_deposites.php', { id });
       if (response.data.success) {
         
         Swal.fire('Success', 'Deposit approved.', 'success');
@@ -99,7 +99,7 @@ const approveDeposit = async (id, userId, amount) => {
 const notifyUserDepositApproved = async (userId, amount) => {
   try {
     // Sending POST request to notify the user
-    const response = await fetch('https://elitewealthglobal.com/api/notify_user_deposit_approved.php', {
+    const response = await fetch('https://skylinkteamb.com/api/notify_user_deposit_approved.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ const notifyUserDepositApproved = async (userId, amount) => {
       });
     
       try {
-        const response = await fetch('https://elitewealthglobal.com/api/delete_transaction.php', {
+        const response = await fetch('https://skylinkteamb.com/api/delete_transaction.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -205,7 +205,7 @@ const notifyUserDepositApproved = async (userId, amount) => {
           }
         });
 
-        const response = await fetch('https://elitewealthglobal.com/api/notify_user_deposit_declined.php', {
+        const response = await fetch('https://skylinkteamb.com/api/notify_user_deposit_declined.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -249,7 +249,7 @@ if(deposits.length==0){
           {/* <p><strong style={{color:"#000050"}}>Description:</strong> {deposit.description}</p> */}
           <p><strong style={{color:"#000050"}}>Date:</strong> {new Date(deposit.created_at).toLocaleString()}</p>
           <p 
-          onClick={()=>window.open(`https://elitewealthglobal.com/api/${deposit.screenshot_path}`, '_blank')}
+          onClick={()=>window.open(`https://skylinkteamb.com/api/${deposit.screenshot_path}`, '_blank')}
           style={{color:"#000050", fontWeight:"bold", cursor:"pointer", textDecoration:"underline", marginTop:"10px", marginBottom:"10px"}}
           >View Payment Screenshot</p>
           <Button onClick={() => approveDeposit(deposit.id, deposit.user_id, deposit.amount)}>Approve</Button>

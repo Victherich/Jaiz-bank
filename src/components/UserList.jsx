@@ -73,7 +73,7 @@ const UserList = () => {
 
     const getUsers=()=>{
     // Fetch all users on component mount
-    axios.get('https://elitewealthglobal.com/api/get_all_users.php')
+    axios.get('https://skylinkteamb.com/api/get_all_users.php')
       .then(response => {
         if (response.data.success) {
           setUsers(response.data.users);

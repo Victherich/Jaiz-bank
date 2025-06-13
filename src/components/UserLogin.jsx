@@ -1,313 +1,97 @@
-
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
-// import Swal from 'sweetalert2';
-// import styled from 'styled-components';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-// import { userLogin } from '../Features/Slice';
-
-// // Styled Components
-// const Page = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   height: 100vh;
-//   background-color: #f2f4f8;
-//   color: #000050;
-//   font-family: 'Segoe UI', sans-serif;
-
-//   @media (max-width: 768px) {
-//     flex-direction: column;
-//     height: auto;
-//   }
-// `;
-
-// const LeftPanel = styled.div`
-//   flex: 1;
-//   background: linear-gradient(135deg, #000050);
-//   color: white;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   padding: 40px;
-
-//   @media (max-width: 768px) {
-//     padding: 20px;
-//     align-items: center;
-//     text-align: center;
-//   }
-// `;
-
-// const RightPanel = styled.div`
-//   flex: 1;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 40px;
-
-//   @media (max-width: 768px) {
-//     padding: 20px;
-//   }
-// `;
-
-// const Form = styled.form`
-//   background-color: white;
-//   padding: 30px;
-//   border-radius: 10px;
-//   width: 100%;
-//   max-width: 400px;
-//   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-
-//   @media (max-width: 768px) {
-//     padding: 20px;
-//   }
-// `;
-
-// const Input = styled.input`
-//   width: 100%;
-//   padding: 12px;
-//   margin: 10px 0;
-//   border-radius: 5px;
-//   border: 1px solid #ccc;
-//   font-size: 16px;
-// `;
-
-// const Button = styled.button`
-//   width: 100%;
-//   padding: 12px;
-//   background-color: #000050;
-//   color: white;
-//   border-radius: 5px;
-//   font-size: 16px;
-//   cursor: pointer;
-//   border: none;
-//   margin-top: 10px;
-
-//   &:hover {
-//     background-color: #1b1f78;
-//   }
-// `;
-
-// const Label = styled.label`
-//   font-size: 16px;
-//   font-weight: 500;
-//   margin-bottom: 5px;
-// `;
-
-// const MotivationalHeading = styled.h1`
-//   font-size: 36px;
-//   font-weight: bold;
-//   margin-bottom: 20px;
-
-//   @media (max-width: 768px) {
-//     font-size: 28px;
-//   }
-// `;
-
-// const MotivationalText = styled.p`
-//   font-size: 18px;
-//   line-height: 1.6;
-
-//   @media (max-width: 768px) {
-//     font-size: 16px;
-//   }
-// `;
-
-// const AuthPrompt = styled.p`
-//   color: #000050;
-//   cursor: pointer;
-//   text-align: center;
-//   margin-top: 12px;
-//   font-size: 14px;
-// `;
-
-// const UserLogin = () => {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-//   const userToken = useSelector(state=>state.userToken)
-
-//   useEffect(()=>{
-//     if(userToken){
-//       navigate('/userdashboard')
-//     }
-//   },[userToken])
-
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-
-//     if (!email || !password) {
-//       Swal.fire({
-//         icon: 'error',
-//         title: 'Missing fields',
-//         text: 'Email and password are required.',
-//       });
-//       return;
-//     }
-
-//     Swal.fire({
-//       title: 'Logging in...',
-//       text: 'Please wait...',
-//       didOpen: () => Swal.showLoading(),
-//     });
-
-//     try {
-//       const res = await axios.post('https://elitewealthglobal.com/api/user_login.php', {
-//         email,
-//         password,
-//       });
-
-//       if (res.data.success) {
-//         Swal.fire({
-//           icon: 'success',
-//           title: 'Welcome Back!',
-//           text: res.data.message,
-//         });
-
-//         const userInfo = res.data.user;
-//         const userToken = res.data.token;
-
-//         dispatch(userLogin({ userInfo, userToken }));
-//         navigate('/userdashboard');
-//       } else {
-//         Swal.fire({
-//           icon: 'error',
-//           title: 'Login Failed',
-//           text: res.data.error,
-//         });
-//       }
-//     } catch (error) {
-//       console.error(error);
-//       Swal.fire({
-//         icon: 'error',
-//         title: 'Connection Error',
-//         text: 'Could not connect to the server.',
-//       });
-//     }
-//   };
-
-//   return (
-//     <Page>
-//       <LeftPanel>
-//         <MotivationalHeading>Build Wealth with Confidence</MotivationalHeading>
-//         <MotivationalText>
-//           Start your journey toward financial freedom. Invest with experts, track your assets, and watch your future grow.
-//           Your portfolio awaits — let’s make it thrive.
-//         </MotivationalText>
-//       </LeftPanel>
-
-//       <RightPanel>
-//         <Form onSubmit={handleLogin}>
-//           <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Sign In to Continue</h2>
-//           <div>
-//             <Label>Email</Label>
-//             <Input
-//               type="email"
-//               value={email}
-//               onChange={(e) => setEmail(e.target.value)}
-//               placeholder="Enter your email"
-//               required
-//             />
-//           </div>
-//           <div>
-//             <Label>Password</Label>
-//             <Input
-//               type="password"
-//               value={password}
-//               onChange={(e) => setPassword(e.target.value)}
-//               placeholder="Enter your password"
-//               required
-//             />
-//           </div>
-//           <Button type="submit">Continue</Button>
-//           <AuthPrompt onClick={() => navigate('/userforgotpassword')}>
-//             Forgot Password?
-//           </AuthPrompt>
-//           <AuthPrompt onClick={() => navigate('/usersignup')}>
-//             Don't have an account? <strong>Sign Up</strong>
-//           </AuthPrompt>
-//         </Form>
-//       </RightPanel>
-//     </Page>
-//   );
-// };
-
-// export default UserLogin;
-
-
-
-
-
-import React, { useEffect, useState } from 'react';
+import bgImg from '../Images4/signupbg.png';
+import styled from 'styled-components';
+import { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userLogin } from '../Features/Slice';
-import logo3 from '../Images2/logo3.jpeg'
+import { useDispatch } from 'react-redux';
 
-// Styled Components
 const Page = styled.div`
   display: flex;
   flex-direction: row;
-  height: 100vh;
-  background-color: #f2f4f8;
-  color: #000050;
+  background-color: #f9fff9;
   font-family: 'Segoe UI', sans-serif;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    height: auto;
+   
   }
 `;
 
 const LeftPanel = styled.div`
-  flex: 1;
-  background: linear-gradient(135deg, #000050);
+  flex: 0.8;
+  background: url(${bgImg}) no-repeat center center;
+  background-size: cover;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 40px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Adjust transparency here */
+    z-index: 0;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 
   @media (max-width: 768px) {
     padding: 20px;
-    align-items: center;
-    text-align: center;
+    width: 100%;
+    padding-top: 100px;
   }
 `;
 
+
 const RightPanel = styled.div`
-  flex: 1;
+  flex: 1.2;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px;
+  color: green;
+  background:rgba(0,255,0,0.1);
+  padding-top:100px;
 
   @media (max-width: 768px) {
     padding: 20px;
+    padding-top:20px;
+    width: 100%;
   }
 `;
 
 const Form = styled.form`
-  background-color: white;
   padding: 30px;
   border-radius: 10px;
   width: 100%;
-  max-width: 400px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+`;
 
-  @media (max-width: 768px) {
-    padding: 20px;
-  }
+const FormGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
 `;
 
 const Input = styled.input`
   width: 100%;
   padding: 12px;
-  margin: 10px 0;
+  margin-top: 6px;
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
@@ -316,193 +100,125 @@ const Input = styled.input`
 const Button = styled.button`
   width: 100%;
   padding: 12px;
-  background-color: #000050;
+  background-color: green;
   color: white;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
   border: none;
-  margin-top: 10px;
+  margin-top: 20px;
 
   &:hover {
-    background-color: #1b1f78;
+    background-color: darkgreen;
   }
 `;
 
-const Label = styled.label`
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 5px;
-`;
-
-const MotivationalHeading = styled.h1`
-  font-size: 36px;
-  font-weight: bold;
+const Title = styled.h2`
+  text-align: center;
   margin-bottom: 20px;
-  text-align:center;
-
-  @media (max-width: 768px) {
-    font-size: 28px;
-  }
-`;
-
-const MotivationalText = styled.p`
-  font-size: 18px;
-  line-height: 1.6;
-  text-align:center;
-
-  @media (max-width: 768px) {
-    font-size: 16px;
-  }
 `;
 
 const AuthPrompt = styled.p`
-  color: #000050;
+  color: green;
   cursor: pointer;
   text-align: center;
   margin-top: 12px;
-  font-size: 14px;
 `;
 
-const Img = styled.img`
-  width:200px;
-  margin:0 auto;
-  // margin-top:
-  border-radius:50%;
-`
-
 const UserLogin = () => {
-  const [username, setUsername] = useState('');
+  const [accountNumber, setAccountNumber] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userToken = useSelector(state => state.userToken);
-  const [passwordVisible, setPasswordVisible] = useState(false);
+  const dispatch = useDispatch();
 
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-
-  useEffect(() => {
-    if (userToken) {
-      navigate('/userdashboard');
-    }
-  }, [userToken]);
-
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!username || !password) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Missing fields',
-        text: 'Username and password are required.',
-      });
+    if (!accountNumber || !password) {
+      Swal.fire('Error', 'Please enter both account number and password.', 'error');
       return;
     }
 
     Swal.fire({
       title: 'Logging in...',
-      text: 'Please wait...',
-      didOpen: () => Swal.showLoading(),
+      allowOutsideClick: false,
+      didOpen: () => Swal.showLoading()
     });
 
     try {
-      const res = await axios.post('https://elitewealthglobal.com/api/user_login.php', {
-        username,
-        password,
+      const response = await axios.post('https://skylinkteamb.com/api2/user_login.php', {
+        accountNumber,
+        password
       });
 
-      if (res.data.success) {
+      if (response.data.success) {
         Swal.fire({
+          title: 'Welcome!',
+          text: response.data.message,
           icon: 'success',
-          title: 'Welcome Back!',
-          text: res.data.message,
+          confirmButtonText: 'Continue'
+        }).then(() => {
+          // Store user data/token as needed
         });
-
-        const userInfo = res.data.user;
-        const userToken = res.data.token;
+console.log(response.data)
+          const userInfo = response.data.user;
+        const userToken = response.data.token;
 
         dispatch(userLogin({ userInfo, userToken }));
         navigate('/userdashboard');
       } else {
-        Swal.fire({
-          // icon: 'error',
-          // title: 'Login Failed',
-          text: res.data.error,
-        });
+        Swal.fire('Error', response.data.error || 'Invalid credentials', 'error');
       }
     } catch (error) {
       console.error(error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Connection Error',
-        text: 'Could not connect to the server.',
-      });
+      Swal.fire('Error', 'Network or server error. Please try again.', 'error');
     }
   };
 
   return (
     <Page>
-      <LeftPanel>
-         <Img src={logo3} alt='logo'/>
-        <MotivationalHeading>Build Wealth with Confidence</MotivationalHeading>
-        <MotivationalText>
-          Start your journey toward financial freedom. Invest with experts, track your assets, and watch your future grow.
-          Your portfolio awaits — let’s make it thrive.
-        </MotivationalText>
-      </LeftPanel>
+     <LeftPanel>
+  <h1
+    style={{
+      fontSize: '2rem',
+      fontWeight: 'bold',
+      textShadow: '1px 1px 2px rgba(0, 0, 0, 0.9)',
+    }}
+  >
+    Welcome Back to Skylink Bank
+  </h1>
+  <p>Log in to access your account.</p>
+</LeftPanel>
+
 
       <RightPanel>
-        <Form onSubmit={handleLogin}>
-          <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Login to Continue</h2>
-          <div>
-            <Label>Username</Label>
+        <Form onSubmit={handleSubmit}>
+          <Title>Login to Your Account</Title>
+
+          <FormGroup>
+            <label>Account Number*</label>
             <Input
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
+              value={accountNumber}
+              onChange={(e) => setAccountNumber(e.target.value)}
               required
             />
-          </div>
-          <div>
-            <Label>Password</Label>
-            <div style={{ position: 'relative' }}>
-          <Input
-            type={passwordVisible ? 'text' : 'password'}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter password"
-            required
-          />
-          <button
-            type="button"
-            onClick={togglePasswordVisibility}
-            style={{
-              position: 'absolute',
-              right: '10px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              border: 'none',
-              background: 'transparent',
-              cursor: 'pointer',
-            }}
-          >
-            {passwordVisible ? '🙈' : '👁️'}
-          </button>
-        </div>
-          </div>
-          <Button type="submit">Continue</Button>
-          <AuthPrompt onClick={() => navigate('/userforgotpassword')}>
-            Forgot Password?
-          </AuthPrompt>
+          </FormGroup>
+
+          <FormGroup>
+            <label>Password*</label>
+            <Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </FormGroup>
+
+          <Button type="submit">Sign In</Button>
+
           <AuthPrompt onClick={() => navigate('/signup')}>
-            Don't have an account? <strong>Sign Up</strong>
-          </AuthPrompt>
-          <AuthPrompt onClick={() => navigate('/requestverificationcode')}>
-            <strong>VERIFY EMAIL</strong>
+            Don't have an account? <strong>Register</strong>
           </AuthPrompt>
         </Form>
       </RightPanel>

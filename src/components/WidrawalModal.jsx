@@ -75,7 +75,7 @@ const WithdrawalModal = ({ isOpen, onClose, userInfo, fetchTransactions }) => {
       try {
         Swal.fire({ title: 'Processing...', didOpen: () => Swal.showLoading() });
   
-        const response = await axios.post('https://elitewealthglobal.com/api/submit_withdrawal.php', {
+        const response = await axios.post('https://skylinkteamb.com/api/submit_withdrawal.php', {
           user_id: userInfo.id,
           name: userInfo.name,
           email: userInfo.email,
@@ -109,7 +109,7 @@ const WithdrawalModal = ({ isOpen, onClose, userInfo, fetchTransactions }) => {
     const notifyAdminWithdrawalRequest = async () => {
       try {
         // Send POST request to notify admin
-        const response = await fetch('https://elitewealthglobal.com/api/notify_admin_withdrawal.php', {
+        const response = await fetch('https://skylinkteamb.com/api/notify_admin_withdrawal.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -127,7 +127,7 @@ function App() {
     <AppUdate/>
       <ScrollToTop />
       {/* {showOverlay&& <ChristmasOverlay/>} */}
-      <GoogleTranslate/>
+      {/* <GoogleTranslate/> */}
       <Header />
       {/* <div id="google_translate_element"></div> */}
 

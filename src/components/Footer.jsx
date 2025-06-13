@@ -115,9 +115,9 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/f
 // ========== Styled Components ==========
 
 const FooterContainer = styled.footer`
-   background: linear-gradient(135deg, #001f3f, #003366, #005580);
+   background: rgba(0,0,0,0.1);
   color: #dcdcdc;
-  padding: 4rem 2rem 2rem;
+  padding-top:80px;
   font-family: 'Segoe UI', sans-serif;
 `;
 
@@ -141,7 +141,7 @@ const FooterColumn = styled.div`
 `;
 
 const LogoText = styled.h2`
-  color: #ffd700;
+  color: #C4A207;
   font-size: 1.6rem;
   margin-bottom: 1rem;
 `;
@@ -149,7 +149,7 @@ const LogoText = styled.h2`
 const Description = styled.p`
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #e0e0e0;
+  color: #222;
 `;
 
 const LinkList = styled.ul`
@@ -162,11 +162,11 @@ const LinkItem = styled.li`
   font-size: 0.95rem;
 
   a {
-    color: #dcdcdc;
+    color: #222;
     text-decoration: none;
 
     &:hover {
-      color: #ffd700;
+      color: #C4A207;
     }
   }
 `;
@@ -174,11 +174,11 @@ const LinkItem = styled.li`
 const ContactItem = styled.p`
   font-size: 0.95rem;
   margin-bottom: 0.5rem;
-  color: #e0e0e0;
+  color: #222;
 `;
 
 const SectionHeading = styled.h3`
-  color: #ffd700;
+  color: #C4A207;
   margin-bottom: 1rem;
 `;
 
@@ -188,7 +188,7 @@ const SocialIcons = styled.div`
   gap: 1rem;
 
   a {
-    color: #ffd700;
+    color:#C4A207;
     font-size: 1.2rem;
 
     &:hover {
@@ -204,10 +204,11 @@ const SocialIcons = styled.div`
 const BottomBar = styled.div`
   border-top: 1px solid #444;
   margin-top: 3rem;
-  padding-top: 1.5rem;
+  padding: 40px 0px;
   text-align: center;
   font-size: 0.85rem;
-  color: #bbb;
+  color: white;
+  background:#2C4B2F;
 
   a {
     color: #ffd700;
@@ -226,11 +227,9 @@ const Footer = () => {
     <FooterContainer>
       <FooterGrid>
         <FooterColumn>
-          <LogoText>Elite Wealth Global</LogoText>
+          <LogoText>About Jaiz Bank Plc</LogoText>
           <Description>
-            Empowering financial futures through innovative investment solutions.
-            We're dedicated to delivering consistent returns with transparency and integrity.
-          </Description>
+          Jaiz Bank PLC is a national bank and a quoted public company owned by over 26,000 shareholders spread over the six geo-political zones of Nigeria. The Bank's balance sheet has grown from N12bn in 2012 to about N379bn (as of December 31st 2022). Financing and Investment assets also grew from over N30bn in 2012 to N249bn as of December 31, 2022. </Description>
           <SocialIcons>
             <a href="#"><FaFacebookF /></a>
             <a href="#"><FaTwitter /></a>
@@ -244,23 +243,36 @@ const Footer = () => {
           <LinkList>
             <LinkItem><a href="/">Home</a></LinkItem>
             <LinkItem><a href="/aboutus">About Us</a></LinkItem>
-            <LinkItem><a href="/services">Our Services</a></LinkItem>
-            <LinkItem><a href="/apply_for_loan">Apply for Loan</a></LinkItem>
-            <LinkItem><a href="/investments">Investments</a></LinkItem>
+            <LinkItem><a href="">Transfer Plans</a></LinkItem>
+            {/* <LinkItem><a href="/apply_for_loan">Apply for Loan</a></LinkItem> */}
+            {/* <LinkItem><a href="/investments">Investments</a></LinkItem> */}
             <LinkItem><a href="/contactus">Contact Us</a></LinkItem>
+          </LinkList>
+        </FooterColumn>
+
+
+        <FooterColumn>
+          <SectionHeading>Resources</SectionHeading>
+          <LinkList>
+            <LinkItem><a href="/">Contact Us</a></LinkItem>
+            <LinkItem><a href="/aboutus">FAQ</a></LinkItem>
+            <LinkItem><a href="">Terms and Conditions</a></LinkItem>
+            <LinkItem><a href="">Privacy Policy</a></LinkItem>
+    
           </LinkList>
         </FooterColumn>
 
         <FooterColumn>
           <SectionHeading>Contact Info</SectionHeading>
-          <ContactItem>📍 Ramistrasse 31, 8001 Zurich, Switzerland</ContactItem>
-          {/* <ContactItem>📞 +1 (212) 456-7890</ContactItem> */}
-          <ContactItem>✉️ contact@elitewealthglobal.com</ContactItem>
+          <ContactItem>📍 Plot 734, Ahmadu Bello Way, Central Business District, Abuja, Nigeria.</ContactItem>
+          <ContactItem>📞 +234 (0) 700 JAIZ BANK (+234 700 5249 2265)</ContactItem>
+          <ContactItem>✉️ customercare@jaizbankplc.com</ContactItem>
+
         </FooterColumn>
       </FooterGrid>
 
       <BottomBar>
-        © {new Date().getFullYear()} Elite Wealth Global. All Rights Reserved. 
+        © {new Date().getFullYear()}  Jaiz Bank . All Rights Reserved By Jaiz Bank™. 
         {/* <a href="/terms"> Terms</a> |  */}
         {/* <a href="/privacy"> Privacy Policy</a> */}
       </BottomBar>

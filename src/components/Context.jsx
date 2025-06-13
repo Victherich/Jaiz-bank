@@ -76,99 +76,55 @@ const color1 = "#000050"
 
 
 
-
 const plans = [
+
+    {
+    name: "test Plan",
+    price: 42,
+    currency:"$",
+    duration: "10mins",
+    features: [
+      "Unlimited Local Transfers",
+      "Priority Support",
+      "Secure Encryption",
+    ],
+  },
   {
-    id: 1,
-    name: 'Starter Plan',
-    roi: '10% every day for 3 days',
-    range: '$100 - $999',
-    min: 100,
-    max: 999,
-    roi_percent: 10,
-    interval_minutes: 1440,
-    duration: 3
-  }, 
-
-  
-{
-  id: 2,
-  name: 'Gold Plan',
-  roi: '15% every day for 7 days',
-  range: '$1000 - $4999',
-  min: 1000,
-  max: 4999,
-  roi_percent: 15,
-  interval_minutes: 1440,
-  duration: 7
-},
-
-{
-  id: 3,
-  name: 'Diamond Plan',
-  roi: '20% every day for 14 days',
-  range: '$5000 - $9999',
-  min: 5000,
-  max: 9999,
-  roi_percent: 20,
-  interval_minutes: 1440,
-  duration: 14
-},
-
-{
-  id: 4,
-  name: 'Master Plan',
-  roi: '30% every day for 20 days',
-  range: '$10000 - $19999',
-  min: 10000,
-  max: 19999,
-  roi_percent: 30,
-  interval_minutes: 1440,
-  duration: 20
-},
-
-{
-  id: 5,
-  name: 'Metal Plan',
-  roi: '50% every day for 30 days',
-  range: '$20000 - $49999',
-  min: 20000,
-  max: 49999,
-  roi_percent: 50,
-  interval_minutes: 1440,
-  duration: 30
-},
-
-
-{
-  id: 6,
-  name: 'Unlimited Plan',
-  roi: '80% every 12 hours for 14 days',
-  range: '$50000 - $1000000',
-  min: 50000,
-  max: 1000000,
-  roi_percent: 80,
-  interval_minutes: 720,  // 12 hours
-  duration: 28             // 2 times/day × 14 days
-},
-
-// {
-//       id: 7,
-//       name: '🚀 Development plan',
-//       roi: '5% every 2 minutes for 10 minutes',
-//       range: '$100 - $999',
-//       min: 100,
-//       max: 999,
-//       roi_percent: 5,
-//       interval_minutes: 2,
-//       duration: 5
-//     }
-
-  
+    name: "Starter Transfer",
+    price: 42,
+    currency:"$",
+    duration: "3 Months",
+    features: [
+      "Unlimited Local Transfers",
+      "Priority Support",
+      "Secure Encryption",
+    ],
+  },
+  {
+    name: "Pro Connect",
+    price: 250,
+    currency:"$",
+    duration: "6 Months",
+    features: [
+      "Unlimited Global & Local Transfers",
+      "Instant Processing",
+      "Transfer History Archive",
+      "Dedicated Support Line",
+    ],
+  },
+  {
+    name: "Elite Access",
+    price: 500,
+    currency:"$",
+    duration: "1 Year",
+    features: [
+      "All Pro Connect Features",
+      "Discounted FX Rates",
+      "Early Access to New Features",
+      "Annual Financial Summary Report",
+    ],
+  },
 ];
-
-
-
 
   return (
     <Context.Provider value={{adminToken,setAdminToken,admin,setAdmin,adminMenu,
@@ -186,21 +142,20 @@ export default ContextProvider
 
 
 
-// lie chat credentials
 
-// email : contact@elitewealthglobal.com
+
+
 
 // database 
-// pw: elite@global
-// User: “elitewealthgloba_db1     ”
-// database: elitewealthgloba_db1
+// pw: Efe@package9
+// User “skylinkteamb_db1” was added to the database “skylinkteamb_db1”.
 
 
 
-// TAWK CHAT CREDENTIALS
-// PW: #Elite@global987
-// EMAIL : contact@elitewealthglobal.com
 
+//database 2
+//User “skylinkteamb_db2” was added to the database “skylinkteamb_db2”.
+// pw: Efe@package9
 
 
 

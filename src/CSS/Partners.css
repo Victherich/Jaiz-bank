@@ -1,13 +1,14 @@
 /* General Styling */
 .partners-section {
   background: linear-gradient(to right, #f1f5f9, #e2e8f0);
-    padding: 60px 20px;
+    padding: 200px 20px;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
-    /* background-image: url('../Images/partnerbg.jpg'); */
+    background-image: url('../Images4/h5.png');
     background-position: bottom;
     background-size: cover;
+
   }
   
   .partners-title {

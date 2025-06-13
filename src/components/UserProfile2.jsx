@@ -1,693 +1,374 @@
 
 
-
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
-// import styled from 'styled-components';
-// import DepositModal from './DepositeModal';
-
-// // Styled Components
-// const DashboardContainer = styled.div`
-//   display: flex;
-//   width:100%;
-
-//   font-family: 'Segoe UI', sans-serif;
-//   background-color: #f4f6f8;
-// `;
-
-
-
-// const Main = styled.div`
-//   // flex: 1;
-//   padding: 30px;
-//   width:100%;
-
-//   @media(max-width:428px){
-//   padding:0px;
-//   padding-top:50px;
-//   }
-
-// `;
-
-// const Card = styled.div`
-// display:flex;
-// flex-direction:column;
-//   background: white;
-//   width:100%;
-//   padding: 20px;
-//   border-radius: 12px;
-//   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-//   margin-bottom: 20px;
-
-//   @media(max-width:428px){
-//   padding:20px 5px;
-//   }
-// `;
-
-// const Balance = styled.h2`
-//   font-size: 32px;
-//   color: #28a745;
-// `;
-
-// const Label = styled.p`
-//   font-size: 16px;
-//   color: #333;
-// `;
-
-// const NavItem = styled.div`
-//   margin-bottom: 15px;
-//   cursor: pointer;
-//   font-size: 16px;
-//   &:hover {
-//     text-decoration: underline;
-//   }
-// `;
-
-// const Button = styled.button`
-//   padding: 10px 16px;
-//   margin: 10px 5px 0 0;
-//   border: none;
-//   background: #000050;
-//   color: white;
-//   border-radius: 6px;
-//   cursor: pointer;
-//   font-weight: bold;
-//   &:hover {
-//     background: #333383;
-//   }
-// `;
-
-// const TransactionTable = styled.table`
-//   width: 100%;
-//   border-collapse: collapse;
-//   background: white;
-//   border-radius: 8px;
-//   overflow: hidden;
-
-//   th, td {
-//     padding: 12px 16px;
-//     border-bottom: 1px solid #eee;
-//   }
-
-//   th {
-//     background: #000050;
-//     color: white;
-//     text-align: left;
-//   }
-// `;
-
-// const UserProfile2 = ({userId}) => {
-//   const [user, setUser] = useState(null);
-//   const [modalOpen, setModalOpen] = useState(false);
-
-
-
-//   useEffect(() => {
-//     const fetchUser = async () => {
-//       try {
-//         const res = await axios.get(`https://elitewealthglobal.com/api/get_user_by_id.php?id=${userId}`);
-//         if (res.data.success) {
-//           setUser(res.data.user);
-       
-        
-//         } else {
-//           console.error(res.data.error);
-//         }
-//       } catch (err) {
-//         console.error('Failed to fetch user:', err);
-//       }
-//     };
-
-//     fetchUser();
-//   }, [userId]);
-
-
-
-
-//   // get user transactions
-//   const fetchTransactions = async () => {
-//     try {
-//       const response = await axios.get(`https://elitewealthglobal.com/api/get_user_transactions.php?user_id=${userId}`);
-//       if (response.data.success) {
-//         console.log('Transactions:', response.data.transactions);
-       
-//       } else {
-//         console.error('Error:', response.data.error);
-//       }
-//     } catch (error) {
-//       console.error('Server error:', error);
-//     }
-//   };
-  
-  
-//   useEffect(()=>{
-//     fetchTransactions();
-//   },[])
-
-
-
-
-//   if (!user) return <div>Loading...</div>;
-
-//   return (
-//     <DashboardContainer>
-  
-
-//       <Main>
-//         <Card>
-//           <Label>Welcome back, {user.name}</Label>
-//           <Balance>Balance: ${parseFloat(user.balance).toFixed(2)}</Balance>
-//           <p>Email: {user.email}</p>
-//           <p>Phone: {user.phone}</p>
-//         </Card>
-
-//         <Card>
-//           <h3>Actions</h3>
-//           <Button onClick={()=>setModalOpen(true)}>Deposit Funds</Button>
-//           <Button>Invest </Button>
-   
-//         </Card>
-
-//         <Card>
-//           <h3>Investment Summary</h3>
-//           <p>(Coming soon: Show active investments, returns, maturity date, etc.)</p>
-//         </Card>
-
-//         <Card>
-//           <h3>Recent Transactions</h3>
-//           <TransactionTable>
-//             <thead>
-//               <tr>
-//                 <th>Date</th>
-//                 <th>Type</th>
-//                 <th>Amount</th>
-//                 <th>Status</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               <tr>
-//                 <td>2025-04-01</td>
-//                 <td>Deposit</td>
-//                 <td>$500.00</td>
-//                 <td>Completed</td>
-//               </tr>
-//               <tr>
-//                 <td>2025-03-28</td>
-//                 <td>Investment</td>
-//                 <td>$200.00</td>
-//                 <td>Ongoing</td>
-//               </tr>
-//             </tbody>
-//           </TransactionTable>
-//         </Card>
-//       </Main>
-//       <DepositModal isOpen={modalOpen} fetchTransactions={fetchTransactions} onClose={() => setModalOpen(false)} userId={userId} />
-    
-//     </DashboardContainer>
-//   );
-// };
-
-// export default UserProfile2;
-
-
-
-
-
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import DepositModal from './DepositeModal';
-import InvestmentModal from './InvestmentModal';
-import { useSelector } from 'react-redux';
-import WithdrawalModal from './WidrawalModal';
-import UserInvestments from './UserInvestments';
-import Swal from 'sweetalert2'
+import { FaUserCircle, FaMoneyCheckAlt, FaSignOutAlt, FaExchangeAlt, FaWallet, FaRegChartBar, FaLifeRing, FaCog, FaLock, FaPaperPlane } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import TransferModal from './TransferModal';
+import { Context } from './Context';
+import SubscriptionModal from './SubscriptionModal';
+import SubscriptionHistory from './SubscriptionHistory';
+import Swal from 'sweetalert2';
 
-const DashboardContainer = styled.div`
+const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f4f6f8;
-  padding: 5px;
-  padding-top:50px;
-
-  @media (min-width: 768px) {
-    padding: 40px;
-  }
-
-
+  background-color: #f4f9f4;
 `;
 
-const Main = styled.div`
-  width: 100%;
-`;
-
-const Card = styled.div`
+const Sidebar = styled.div`
+  width: 270px;
+  background-color: #004d00;
+  color: white;
   display: flex;
   flex-direction: column;
+  padding: 30px 20px;
+`;
+
+const SidebarTitle = styled.div`
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+`;
+
+const ProfileImage = styled(FaUserCircle)`
+  font-size: 3rem;
+  margin-bottom: 10px;
+`;
+
+const MenuItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 15px 0;
+  cursor: pointer;
+  font-size: 0.95rem;
+
+  &:hover {
+    color: #b2fab4;
+  }
+`;
+
+const Content = styled.div`
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+`;
+
+const Greeting = styled.h2`
+  margin-bottom: 8px;
+  color: #004d00;
+`;
+
+const InfoBox = styled.div`
   background: white;
-  width: 100%;
-  padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  margin-bottom: 20px;
-  // overflow-y:scroll;
-
-  @media(max-width: 428px){
-    padding: 15px 10px;
-  }
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
 `;
 
-const Balance = styled.h2`
-  font-size: 28px;
-  color: #28a745;
-
-  @media(max-width: 428px){
-    font-size: 22px;
-  }
+const StatsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 `;
 
-const Label = styled.p`
-  font-size: 16px;
-  color: #333;
+const StatCard = styled.div`
+  background-color: #e9f8ec;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  color: #004d00;
+  font-weight: 600;
+`;
 
-  @media(max-width: 428px){
-    font-size: 14px;
-  }
+const AccountDetails = styled.div`
+  margin-top: 20px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+`;
+
+const Footer = styled.footer`
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: gray;
 `;
 
 const Button = styled.button`
-  padding: 10px 16px;
-  margin: 10px 10px 0 0;
-  border: none;
-  background: rgba(0,0,255,0.5);
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
+  padding:10px;
+  border:none;
+  cursor:pointer;
+  background-color:green;
+  color:white;
+  border-radius:5px;
+  margin-top:30px;
+  margin-bottom:30px;
+  margin-right:10px;
 
-  &:hover {
-    background: #333383;
+  &:hover{
+    background:gray;
   }
-
-  @media(max-width: 428px){
-    padding: 8px 12px;
-    font-size: 14px;
-  }
-`;
-
-const TransactionTableWrapper = styled.div`
-  overflow-x: auto;
-`;
-
-const TransactionTable = styled.table`
-  width: 100%;
-  min-width: 500px;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 8px;
-  overflow-x: scroll;
-
-  th, td {
-    padding: 12px 16px;
-    border-bottom: 1px solid #eee;
-    font-size: 14px;
-  }
-
-  th {
-    background: #000050;
-    color: white;
-    text-align: left;
-  }
-`;
-
-
-
-
-
-
-
-
-// coipy link
-
-const Card2 = styled.div`
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-top: 20px;
-`;
-
-const Button2 = styled.button`
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-top: 10px;
-
-  &:hover {
-    background-color: #45a049;
-  }
-`;
-
-const ReferralLink = styled.span`
-  font-weight: bold;
-   word-break: break-all;
-  display: inline-block;
-`;
+`
 
 const UserProfile2 = ({userId}) => {
-  const [user, setUser] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [transactions, setTransactions] = useState([]);
-  const [isInvestmentModalOpen, setInvestmentModalOpen] = useState(false);
-  const [withdrawModalOpen, setWithdrawModalOpen]=useState(false);
-  const [referees, setReferees] = useState([]);
-console.log(referees)
 
-  console.log(user)
+// const [openTransferModal, setOpenTransferModal]= useState(false);
+const [transferType, setTransferType]=useState('');
+ const [user, setUser] = useState(null);
+ console.log(user)
+ const [txns, setTxns] = useState([]);
+   const [loading, setLoading] = useState(true);
+   const [error, setError] = useState('');
 
-  
-
- 
-    const fetchUser = async () => {
-      try {
-        const res = await axios.get(`https://elitewealthglobal.com/api/get_user_by_id.php?id=${userId}`);
-        if (res.data.success) {
-          setUser(res.data.user);
-          console.log(res.data.user)
-        } else {
-          console.error(res.data.error);
-        }
-      } catch (err) {
-        console.error('Failed to fetch user:', err);
-      }
-    };
+   const {plans} = useContext(Context);
+   const [showSubscriptionModal, setShowSubscriptionModal]=useState(false)
+   
 
 
-    useEffect(()=>{
-      fetchUser();
-    },[userId]);
-
-
-    useEffect(() => {
-    const id = setInterval(()=>{
-      fetchUser();
-      fetchTransactions();
-    },10000)
-return ()=>clearInterval(id);
-  }, []);
-
-
-
-  const fetchTransactions = async () => {
-    try {
-      const response = await axios.get(`https://elitewealthglobal.com/api/get_user_transactions.php?user_id=${userId}`);
-      if (response.data.success) {
-        setTransactions(response.data.transactions);
-      } else {
-        console.error('Error:', response.data.error);
-      }
-    } catch (error) {
-      console.error('Server error:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchTransactions();
-  }, []);
-
-
-
-
-
-
-  // chek an dupddat paypout
-
-
-    // const checkPayouts = async () => {
-    //   try {
-    //     const res = await axios.post('https://elitewealthglobal.com/api/check_and_update_payouts.php', {
-    //       user_id: userId
-    //     });
-        
-    //     if (res.data.success && res.data.updated.length > 0) {
-    //       console.log('Updated payouts:', res.data.updated);
-    //       // Optionally refresh balance from backend
-          
-    //     }
-    //   } catch (err) {
-    //     console.error('Payout update failed:', err);
-    //   }
-    // };
-
-  //   useEffect(() => {
-  //   checkPayouts();
-  // }, []);
-
-
-  // useEffect(()=>{
-  //   const id = setInterval(() => {
-  //     checkPayouts();
-  //   }, 60000);
-  // },[])
-
-  // useEffect(() => {
-  //   const id = setInterval(() => {
-  //     checkPayouts();
-  //   }, 60000);
-  //   return () => clearInterval(id);
-  // }, []);
-
-
-
-
-
-
-  // copy link logic
-
-  const [buttonText, setButtonText] = useState('Copy Link');
-
-  const copyReferralLink = () => {
-    const referralLink = `https://elitewealthglobal.com/signup2/${user.username}`;
-
-    // Create a temporary textarea element to copy the link
-    const tempInput = document.createElement('textarea');
-    tempInput.value = referralLink;
-    document.body.appendChild(tempInput);
-
-    // Select and copy the text
-    tempInput.select();
-    document.execCommand('copy');
-
-    // Remove the temporary input element
-    document.body.removeChild(tempInput);
-
-    // Change the button text to indicate the link was copied
-    setButtonText('Link Copied!');
-
-    // Reset button text after 2 seconds
-    setTimeout(() => {
-      setButtonText('Copy Link');
-    }, 2000);
-  };
-  
-
-
-
-
-
-  const runPayoutProcessor = async () => {
-    try {
-      const response = await fetch('https://elitewealthglobal.com/api/execute_due_payouts2.php');
-      const data = await response.json();
-  
-      if (data.success) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Success',
-          text: data.message,
-        });
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: data.error || 'Something went wrong',
-        });
-      }
-    } catch (error) {
-      console.error(error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Network Error',
-        text: 'Request failed. Please check your connection.',
-      });
-    }
-  };
-
-
-
-
-
-
-
-
-
-
-const getUserReferrees = async () => {
-  if (!user?.referees) return;
-
+const fetchUser = async () => {
   try {
-    const response = await axios.get(`https://elitewealthglobal.com/api/get_referees.php?ids=${user?.referees}`);
-    if (response.data.success) {
-      setReferees(response.data.referees);
-      
-    
+    const res = await axios.get(`https://skylinkteamb.com/api2/get_user_by_id.php?id=${userId}`);
+    if (res.data.success) {
+      setUser(res.data.user);
+      // console.log(res.data)
     } else {
-      console.warn("No referees found.");
+      console.error(res.data.error);
     }
-  } catch (error) {
-    console.error("Error fetching referees:", error);
+  } catch (err) {
+    console.error('Failed to fetch user:', err);
   }
 };
 
 useEffect(() => {
-  getUserReferrees();
-}, [user?.referees]);
-
-  
+  fetchUser();
+}, [userId]);
 
 
 
+  useEffect(() => {
+    if (!user?.id) {
+      setError('User ID not available.');
+      setLoading(false);
+      return;
+    }
+
+    axios.get(`https://skylinkteamb.com/api2/get_user_transactions.php?user_id=${user.id}`)
+      .then(res => {
+        if (res.data.success) {
+          setTxns(res.data.transactions);
+        } else {
+          setError(res.data.error || 'Failed to fetch transactions.');
+        }
+      })
+      .catch(err => {
+        setError('Network error.');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [user]);
 
 
-  
 
-  if (!user) return <div>Loading...</div>;
+
+
+const checkSubscriptionStatus = async () => {
+  // Show loading spinner
+  Swal.fire({
+    title: "Checking Subscription...",
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+    },
+  });
+
+  try {
+    const response = await fetch(`https://skylinkteamb.com/api2/check_active_subscription.php?user_id=${userId}`);
+    const data = await response.json();
+
+    Swal.close(); // Close the loading modal
+
+    if (data.success) {
+      if (data.status === "allnotexpired") {
+        console.log("✅ User has an active subscription.");
+        Swal.fire({text:"You still have an active subscription"})
+       
+      } else if (data.status === "allexpired") {
+        console.warn("⚠️ All subscriptions have expired.");
+        setShowSubscriptionModal(true)
+      } else {
+        console.warn("ℹ️ Unknown status:", data.status);
+        
+      }
+    } else {
+      Swal.fire("Error", data.error || "Failed to check subscription.", "error");
+      
+    }
+  } catch (error) {
+    Swal.close();
+    Swal.fire("Error", `Something went wrong: ${error.message}`, "error");
+   
+  }
+};
+
+
+
+const deleteExpiredSubscriptions = async () => {
+  if (!userId) {
+    console.error("Missing user ID. Cannot delete subscriptions.");
+    return;
+  }
+
+  try {
+    const response = await fetch(`https://skylinkteamb.com/api2/delete_user_expired_subscriptions.php?user_id=${userId}`);
+    const data = await response.json();
+
+    if (data.success) {
+      console.log("Deleted:", data.message);
+    } else {
+      console.error("Error:", data.error || "Could not delete subscriptions.");
+    }
+  } catch (error) {
+    console.error("Request failed:", error.message || error);
+  }
+};
+
+
+useEffect(()=>{
+  deleteExpiredSubscriptions();
+},[])
+
+
+useEffect(()=>{
+ const id = setInterval(()=>{
+ deleteExpiredSubscriptions();
+ },5*60*1000);
+
+ return ()=>clearInterval(id);
+},[])
+
+
+
+const checkSubscriptionStatus2 = async () => {
+  // Show loading spinner
+  Swal.fire({
+    title: "Checking Subscription...",
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+    },
+  });
+
+  try {
+    const response = await fetch(`https://skylinkteamb.com/api2/check_active_subscription.php?user_id=${userId}`);
+    const data = await response.json();
+
+    Swal.close(); // Close the loading modal
+
+    if (data.success) {
+      if (data.status === "allnotexpired") {
+        console.log("✅ User has an active subscription.");
+        
+       setTransferType('local transfer')
+      } else if (data.status === "allexpired") {
+        console.warn("⚠️ All subscriptions have expired.");
+        Swal.fire({text:"You do not have an active subscription"})
+      } else {
+        console.warn("ℹ️ Unknown status:", data.status);
+        
+      }
+    } else {
+      Swal.fire("Error", data.error || "Failed to check subscription.", "error");
+      
+    }
+  } catch (error) {
+    Swal.close();
+    Swal.fire("Error", `Something went wrong: ${error.message}`, "error");
+   
+  }
+};
+
+
+
 
   return (
-    <DashboardContainer>
-      <Main>
-        <Card>
-          <Label>Welcome back, {user?.username.toUpperCase()}</Label>
-          <Balance>Balance: ${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(user.balance))}
-          </Balance>
-          {/* <p>
-            From Commission: ${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(user.commissions))}
-          </p> */}
-          {/* <p>Email: {user.email}</p> */}
-          {/* <p>Phone: {user.phone}</p> */}
-        </Card>
-        {/* <button onClick={runPayoutProcessor}>Test</button> */}
+    <Container>
+      {/* <Sidebar>
+        <ProfileImage />
+        <SidebarTitle>Hi, Ronney Francisco</SidebarTitle>
 
-        <Card>
-          <h3>Actions</h3>
-          <Button onClick={() => setModalOpen(true)}>Deposit Funds</Button>
-          <Button onClick={()=>setInvestmentModalOpen(true)}>Invest</Button>
-          <Button onClick={()=>setWithdrawModalOpen(true)}>Withdraw Funds</Button>
-        </Card>
+        <MenuItem><FaRegChartBar /> Dashboard</MenuItem>
+        <MenuItem><FaExchangeAlt /> Transactions</MenuItem>
+        <MenuItem><FaPaperPlane /> Send Crypto</MenuItem>
+        <MenuItem><FaMoneyCheckAlt /> Send Money</MenuItem>
+        <MenuItem><FaWallet /> Deposit Cheque</MenuItem>
+        <MenuItem><FaCog /> Account Management</MenuItem>
+        <MenuItem><FaLock /> Get Loan</MenuItem>
+        <MenuItem><FaUserCircle /> Self Services</MenuItem>
+        <MenuItem><FaLock /> User-Authentication</MenuItem>
+        <MenuItem><FaUserCircle /> Profile</MenuItem>
+        <MenuItem><FaLifeRing /> Help & Support</MenuItem>
+        <MenuItem><FaSignOutAlt /> Logout</MenuItem>
+      </Sidebar> */}
+
+      <Content>
+        <Greeting style={{color:"green"}}>Hello, {user?.first_name}</Greeting>
+
+        <InfoBox>
+          <h3 style={{color:"rgba(0,0,0,0.7"}}><strong style={{color:"green"}}>Account Number:</strong> {user?.account_number}</h3>
+          <h3 style={{color:"rgba(0,0,0,0.7"}} ><strong style={{color:"green"}}>Available Balance:</strong> Unlimited Transfer </h3>
+        </InfoBox>
+
+        <StatsGrid>
+          {/* <StatCard>
+            <div style={{ fontSize: '1.5rem' }}>0</div>
+            Pending
+          </StatCard>
+          <StatCard>
+            <div style={{ fontSize: '1.5rem' }}>1</div>
+            Failed
+          </StatCard> */}
+          <StatCard>
+            <div style={{ fontSize: '1.5rem' }}>{txns.length}</div>
+            Completed Transactions
+          </StatCard>
+        </StatsGrid>
+
+        <SubscriptionHistory userId={userId}/>
+
+        <Button onClick={checkSubscriptionStatus} >Subscribe for Transfer</Button>
+
+        <Button onClick={checkSubscriptionStatus2}>Make Transfer</Button>
 
 
-      
 
-     
-         <Card2>
-      <h3 style={{color:"#000050"}}>
-        Referral Link: <ReferralLink>{`https://elitewealthglobal.com/signup2/${user.username}`}</ReferralLink>
-      </h3>
-      <Button2 onClick={copyReferralLink}>{buttonText}</Button2>
-    </Card2>
+        <InfoBox>
+          <h3 style={{color:"green"}}>Account Holder</h3>
+          <AccountDetails>
+            <p><strong>Name:</strong> {user?.first_name}</p>
+            <p><strong>Account Number:</strong> {user?.account_number}</p>
+            <p><strong>Account Type:</strong> {user?.account_type}</p>
+          </AccountDetails>
+        </InfoBox>
 
-        <UserInvestments userId={userId}/>
+        <InfoBox>
+          <p>Financial guidance to help with navigating the new normal. | Better Money Habits® has resources to help you navigate a changing world.</p>
+          <p>Introducing Jaiz Bank Life Plan® —an easy way to set and track short- and long‑term financial goals, get personalized advice when you need it most and more.</p>
+        </InfoBox>
 
-        <Card style={{height:"300px"}}>
-          <h3>Recent Transactions</h3>
-          <TransactionTableWrapper>
-            <TransactionTable>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Type</th>
-                  <th>Amount</th>
-                  <th>Status</th>
-                  <th>Reference</th>
-                </tr>
-              </thead>
-              <tbody>
-                {transactions.length > 0 ? (
-                  transactions.sort((a,b)=>a.created_at - b.created_at).map((tx, index) => (
-                    <tr key={index}>
-                      <td>{tx.created_at}</td>
-                      <td>{tx.type}</td>
-                      <td>${parseFloat(tx.amount).toFixed(2)}</td>
-                      <td>{tx.status}</td>
-                      <td>{tx.reference}</td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="4">No transactions yet.</td>
-                  </tr>
-                )}
-              </tbody>
-            </TransactionTable>
-          </TransactionTableWrapper>
-        </Card>
-
-         <Card style={{height:"300px"}}>
-          <h3>Your Referrals</h3>
-          <TransactionTableWrapper>
-            <TransactionTable>
-              <thead>
-                <tr>
-                  <th>Username</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  {/* <th>Reference</th> */}
-                </tr>
-              </thead>
-              <tbody>
-                {referees.length > 0 ? (
-                  referees.sort((a,b)=>a.created_at - b.created_at).map((rf, index) => (
-                    <tr key={index}>
-                      <td>{rf.username}</td>
-                      <td>{rf.name}</td>
-                      <td>{rf.email}</td>
-                      <td>{rf.phone}</td>
-                      {/* <td>{tx.reference}</td> */}
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="4">No Referrals yet.</td>
-                  </tr>
-                )}
-              </tbody>
-            </TransactionTable>
-          </TransactionTableWrapper>
-        </Card>
-
-      </Main>
-      <DepositModal isOpen={modalOpen} fetchTransactions={fetchTransactions} onClose={() => setModalOpen(false)} userId={userId} />
-      <InvestmentModal
-        isOpen={isInvestmentModalOpen}
-        onClose={() => setInvestmentModalOpen(false)}
-        userInfo={user}
-        
-      />
-      <WithdrawalModal 
-      isOpen={withdrawModalOpen} 
-      onClose={() => setWithdrawModalOpen(false)} 
-      userInfo={user} 
-      fetchTransactions={fetchTransactions}
-      />
-
-    </DashboardContainer>
+        <Footer>
+          © 2025 Jaiz Bank™ | All Rights Reserved.
+        </Footer>
+      </Content>
+      {transferType==='local transfer'&&<TransferModal transferType={transferType} onClose={()=>setTransferType('')}/>}
+    {showSubscriptionModal&&<SubscriptionModal  onClose={()=>setShowSubscriptionModal(false)} userEmail={user.email} userId={userId} />}
+    </Container>
+    
   );
 };
 
 export default UserProfile2;
+

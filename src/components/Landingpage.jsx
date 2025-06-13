@@ -26,6 +26,7 @@ import Testimonial2 from './TestimonialCarousel2';
 import WhyChooseUs2 from './WhyChooseUs2';
 import InfoCards from './InfoCards';
 import AutoPlayVideo from './AutoPlayVideo'
+import AccountFeatures from './AccountFeatures';
 
 const Landingpage = () => {
 
@@ -52,16 +53,17 @@ const Landingpage = () => {
     reRender && (
       <div className='LandingPage'>
      <Hero/>
+     <AccountFeatures/>
         <AboutUsBrief />
-        <ThierAbout/>
-        <TestimonialCarousel/>
-        <ServicesPage/>
+        {/* <ThierAbout/> */}
+        {/* <TestimonialCarousel/> */}
+        {/* <ServicesPage/> */}
         {/* <ServicesHeadings/> */}
-        {/* <PlanPage/> */}
+        <PlanPage/>
         {/* <WhyChooseUs/> */}
         <WhyChooseUs2/>
         <InfoCards/>
-        <Hero2/>
+        {/* <Hero2/> */}
         {/* <Academics/> */}
         {/* <FacultyLecturers/> */}
         
@@ -72,7 +74,7 @@ const Landingpage = () => {
         {/* <OnlineCourses/> */}
         <Testimonial2/>
   {/* <YouTubeShowcase/> */}
-  <AutoPlayVideo/>
+  {/* <AutoPlayVideo/> */}
       </div>
     )
   );

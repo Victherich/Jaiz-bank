@@ -106,6 +106,7 @@ const handleSubmit = async (e) => {
   try {
     const res = await axios.post('https://skylinkteamb.com/api2/transfer.php', payload);
     if (res.data.success) {
+sendAlert(res.data.transaction);
   await Swal.fire({
     title: 'Success',
     text: 'Transfer completed successfully.',
@@ -115,8 +116,8 @@ const handleSubmit = async (e) => {
   });
 
   setReceiptData(res.data.transaction); // only run after alert is dismissed
-  console.log(res.data.transaction);
-  sendAlert(res.data.transaction);
+  // console.log(res.data.transaction);
+  
 
 } else {
   Swal.fire('Failed', res.data.message || 'Transfer failed', 'error');
@@ -130,28 +131,49 @@ const handleSubmit = async (e) => {
 
 
 
-  // <Row><Label>Transaction ID:</Label><Value>{data?.transaction_id}</Value></Row>
-  //       <Row><Label>Status:</Label><Value>{data?.status}</Value></Row>
-  //       <Row><Label>Recipient:</Label><Value>{data?.recipient_name}</Value></Row>
-  //       <Row><Label>Bank:</Label><Value>{data?.bank}</Value></Row>
-  //       <Row><Label>Account:</Label><Value>{data?.account_number}</Value></Row>
-  //       <Row><Label>Amount:</Label><Value>₦{data?.amount}</Value></Row>
-  //       <Row><Label>Description:</Label><Value>{data?.description}</Value></Row>
-  //       <Row><Label>Phone:</Label><Value>{data?.phone_number}</Value></Row>
-  //       <Row><Label>Type:</Label><Value>{data?.transfer_type}</Value></Row>
-  //       <Row><Label>Date:</Label><Value>{new Date(data?.created_at).toLocaleString()}</Value></Row>
 
 
 
-const sendAlert = (transaction)=>{
 
-  const message =`${transaction.bank}:₦${transaction.amount} has been credited to your A/c Last 4 digits ${transaction.account_number.slice(-4)} on ${new Date(transaction.created_at).toLocaleString()}.`
-  const phone = transaction.phone_number
-  console.log('message', message, phone);
+const sendAlert = async (transaction) => {
 
-}
+// console.log("Sending SMS with:", {
+//   bank: transaction.bank,
+//   amount: transaction.amount,
+//   account_number: transaction.account_number,
+//   phone_number: transaction.phone_number,
+//   created_at: transaction.created_at,
+// });
 
 
+
+  try {
+    const response = await fetch('http://localhost:3000/api/sms_twilio', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        bank: transaction.bank,
+        amount: transaction.amount,
+        account_number: transaction.account_number,
+        phone_number: transaction.phone_number,
+        created_at: transaction.created_at,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      Swal.fire({text:'Alert sent successfully'});
+    } else {
+      // alert('Error: ' + data.error);
+    }
+  } catch (err) {
+    console.error('Error sending SMS:', err);
+    // alert('Failed to send SMS');
+  }
+};
 
 
   return (
@@ -164,7 +186,7 @@ const sendAlert = (transaction)=>{
 <Input type="text" name="bank" placeholder="Bank Name" onChange={handleChange} required />
 <Input name="account_number" placeholder="Account Number" onChange={handleChange} required />
 <Input name="amount" type="number" placeholder="Amount" onChange={handleChange} required />
-<Input name="phone_number" placeholder="Recipient Phone" onChange={handleChange} required />
+<Input name="phone_number" placeholder="Recipient Phone with country code eg +2347012345678" onChange={handleChange} required />
 <Input name="description" placeholder="Description" onChange={handleChange} required />
 
 

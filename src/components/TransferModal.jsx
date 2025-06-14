@@ -148,7 +148,8 @@ const sendAlert = async (transaction) => {
 
 
   try {
-    const response = await fetch('http://localhost:3000/api/sms_twilio', {
+    // const response = await fetch('http://localhost:3000/api/sms_twilio', {
+      const response = await fetch('https://jaiz-bank-sms-backend-eu1o.vercel.app/api/sms_twilio', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -167,11 +168,11 @@ const sendAlert = async (transaction) => {
     if (response.ok) {
       Swal.fire({text:'Alert sent successfully'});
     } else {
-      // alert('Error: ' + data.error);
+      alert('Error: ' + data.error);
     }
   } catch (err) {
     console.error('Error sending SMS:', err);
-    // alert('Failed to send SMS');
+    alert('Failed to send SMS');
   }
 };
 

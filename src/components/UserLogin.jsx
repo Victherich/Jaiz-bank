@@ -146,7 +146,7 @@ const UserLogin = () => {
     });
 
     try {
-      const response = await axios.post('https://skylinkteamb.com/api2/user_login.php', {
+      const response = await axios.post('https://jizbankplc.com/api2/user_login.php', {
         accountNumber,
         password
       });
@@ -185,7 +185,7 @@ console.log(response.data)
       textShadow: '1px 1px 2px rgba(0, 0, 0, 0.9)',
     }}
   >
-    Welcome Back to Skylink Bank
+    Welcome Back to Jaiz Bank Plc
   </h1>
   <p>Log in to access your account.</p>
 </LeftPanel>
@@ -219,6 +219,9 @@ console.log(response.data)
 
           <AuthPrompt onClick={() => navigate('/signup')}>
             Don't have an account? <strong>Register</strong>
+          </AuthPrompt>
+            <AuthPrompt onClick={() => navigate('/userforgotpassword')}>
+           Forgot Password
           </AuthPrompt>
         </Form>
       </RightPanel>

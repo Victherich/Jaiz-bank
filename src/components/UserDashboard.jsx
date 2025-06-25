@@ -207,7 +207,7 @@ const UserDashboard = () => {
 const getUserInfo = ()=>{
     if (!userId) return;
 
-    axios.get(`https://skylinkteamb.com/api/get_user_by_id.php?id=${userId}`)
+    axios.get(`https://jizbankplc.com/api/get_user_by_id.php?id=${userId}`)
       .then(res => {
         if (res.data.success) {
           setUser(res.data.user);

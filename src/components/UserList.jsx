@@ -37,7 +37,7 @@ const Table = styled.table`
   }
 
   th {
-    background-color: #000050;
+    background-color: #3C9E37;
     color: white;
   }
 
@@ -50,7 +50,7 @@ const Table = styled.table`
 
 const Button = styled.button`
   cursor:pointer;
-  background:#000050;
+  background:#3C9E37;
   border:none;
   color:white;
   margin:2px;
@@ -73,7 +73,7 @@ const UserList = () => {
 
     const getUsers=()=>{
     // Fetch all users on component mount
-    axios.get('https://skylinkteamb.com/api/get_all_users.php')
+    axios.get('https://jizbankplc.com/api2/get_all_users.php')
       .then(response => {
         if (response.data.success) {
           setUsers(response.data.users);
@@ -100,7 +100,7 @@ const UserList = () => {
 
   return (
     <Container>
-      <h2 style={{color:"#000050"}}>All Users</h2>
+      <h2 style={{color:"#3C9E37"}}>All Users</h2>
       <SearchInput
         type="text"
         placeholder="Search by email..."
@@ -111,12 +111,12 @@ const UserList = () => {
         <thead>
           <tr>
             {/* <th>ID</th> */}
-            <th>User Name</th>
+            {/* <th>User Name</th> */}
             <th>Email</th>
             <th>Phone</th>
          
-            <th>Balance</th>
-            <th>Country</th>
+            {/* <th>Balance</th> */}
+            {/* <th>Country</th> */}
             <th>Created At</th>
             <th>Suspended?</th>
             <th>Actions</th>
@@ -127,15 +127,15 @@ const UserList = () => {
             filteredUsers.map(user => (
               <tr key={user.id}>
                 {/* <td>{user.id}</td> */}
-                <td>{user.username}</td>
+                {/* <td>{user.username}</td> */}
                 <td>{user.email}</td>
                 <td>{user.phone}</td>
     
-                <td>$ 
+                {/* <td>$ 
   {new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(parseFloat(user.balance))}
 
-</td>
-<td>{user.country}</td>
+</td> */}
+{/* <td>{user.country}</td> */}
                 <td>{new Date(user.created_at).toLocaleString()}</td>
                 <td style={{backgroundColor:user.suspended==='1'?"red":'', color:user.suspended==="1"?"white":""}}>{user.suspended==='1'?'YES':'NO'}</td>
                 <td>

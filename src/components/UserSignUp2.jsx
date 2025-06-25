@@ -228,7 +228,7 @@ const UserSignUp2 = () => {
     Swal.showLoading();
 
     try {
-      const res = await axios.post('https://skylinkteamb.com/api/user_signup2.php', {
+      const res = await axios.post('https://jizbankplc.com/api/user_signup2.php', {
         name,
         email,
         phone,

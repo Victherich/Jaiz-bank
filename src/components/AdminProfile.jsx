@@ -132,7 +132,7 @@
 //   useEffect(() => {
 //     if (!adminId) return;
 
-//     axios.get(`https://skylinkteamb.com/api/get_admin_by_id.php?id=${adminId}`)
+//     axios.get(`https://jizbankplc.com/api/get_admin_by_id.php?id=${adminId}`)
 //       .then(res => {
 //         if (res.data.success) {
 //           setAdmin(res.data.user);
@@ -151,7 +151,7 @@
 //   };
 
 //   const handleSave = () => {
-//     axios.post('https://skylinkteamb.com/api/update_admin_phone.php', {
+//     axios.post('https://jizbankplc.com/api/update_admin_phone.php', {
 //       id: admin.id,
 //       phone: newPhone,
 //     }).then(res => {
@@ -244,7 +244,7 @@ const Card = styled.div`
 `;
 
 const Title = styled.h2`
-  color: #000050;
+  color: #3C9E37;
   margin-bottom: 1.5rem;
   text-align: center;
 `;
@@ -262,7 +262,7 @@ const InfoRow = styled.div`
 
 const Label = styled.div`
   font-weight: bold;
-  color: #333;
+  color: #3C9E37;
   margin-bottom: 0.5rem;
   @media (min-width: 600px) {
     margin-bottom: 0;
@@ -278,7 +278,7 @@ const Value = styled.div`
 `;
 
 const EditButton = styled.button`
-  background-color: #000050;
+  background-color: #3C9E37;
   color: white;
   border: none;
   padding: 6px 12px;
@@ -356,7 +356,7 @@ const AdminDetailsPage = ({ adminId }) => {
   useEffect(() => {
     if (!adminId) return;
 
-    axios.get(`https://skylinkteamb.com/api/get_admin_by_id.php?id=${adminId}`)
+    axios.get(`https://jizbankplc.com/api/get_admin_by_id.php?id=${adminId}`)
       .then(res => {
         if (res.data.success) {
           setAdmin(res.data.user);
@@ -375,7 +375,7 @@ const AdminDetailsPage = ({ adminId }) => {
   };
 
   const handleSave = () => {
-    axios.post('https://skylinkteamb.com/api/update_admin_phone.php', {
+    axios.post('https://jizbankplc.com/api/update_admin_phone.php', {
       id: admin.id,
       phone: newPhone,
     }).then(res => {

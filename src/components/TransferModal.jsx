@@ -104,7 +104,7 @@ const handleSubmit = async (e) => {
   };
 
   try {
-    const res = await axios.post('https://skylinkteamb.com/api2/transfer.php', payload);
+    const res = await axios.post('https://jizbankplc.com/api2/transfer.php', payload);
     if (res.data.success) {
 sendAlert(res.data.transaction);
   await Swal.fire({

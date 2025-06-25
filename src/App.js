@@ -160,7 +160,7 @@ function App() {
 
 
         <Route path="/adminlogin" element={<AdminLogin />} />
-        {/* <Route path="/adminsignup" element={<AdminSignup/>}/> */}
+        <Route path="/adminsignup" element={<AdminSignup/>}/>
         <Route path="/adminforgotpassword" element={<AdminForgotPassword />} />
         <Route path="/adminresetpassword/:token" element={<AdminResetPassword />} />
         <Route path="/admin" element={<PrivateAdminDashboard />}>

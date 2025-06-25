@@ -14,7 +14,7 @@ const PendingWithdrawals = () => {
 
     const fetchPendingWithdrawals = async () => {
         try {
-            const response = await fetch('https://skylinkteamb.com/api/get_pending_withdrawals.php');
+            const response = await fetch('https://jizbankplc.com/api/get_pending_withdrawals.php');
             const data = await response.json();
             if (data.success) {
                 setWithdrawals(data.withdrawals);
@@ -47,7 +47,7 @@ const PendingWithdrawals = () => {
       if (!result.isConfirmed) return;
     
       try {
-        const response = await fetch('https://skylinkteamb.com/api/approve_withdrawal.php', {
+        const response = await fetch('https://jizbankplc.com/api/approve_withdrawal.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id }),
@@ -75,7 +75,7 @@ const PendingWithdrawals = () => {
     const notifyUserWithdrawalApproved = async (userId, amount, walletAddress) => {
       try {
         // Sending POST request to notify the user
-        const response = await fetch('https://skylinkteamb.com/api/notify_user_withdrawal_approved.php', {
+        const response = await fetch('https://jizbankplc.com/api/notify_user_withdrawal_approved.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ const PendingWithdrawals = () => {
       });
     
       try {
-        const response = await fetch('https://skylinkteamb.com/api/delete_transaction.php', {
+        const response = await fetch('https://jizbankplc.com/api/delete_transaction.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -175,7 +175,7 @@ const PendingWithdrawals = () => {
           }
         });
   
-        const response = await fetch('https://skylinkteamb.com/api/notify_user_withdrawal_declined.php', {
+        const response = await fetch('https://jizbankplc.com/api/notify_user_withdrawal_declined.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

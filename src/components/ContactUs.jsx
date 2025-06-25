@@ -34,7 +34,7 @@ const handleSubmit = async (e) => {
   });
 
   try {
-    const response = await fetch('https://skylinkteamb.com/api/contact_form_endpoint.php', {
+    const response = await fetch('https://jizbankplc.com/api/contact_form_endpoint.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
@@ -199,7 +199,7 @@ export default Contact;
 //     });
 
 //     try {
-//       const response = await fetch('https://skylinkteamb.com/api/contact_form_endpoint.php', {
+//       const response = await fetch('https://jizbankplc.com/api/contact_form_endpoint.php', {
 //         method: 'POST',
 //         headers: { 'Content-Type': 'application/json' },
 //         body: JSON.stringify(formData)

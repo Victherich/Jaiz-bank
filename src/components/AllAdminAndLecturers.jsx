@@ -100,7 +100,7 @@ const AllAdminsAndLecturers = () => {
   const [searchEmail, setSearchEmail] = useState('');
 
   useEffect(() => {
-    axios.get('https://skylinkteamb.com/api/get_all_admin.php')
+    axios.get('https://jizbankplc.com/api/get_all_admin.php')
       .then(res => {
         if (res.data.success) {
           setAdmins(res.data.admins);

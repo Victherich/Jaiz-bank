@@ -23,7 +23,7 @@ const FormWrapper = styled.div`
 const Title = styled.h2`
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  color: #000050;
+  color: green;
   text-align: center;
 `;
 
@@ -56,7 +56,7 @@ const Input = styled.input`
 
 const Button = styled.button`
   padding: 0.75rem;
-  background-color: #000050;
+  background-color: green;
   color: white;
   font-size: 1rem;
   border: none;
@@ -109,7 +109,7 @@ const UserResetPassword = () => {
     });
 
     try {
-      const res = await fetch('https://skylinkteamb.com/api/user_reset_password.php', {
+      const res = await fetch('https://jizbankplc.com/api2/user_reset_password.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token, password }),

@@ -15,12 +15,14 @@ import UserList from './UserList.jsx';
 import PendingDeposits from './PendingDeposits.jsx';
 import PendingWithdrawals from './PendingWithdrawals.jsx';
 import PendingInvestments from './PendingInvestments.jsx';
+import SubscriptionList from './SubscriptionsList.jsx';
 
 // Styled Components
 const DashboardContainer = styled.div`
   display: flex;
   min-height: 100vh;
   overflow: hidden;
+  padding-top:70px;
 `;
 
 const Sidebar = styled.div`
@@ -55,7 +57,7 @@ const SidebarHeader = styled.div`
   font-size: 1.5rem;
   text-align: center;
   font-weight: bold;
-  color:#000050;
+  color: #3C9E37;
 
 `;
 
@@ -71,7 +73,7 @@ const SidebarMenu = styled.ul`
 const SidebarMenuItem = styled.li`
   padding: 15px 20px;
   cursor: pointer;
-  background: ${(props) => (props.active ? 'gray;' : 'transparent')};
+  background: ${(props) => (props.active ? '#3C9E37;' : 'transparent')};
   color: ${(props)=>(props.active ? 'white':"#000050")};
 
 
@@ -80,7 +82,7 @@ const SidebarMenuItem = styled.li`
 
   &:hover {
 
-    background:gray;
+    background:#3C9E37;
   }
 `;
 
@@ -105,7 +107,7 @@ const Hamburger = styled.div`
   top: 70px;
   left: 20px;
 
-  background:#000050;
+  background:#3C9E37;
   color: white;
   padding: 10px;
   border-radius: 50%;
@@ -197,6 +199,9 @@ const SchoolManagementDashboard = () => {
         case 'allusers':
           return <UserList/>;
 
+           case 'subscriptionlist':
+          return <SubscriptionList/>;
+
           case 'pendingdeposits':
             return <PendingDeposits/>;
 
@@ -238,27 +243,35 @@ const SchoolManagementDashboard = () => {
             All Users
           </SidebarMenuItem>
 
-          <SidebarMenuItem
+          
+         <SidebarMenuItem
+            active={activeMenu === 'subscriptionlist'}
+            onClick={() => handleMenuClick('subscriptionlist')}
+          >
+            All Subscriptions
+          </SidebarMenuItem>
+
+          {/* <SidebarMenuItem
             active={activeMenu === 'pendingdeposits'}
             onClick={() => handleMenuClick('pendingdeposits')}
           >
             Pending Deposits
-          </SidebarMenuItem>
+          </SidebarMenuItem> */}
  
-          <SidebarMenuItem
+          {/* <SidebarMenuItem
             active={activeMenu === 'pendingwithdrawals'}
             onClick={() => handleMenuClick('pendingwithdrawals')}
           >
             Pending Withdrawals
-          </SidebarMenuItem>
+          </SidebarMenuItem> */}
    
 
-          <SidebarMenuItem
+          {/* <SidebarMenuItem
             active={activeMenu === 'pendinginvestments'}
             onClick={() => handleMenuClick('pendinginvestments')}
           >
             Pending Investments
-          </SidebarMenuItem>
+          </SidebarMenuItem> */}
  
   
 

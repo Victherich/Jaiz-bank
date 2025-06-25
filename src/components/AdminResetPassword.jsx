@@ -23,7 +23,7 @@ const FormWrapper = styled.div`
 const Title = styled.h2`
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  color: #000050;
+  color: #3C9E37;
   text-align: center;
 `;
 
@@ -39,14 +39,14 @@ const Input = styled.input`
   border-radius: 8px;
   font-size: 1rem;
   &:focus {
-    border-color: #000050;
+    border-color: #3C9E37;
     outline: none;
   }
 `;
 
 const Button = styled.button`
   padding: 0.75rem;
-  background-color: #000050;
+  background-color: #3C9E37;
   color: white;
   font-size: 1rem;
   border: none;
@@ -86,7 +86,7 @@ const AdminResetPassword = () => {
     });
 
     try {
-      const res = await fetch('https://skylinkteamb.com/api/admin_reset_password.php', {
+      const res = await fetch('https://jizbankplc.com/api/admin_reset_password.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token, password }),

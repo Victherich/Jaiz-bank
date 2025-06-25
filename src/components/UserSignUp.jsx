@@ -158,12 +158,12 @@ const UserSignUp = () => {
     phone: '',
     gender: '',
     dob: '',
-    accountType: '',
+    accountType: 'savings',
     address: '',
-    postalCode: '',
-    state: '',
-    country: '',
-    currency: '',
+    postalCode: '0000',
+    state: 'default',
+    country: 'default',
+    currency: 'NGN',
     password: '',
     confirmPassword: '',
     pin: '',
@@ -211,7 +211,7 @@ const UserSignUp = () => {
   });
 
   try {
-    const response = await axios.post('https://skylinkteamb.com/api2/user_signup.php', form); // 🔁 Replace with your actual backend URL
+    const response = await axios.post('https://jizbankplc.com/api2/user_signup.php', form); // 🔁 Replace with your actual backend URL
 
     if (response.data.success) {
       Swal.fire({
@@ -233,7 +233,7 @@ const UserSignUp = () => {
   return (
     <Page>
       <LeftPanel>
-        <h1 style={{ fontSize: '2rem', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.9)' }}>Enroll with Skylink Bank</h1>
+        <h1 style={{ fontSize: '2rem', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.9)' }}>Enroll with Jaiz Bank Plc</h1>
         <p>Your journey to smarter banking begins now.</p>
       </LeftPanel>
 
@@ -286,7 +286,7 @@ const UserSignUp = () => {
               <Input name="dob" type="date" onChange={handleChange} required />
             </FormGroup>
 
-            <FormGroup>
+            {/* <FormGroup>
               <Label>Account Type*</Label>
               <Select name="accountType" onChange={handleChange} required>
                 <option value="">Select an option</option>
@@ -299,24 +299,24 @@ const UserSignUp = () => {
                 <option>Cooperate Business Account</option>
                 <option>Investment Account</option>
               </Select>
-            </FormGroup>
+            </FormGroup> */}
 
             <FormGroup>
-              <Label>Residential Address*</Label>
+              <Label>Complete Residential Address*</Label>
               <Input name="address" onChange={handleChange} required />
             </FormGroup>
 
-            <FormGroup>
+            {/* <FormGroup>
               <Label>Postal Code*</Label>
               <Input name="postalCode" onChange={handleChange} required />
-            </FormGroup>
+            </FormGroup> */}
 
-            <FormGroup>
+            {/* <FormGroup>
               <Label>State*</Label>
               <Input name="state" onChange={handleChange} required />
-            </FormGroup>
+            </FormGroup> */}
 
-            <FormGroup>
+            {/* <FormGroup>
               <Label>Country*</Label>
               <Select name="country" onChange={handleChange} required>
                 <option value="">Select a country</option>
@@ -324,9 +324,9 @@ const UserSignUp = () => {
                   <option key={idx} value={c}>{c}</option>
                 ))}
               </Select>
-            </FormGroup>
+            </FormGroup> */}
 
-            <FormGroup>
+            {/* <FormGroup>
               <Label>Currency*</Label>
               <Select name="currency" onChange={handleChange} required>
                 <option value="">Select a currency</option>
@@ -340,7 +340,7 @@ const UserSignUp = () => {
                 <option>(₹) Indian Rupee</option>
                 <option>(₱) Pesos</option>
               </Select>
-            </FormGroup>
+            </FormGroup> */}
 
             <FormGroup>
               <Label>Password*</Label>

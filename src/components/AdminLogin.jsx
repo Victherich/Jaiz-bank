@@ -13,7 +13,7 @@ const Container = styled.div`
   align-items: center;
   height: 100vh;
   background-color: white;
-  color:#000050;
+  color:#3C9E37;
 `;
 
 const Form = styled.form`
@@ -37,7 +37,7 @@ const Input = styled.input`
 const Button = styled.button`
   width: 100%;
   padding: 12px;
-  background-color: #000050;
+  background-color:#3C9E37;
   color: white;
   border-radius: 5px;
   font-size: 16px;
@@ -97,7 +97,7 @@ const AdminLogin = () => {
     });
 
     try {
-      const response = await axios.post('https://skylinkteamb.com/api/admin_login.php', { email, password });
+      const response = await axios.post('https://jizbankplc.com/api/admin_login.php', { email, password });
 
       if (response.data.success) {
         Swal.fire({

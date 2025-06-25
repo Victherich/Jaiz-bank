@@ -69,7 +69,7 @@
 //     const fetchInvestments = async () => {
 //       setLoading(true);
 //       try {
-//         const res = await axios.post('https://skylinkteamb.com/api/fetch_user_investments.php', {
+//         const res = await axios.post('https://jizbankplc.com/api/fetch_user_investments.php', {
 //           user_id: userId
 //         });
 //         if (res.data.success) {
@@ -202,7 +202,7 @@ const UserInvestments = ({ userId }) => {
     const fetchInvestments = async () => {
       setLoading(true);
       try {
-        const res = await axios.post('https://skylinkteamb.com/api/fetch_user_investments.php', {
+        const res = await axios.post('https://jizbankplc.com/api/fetch_user_investments.php', {
           user_id: userId
         });
         if (res.data.success) {

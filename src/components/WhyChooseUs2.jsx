@@ -233,7 +233,7 @@ const WhyChooseUs2 = () => {
       <ContentWrapper>
         <TitleSection>
           <MainTitle>
-            Why Choose Jaiz Bank<br />
+            Why Choose Jaiz Bank Plc<br />
             <span style={{ fontSize: "1.8rem", color: "#C4A207" }}>
               Trusted banking at your fingertips.
             </span>

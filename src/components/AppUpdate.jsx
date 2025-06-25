@@ -10,7 +10,7 @@ console.log(appVersion)
 // Fetch app version from the backend
 const fetchAppVersion = async () => {
     try {
-      const response = await fetch('https://skylinkteamb.com/api/get_app_version.php'); // URL to the PHP backend
+      const response = await fetch('https://jizbankplc.com/api/get_app_version.php'); // URL to the PHP backend
       const data = await response.json();
   
       if (!data.success || !data.app_versions || data.app_versions.length === 0) {

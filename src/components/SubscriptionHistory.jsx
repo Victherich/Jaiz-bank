@@ -49,7 +49,7 @@ export default function SubscriptionHistory({ userId }) {
 
   useEffect(() => {
     if (!userId) return;
-    fetch(`https://skylinkteamb.com/api2/get_user_subscriptions.php?user_id=${userId}`)
+    fetch(`https://jizbankplc.com/api2/get_user_subscriptions.php?user_id=${userId}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {

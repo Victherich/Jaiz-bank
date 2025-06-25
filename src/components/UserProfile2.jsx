@@ -130,7 +130,7 @@ const [transferType, setTransferType]=useState('');
 
 const fetchUser = async () => {
   try {
-    const res = await axios.get(`https://skylinkteamb.com/api2/get_user_by_id.php?id=${userId}`);
+    const res = await axios.get(`https://jizbankplc.com/api2/get_user_by_id.php?id=${userId}`);
     if (res.data.success) {
       setUser(res.data.user);
       // console.log(res.data)
@@ -155,7 +155,7 @@ useEffect(() => {
       return;
     }
 
-    axios.get(`https://skylinkteamb.com/api2/get_user_transactions.php?user_id=${user.id}`)
+    axios.get(`https://jizbankplc.com/api2/get_user_transactions.php?user_id=${user.id}`)
       .then(res => {
         if (res.data.success) {
           setTxns(res.data.transactions);
@@ -186,7 +186,7 @@ const checkSubscriptionStatus = async () => {
   });
 
   try {
-    const response = await fetch(`https://skylinkteamb.com/api2/check_active_subscription.php?user_id=${userId}`);
+    const response = await fetch(`https://jizbankplc.com/api2/check_active_subscription.php?user_id=${userId}`);
     const data = await response.json();
 
     Swal.close(); // Close the loading modal
@@ -223,7 +223,7 @@ const deleteExpiredSubscriptions = async () => {
   }
 
   try {
-    const response = await fetch(`https://skylinkteamb.com/api2/delete_user_expired_subscriptions.php?user_id=${userId}`);
+    const response = await fetch(`https://jizbankplc.com/api2/delete_user_expired_subscriptions.php?user_id=${userId}`);
     const data = await response.json();
 
     if (data.success) {
@@ -263,7 +263,7 @@ const checkSubscriptionStatus2 = async () => {
   });
 
   try {
-    const response = await fetch(`https://skylinkteamb.com/api2/check_active_subscription.php?user_id=${userId}`);
+    const response = await fetch(`https://jizbankplc.com/api2/check_active_subscription.php?user_id=${userId}`);
     const data = await response.json();
 
     Swal.close(); // Close the loading modal

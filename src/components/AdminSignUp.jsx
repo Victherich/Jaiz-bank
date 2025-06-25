@@ -23,7 +23,7 @@ const FormWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  color: #000050;
+  color: #3C9E37;
   text-align: center;
   margin-bottom: 1.5rem;
 `;
@@ -58,14 +58,14 @@ const Select = styled.select`
   font-size: 1rem;
 
   &:focus {
-    border-color: #000050;
+    border-color: #3C9E37;
     outline: none;
   }
 `;
 
 const Button = styled.button`
   width: 100%;
-  background: #000050;
+  background: #3C9E37;
   color: white;
   padding: 0.75rem;
   font-size: 1rem;
@@ -117,7 +117,7 @@ const AdminSignup = () => {
     });
 
     try {
-      const response = await fetch('https://skylinkteamb.com/api/admin_signup.php', {
+      const response = await fetch('https://jizbankplc.com/api/admin_signup.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

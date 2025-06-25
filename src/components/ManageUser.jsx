@@ -93,7 +93,7 @@
 //   });
 
 //   try {
-//     const response = await axios.post('https://skylinkteamb.com/api/suspend_user.php', {
+//     const response = await axios.post('https://jizbankplc.com/api/suspend_user.php', {
 //       user_id: userId,
 //     });
 
@@ -132,7 +132,7 @@
 //   });
 
 //   try {
-//     const response = await axios.post('https://skylinkteamb.com/api/unsuspend_user.php', {
+//     const response = await axios.post('https://jizbankplc.com/api/unsuspend_user.php', {
 //       user_id: userId,
 //     });
 
@@ -174,7 +174,7 @@
 //   });
 
 //   try {
-//     const response = await axios.post('https://skylinkteamb.com/api/delete_user.php', {
+//     const response = await axios.post('https://jizbankplc.com/api/delete_user.php', {
 //       user_id: userId,
 //     });
 
@@ -264,7 +264,7 @@ const ModalContent = styled.div`
 
 const ModalTitle = styled.h3`
   margin-top: 0;
-  color: #000050;
+  color: #3C9E37;
 `;
 
 const ModalActions = styled.div`
@@ -277,14 +277,14 @@ const ModalActions = styled.div`
 const Button = styled.button`
   cursor: pointer;
   background: lightgray;
-  border: 1px solid #000050;
-  color: #000050;
+  border: 1px solid #3C9E37;
+  color:#222 ;
   margin: 2px;
   padding: 6px 10px;
   border-radius: 5px;
 
   &:hover {
-    background: #000050;
+    background: #3C9E37;
     color: white;
   }
 `;
@@ -296,9 +296,9 @@ const ManageUser = ({ user, onClose, getUsers }) => {
 
   if (!user) return null;
 
-  const suspendUser = async (userId, username) => {
+  const suspendUser = async (userId) => {
     const confirm = await Swal.fire({
-      title: `Suspend user ${username}?`,
+      title: `Suspend user?`,
       text: "This will block the user from his account.",
       icon: 'warning',
       showCancelButton: true,
@@ -312,7 +312,7 @@ const ManageUser = ({ user, onClose, getUsers }) => {
     Swal.fire({ title: 'Suspending...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      const response = await axios.post('https://skylinkteamb.com/api/suspend_user.php', {
+      const response = await axios.post('https://jizbankplc.com/api2/suspend_user.php', {
         user_id: userId,
       });
 
@@ -329,9 +329,9 @@ const ManageUser = ({ user, onClose, getUsers }) => {
     }
   };
 
-  const unsuspendUser = async (userId, username) => {
+  const unsuspendUser = async (userId) => {
     const confirm = await Swal.fire({
-      title: `Unsuspend user ${username}?`,
+      title: `Unsuspend user?`,
       text: "This will restore the user's access.",
       icon: 'warning',
       showCancelButton: true,
@@ -345,7 +345,7 @@ const ManageUser = ({ user, onClose, getUsers }) => {
     Swal.fire({ title: 'Unsuspending...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      const response = await axios.post('https://skylinkteamb.com/api/unsuspend_user.php', {
+      const response = await axios.post('https://jizbankplc.com/api2/unsuspend_user.php', {
         user_id: userId,
       });
 
@@ -362,9 +362,9 @@ const ManageUser = ({ user, onClose, getUsers }) => {
     }
   };
 
-  const deleteUser = async (userId, username) => {
+  const deleteUser = async (userId) => {
     const confirm = await Swal.fire({
-      title: `Delete user ${username}?`,
+      title: `Delete user?`,
       text: "This will permanently delete the user's account.",
       icon: 'warning',
       showCancelButton: true,
@@ -378,7 +378,7 @@ const ManageUser = ({ user, onClose, getUsers }) => {
     Swal.fire({ title: 'Deleting user...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      const response = await axios.post('https://skylinkteamb.com/api/delete_user.php', {
+      const response = await axios.post('https://jizbankplc.com/api2/delete_user.php', {
         user_id: userId,
       });
 
@@ -399,20 +399,20 @@ const ManageUser = ({ user, onClose, getUsers }) => {
     <ModalOverlay>
       <ModalContent>
         <ModalTitle>User Details</ModalTitle>
-        <p><strong>Username:</strong> {user.username}</p>
+        {/* <p><strong>Username:</strong> {user.username}</p> */}
         <p><strong>Email:</strong> {user.email}</p>
         <p><strong>Phone:</strong> {user.phone}</p>
-        <p><strong>Balance:</strong> ${parseFloat(user.balance).toFixed(2)}</p>
-        <p><strong>Country:</strong> {user.country}</p>
+        {/* <p><strong>Balance:</strong> ${parseFloat(user.balance).toFixed(2)}</p> */}
+        {/* <p><strong>Country:</strong> {user.country}</p> */}
         <p><strong>Created At:</strong> {new Date(user.created_at).toLocaleString()}</p>
 
         <ModalActions>
-          <Button onClick={() => suspendUser(user.id, user.username)}>Suspend</Button>
+          <Button onClick={() => suspendUser(user.id)}>Suspend</Button>
           <Button onClick={() => unsuspendUser(user.id, user.username)}>Unsuspend</Button>
           <Button onClick={() => deleteUser(user.id, user.username)}>Delete</Button>
-          <Button onClick={() => setShowCreditModal(true)}>Credit Balance</Button>
-          <Button onClick={() => setShowDebitModal(true)}>Debit Balance</Button>
-          <Button onClick={() => setShowEmailModal(true)}>Email User</Button>
+          {/* <Button onClick={() => setShowCreditModal(true)}>Credit Balance</Button> */}
+          {/* <Button onClick={() => setShowDebitModal(true)}>Debit Balance</Button> */}
+          {/* <Button onClick={() => setShowEmailModal(true)}>Email User</Button> */}
           <Button onClick={()=>{onClose();getUsers()}}>Cancel</Button>
         </ModalActions>
       </ModalContent>

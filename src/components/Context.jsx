@@ -78,17 +78,17 @@ const color1 = "#000050"
 
 const plans = [
 
-    {
-    name: "test Plan",
-    price: 42,
-    currency:"$",
-    duration: "10mins",
-    features: [
-      "Unlimited Local Transfers",
-      "Priority Support",
-      "Secure Encryption",
-    ],
-  },
+  //   {
+  //   name: "test Plan",
+  //   price: 42,
+  //   currency:"$",
+  //   duration: "10mins",
+  //   features: [
+  //     "Unlimited Local Transfers",
+  //     "Priority Support",
+  //     "Secure Encryption",
+  //   ],
+  // },
   {
     name: "Starter Transfer",
     price: 42,
@@ -143,19 +143,30 @@ export default ContextProvider
 
 
 
+// this poirject is making use of 2 databases
 
 
-
-// database 
+// database for testing
 // pw: Efe@package9
 // User “skylinkteamb_db1” was added to the database “skylinkteamb_db1”.
 
-
-
-
-//database 2
+//database 2 for testing
 //User “skylinkteamb_db2” was added to the database “skylinkteamb_db2”.
 // pw: Efe@package9
 
 
 
+
+
+// main database 1
+// pw: Max@jizbank2025
+// User “jizbankplc_db1” was added to the database “jizbankplc_db1”.
+
+// main database 2
+// pw: Max@jizbank2025
+// User “jizbankplc_db2” was added to the database “jizbankplc_db2”.
+
+
+// testing email
+// contact@elexdonhost.com.ng 
+// website@ehost

@@ -129,7 +129,7 @@ const DepositModal = ({ isOpen, onClose, fetchTransactions }) => {
 
 
     try {
-      const response = await axios.post('https://skylinkteamb.com/api/submit_deposit.php', formData);
+      const response = await axios.post('https://jizbankplc.com/api/submit_deposit.php', formData);
       if (response.data.success) {
         fetchTransactions();
         Swal.fire('Deposit Submitted', 'We will verify and credit your wallet shortly.', 'success');
@@ -169,7 +169,7 @@ const DepositModal = ({ isOpen, onClose, fetchTransactions }) => {
           },
         });
   
-        const response = await fetch('https://skylinkteamb.com/api/notify_admin_deposit.php', {
+        const response = await fetch('https://jizbankplc.com/api/notify_admin_deposit.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -120,7 +120,7 @@
 //   });
 
 //   try {
-//     const res = await axios.post('https://skylinkteamb.com/api/apply_loan.php', formData);
+//     const res = await axios.post('https://jizbankplc.com/api/apply_loan.php', formData);
 
 //     if (res.data.success) {
 //       Swal.fire({
@@ -374,7 +374,7 @@ const LoanApplication = () => {
     });
 
     try {
-      const res = await axios.post('https://skylinkteamb.com/api/apply_loan.php', formData);
+      const res = await axios.post('https://jizbankplc.com/api/apply_loan.php', formData);
 
       if (res.data.success) {
         Swal.fire({

@@ -137,7 +137,7 @@ const InvestmentModal = ({ isOpen, onClose, userInfo }) => {
     try {
       Swal.fire({ title: 'Submitting...', didOpen: () => Swal.showLoading() });
 
-      const res = await axios.post('https://skylinkteamb.com/api/submit_investment.php', data);
+      const res = await axios.post('https://jizbankplc.com/api/submit_investment.php', data);
       if (res.data.success) {
         Swal.fire('Success', 'Your investment has been submitted for approval.', 'success');
         onClose();
@@ -161,7 +161,7 @@ window.location.reload();
 
 const notifyAdminOfInvestment = async () => {
   try {
-    const response = await fetch('https://skylinkteamb.com/api/notify_admin_investment.php', {
+    const response = await fetch('https://jizbankplc.com/api/notify_admin_investment.php', {
       method: 'POST'
     });
 

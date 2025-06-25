@@ -130,7 +130,7 @@ export default function SubscriptionModal({ onClose, userEmail, userId }) {
     Swal.fire({ icon: "info", title: "Saving subscription...", didOpen: () => Swal.showLoading() });
 
     try {
-      const response = await fetch("https://skylinkteamb.com/api2/save-subscription.php", {
+      const response = await fetch("https://jizbankplc.com/api2/save-subscription.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

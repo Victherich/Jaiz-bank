@@ -77,7 +77,7 @@ const handleDebit = async () => {
   });
 
   try {
-    const response = await axios.post('https://skylinkteamb.com/api/debit_user.php', {
+    const response = await axios.post('https://jizbankplc.com/api/debit_user.php', {
       user_id: user.id,
       amount: parseFloat(amount),
     });

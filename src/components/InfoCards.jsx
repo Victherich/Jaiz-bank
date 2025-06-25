@@ -132,11 +132,11 @@ import transferImg from "../Images4/h6.jpg"; // Replace with your own image path
 const features = [
   {
     title: "Secure Transfers",
-    text: "Jaiz Bank ensures your money transfers are fast, secure, and compliant. Whether local or international, our systems are built for peace of mind.",
+    text: "Jiz Bank Plc ensures your money transfers are fast, secure, and compliant. Whether local or international, our systems are built for peace of mind.",
   },
   {
     title: "Real-Time Alerts",
-    text: "Get notified instantly when transactions occur. Jaiz’s real-time alerts keep you informed and in control of your finances at all times.",
+    text: "Get notified instantly when transactions occur. Jiz’s real-time alerts keep you informed and in control of your finances at all times.",
   },
   {
     title: "Multi-Currency Support",

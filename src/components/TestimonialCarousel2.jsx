@@ -8,37 +8,37 @@ import { FaQuoteLeft } from "react-icons/fa";
 
 const testimonials = [
   {
-    text: "Jaiz Bank transformed the way I manage my finances. With their expert support, I’ve built a stronger and more secure future for my family.",
+    text: "Jiz Bank Plc transformed the way I manage my finances. With their expert support, I’ve built a stronger and more secure future for my family.",
     image: "https://randomuser.me/api/portraits/men/45.jpg",
     name: "David Okoro",
     position: "Business Owner, Nigeria",
   },
   {
-    text: "I never imagined banking could be this personal and empowering. Jaiz’s team guided me through investments I used to find intimidating.",
+    text: "I never imagined banking could be this personal and empowering. Jiz’s team guided me through investments I used to find intimidating.",
     image: "https://randomuser.me/api/portraits/women/44.jpg",
     name: "Camila Torres",
     position: "Interior Designer, Colombia",
   },
   {
-    text: "Thanks to Jaiz Bank's tailored financial solutions, I've grown my savings confidently and responsibly. They’ve earned my full trust.",
+    text: "Thanks to Jiz Bank's tailored financial solutions, I've grown my savings confidently and responsibly. They’ve earned my full trust.",
     image: "https://randomuser.me/api/portraits/men/33.jpg",
     name: "Jae Min Park",
     position: "Software Engineer, South Korea",
   },
   {
-    text: "As a first-time investor, I had so many questions. Jaiz’s advisors were incredibly patient, transparent, and helpful every step of the way.",
+    text: "As a first-time investor, I had so many questions. Jiz’s advisors were incredibly patient, transparent, and helpful every step of the way.",
     image: "https://randomuser.me/api/portraits/women/25.jpg",
     name: "Fatima Yusuf",
     position: "HR Manager, United Arab Emirates",
   },
   {
-    text: "Jaiz Bank opened doors to opportunities I hadn't considered. Their insights into ethical and smart investment strategies are unmatched.",
+    text: "Jiz Bank opened doors to opportunities I hadn't considered. Their insights into ethical and smart investment strategies are unmatched.",
     image: "https://randomuser.me/api/portraits/men/18.jpg",
     name: "Liam Thompson",
     position: "Independent Consultant, Australia",
   },
   {
-    text: "I was looking for a reliable bank that aligned with my values. Jaiz offered exactly that—professionalism, transparency, and results.",
+    text: "I was looking for a reliable bank that aligned with my values. Jiz offered exactly that—professionalism, transparency, and results.",
     image: "https://randomuser.me/api/portraits/women/19.jpg",
     name: "Mei Lin Wu",
     position: "Philanthropist & Investor, Malaysia",

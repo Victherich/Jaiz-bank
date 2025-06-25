@@ -58,21 +58,21 @@ const features = [
   {
     title: 'INSTANT TRANSFERS',
     description:
-      'Send money locally or internationally in seconds with Jaiz’s fast and secure transfer system—accessible 24/7.',
+      'Send money locally or internationally in seconds with Jiz’s fast and secure transfer system—accessible 24/7.',
     icon: <FaMoneyCheckAlt />,
     color: '#3C9E37',
   },
   {
     title: 'DIGITAL BANKING',
     description:
-      'Manage your finances from anywhere with Jaiz Mobile—transfer money, pay bills, and monitor accounts with full security and speed.',
+      'Manage your finances from anywhere with Jiz Mobile—transfer money, pay bills, and monitor accounts with full security and speed.',
     icon: <FaMobileAlt />,
     color: '#3C9E37',
   },
   {
     title: 'BUSINESS ACCOUNTS',
     description:
-      'Open a Jaiz Business Account to streamline bulk payments, manage payroll, and monitor real-time transaction flows.',
+      'Open a Jiz Business Account to streamline bulk payments, manage payroll, and monitor real-time transaction flows.',
     icon: <FaBuilding />,
     color: '#C4A207',
   },

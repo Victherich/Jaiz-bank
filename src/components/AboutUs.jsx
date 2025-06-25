@@ -214,7 +214,7 @@ import React from 'react';
 //   TimelineContent,
 // } from '../styles/AboutUsStyles'; // Adjust path as needed
 
-// Placeholder images - replace with actual JAIZ Bank management photos
+// Placeholder images - replace with actual JIZ Bank management photos
 // import ceoPlaceholder from '../Images/ceo_placeholder.jpg'; // Create or use actual paths
 // import cfoPlaceholder from '../Images/cfo_placeholder.jpg';
 // import cooPlaceholder from '../Images/coo_placeholder.jpg';
@@ -259,7 +259,7 @@ import styled from 'styled-components';
   padding: 60px 20px;
 
   h1 {
-    color:#2C4B2F; /* JAIZ Blue */
+    color:#2C4B2F; /* jizBlue */
     font-size: 3.5em;
     margin-bottom: 20px;
     font-weight: 700;
@@ -275,7 +275,7 @@ import styled from 'styled-components';
 `;
 
  const SectionTitle = styled.h2`
-  color: #2C4B2F; /* JAIZ Blue */
+  color: #2C4B2F; /* jizBlue */
   font-size: 2.5em;
   margin-bottom: 30px;
   text-align: center;
@@ -544,16 +544,16 @@ const AboutUs = () => {
   return (
     <PageContainer>
       <HeroSection>
-        <h1>About JAIZ Bank</h1>
+        <h1>About JIZ Bank Plc</h1>
         <p>
-          As Nigeria's premier Non-Interest Bank, JAIZ Bank is committed to ethical and sustainable financial practices. We offer a comprehensive range of banking services and efficient fund transfer solutions, empowering individuals and businesses to thrive in alignment with their values.
+          As Nigeria's premier Non-Interest Bank, JIZ Bank is committed to ethical and sustainable financial practices. We offer a comprehensive range of banking services and efficient fund transfer solutions, empowering individuals and businesses to thrive in alignment with their values.
         </p>
       </HeroSection>
 
       <Section>
         <SectionTitle>Our Story</SectionTitle>
         <Paragraph>
-          JAIZ Bank Plc commenced operations as the first Non-Interest Bank in Nigeria on January 6, 2012, after obtaining its operating license from the Central Bank of Nigeria on November 11, 2011. This marked a significant milestone in Nigeria's financial landscape, introducing a unique banking model based on ethical principles and social responsibility.
+          JIZ Bank Plc commenced operations as the first Non-Interest Bank in Nigeria on January 6, 2012, after obtaining its operating license from the Central Bank of Nigeria on November 11, 2011. This marked a significant milestone in Nigeria's financial landscape, introducing a unique banking model based on ethical principles and social responsibility.
         </Paragraph>
         <Paragraph>
           Since our inception, we have been at the forefront of providing Sharia'ah-compliant financial services, focusing on equitable partnerships, transparent transactions, and community development. Our commitment extends beyond traditional banking to foster economic growth and contribute positively to society.
@@ -591,7 +591,7 @@ const AboutUs = () => {
       <Section>
         <SectionTitle>What We Offer</SectionTitle>
         <Paragraph>
-          JAIZ Bank provides a wide array of banking services and fund transfer solutions tailored to meet the diverse needs of individuals, corporate entities, and government parastatals.
+          JIZBank provides a wide array of banking services and fund transfer solutions tailored to meet the diverse needs of individuals, corporate entities, and government parastatals.
         </Paragraph>
         <ContentGrid>
           <GridItem>
@@ -616,7 +616,7 @@ const AboutUs = () => {
       <Section>
         <SectionTitle>Our Commitment to Sustainability</SectionTitle>
         <Paragraph>
-          At JAIZ Bank, sustainability is ingrained in our operations. We are committed to fostering environmental protection, social equity, and good governance, aligning our practices with global best standards. Our non-interest banking model inherently supports sustainable development by avoiding speculative transactions and focusing on real economic activities.
+          At JIZBank, sustainability is ingrained in our operations. We are committed to fostering environmental protection, social equity, and good governance, aligning our practices with global best standards. Our non-interest banking model inherently supports sustainable development by avoiding speculative transactions and focusing on real economic activities.
         </Paragraph>
       </Section>
 
@@ -647,7 +647,7 @@ const AboutUs = () => {
             <TimelineDot />
             <TimelineContent>
               <h3>2011</h3>
-              <p>JAIZ Bank Plc obtains its operating license from the Central Bank of Nigeria on November 11, 2011.</p>
+              <p>Jiz Bank Plc obtains its operating license from the Central Bank of Nigeria on November 11, 2011.</p>
             </TimelineContent>
           </TimelineItem>
           <TimelineItem>
@@ -661,7 +661,7 @@ const AboutUs = () => {
             <TimelineDot />
             <TimelineContent>
               <h3>2017</h3>
-              <p>JAIZ Bank successfully lists its shares on the Nigerian Stock Exchange (now NGX), making it accessible to public investors.</p>
+              <p>JIZ Bank successfully lists its shares on the Nigerian Stock Exchange (now NGX), making it accessible to public investors.</p>
             </TimelineContent>
           </TimelineItem>
           <TimelineItem>
@@ -678,7 +678,7 @@ const AboutUs = () => {
       <Section>
         <SectionTitle>Our Management Team</SectionTitle>
         <Paragraph>
-          Our leadership team comprises seasoned professionals with extensive experience in banking, finance, and ethical business practices, dedicated to steering JAIZ Bank towards its strategic objectives.
+          Our leadership team comprises seasoned professionals with extensive experience in banking, finance, and ethical business practices, dedicated to steering JIZ Bank towards its strategic objectives.
         </Paragraph>
         <ManagementTeamContainer>
           {managementTeam.map(member => (
@@ -695,9 +695,9 @@ const AboutUs = () => {
       </Section> */}
 
       <Section>
-        <SectionTitle>Careers at JAIZ Bank</SectionTitle>
+        <SectionTitle>Careers at JIZ Bank Plc</SectionTitle>
         <Paragraph>
-          Join a dynamic team committed to ethical finance and innovation. At JAIZ Bank, we believe in nurturing talent, fostering a supportive work environment, and promoting professional growth. Explore opportunities to build a rewarding career with us.
+          Join a dynamic team committed to ethical finance and innovation. At JIZ Bank, we believe in nurturing talent, fostering a supportive work environment, and promoting professional growth. Explore opportunities to build a rewarding career with us.
         </Paragraph>
         {/* <Paragraph style={{ textAlign: 'center' }}>
           <a href="/careers" style={{ textDecoration: 'none', backgroundColor: '#007bff', color: 'white', padding: '12px 25px', borderRadius: '5px', display: 'inline-block', marginTop: '15px', fontWeight: 'bold' }}>
@@ -714,8 +714,8 @@ const AboutUs = () => {
         <ContentGrid>
           <GridItem>
             <h3>Customer Service</h3>
-            <p>+234 (0) 700 JAIZ BANK (+234 700 5249 2265)</p>
-            <p>customercare@jaizbankplc.com</p>
+            <p>+234 (0) 700 JIZ BANK (+234 700 5249 2265)</p>
+            <p>customercare@jizbankplc.com</p>
           </GridItem>
           <GridItem>
             <h3>Head Office</h3>
@@ -723,7 +723,7 @@ const AboutUs = () => {
           </GridItem>
           <GridItem>
             <h3>Find a Branch</h3>
-            <p>Locate the nearest JAIZ Bank branch or ATM near you.</p>
+            <p>Locate the nearest JIZ Bank Plc branch or ATM near you.</p>
             {/* <p><a href="/branches" style={{ color: '#007bff', textDecoration: 'none', fontWeight: 'bold' }}>Branch Locator</a></p> */}
           </GridItem>
         </ContentGrid>

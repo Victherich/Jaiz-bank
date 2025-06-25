@@ -184,7 +184,7 @@ const AboutUsBrief = () => {
     {
       title: 'Business Philosophy',
       content:
-        'At Jaiz Bank, we believe in delivering innovative, inclusive, and customer-centric financial services that empower individuals and businesses to thrive. Our philosophy centers on trust, transparency, and making a lasting impact in the communities we serve — helping to build a stronger, more connected financial future for all.',
+        'At Jiz Bank Plc, we believe in delivering innovative, inclusive, and customer-centric financial services that empower individuals and businesses to thrive. Our philosophy centers on trust, transparency, and making a lasting impact in the communities we serve — helping to build a stronger, more connected financial future for all.',
     },
   ];
 

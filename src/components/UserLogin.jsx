@@ -185,7 +185,7 @@ console.log(response.data)
       textShadow: '1px 1px 2px rgba(0, 0, 0, 0.9)',
     }}
   >
-    Welcome Back to Jaiz Bank Plc
+    Welcome Back to Jiz Bank Plc
   </h1>
   <p>Log in to access your account.</p>
 </LeftPanel>

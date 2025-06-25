@@ -227,9 +227,9 @@ const Footer = () => {
     <FooterContainer>
       <FooterGrid>
         <FooterColumn>
-          <LogoText>About Jaiz Bank Plc</LogoText>
+          <LogoText>About Jiz Bank Plc</LogoText>
           <Description>
-          Jaiz Bank PLC is a national bank and a quoted public company owned by over 26,000 shareholders spread over the six geo-political zones of Nigeria. The Bank's balance sheet has grown from N12bn in 2012 to about N379bn (as of December 31st 2022). Financing and Investment assets also grew from over N30bn in 2012 to N249bn as of December 31, 2022. </Description>
+          Jiz Bank PLC is a national bank and a quoted public company owned by over 26,000 shareholders spread over the six geo-political zones of Nigeria. The Bank's balance sheet has grown from N12bn in 2012 to about N379bn (as of December 31st 2022). Financing and Investment assets also grew from over N30bn in 2012 to N249bn as of December 31, 2022. </Description>
           <SocialIcons>
             <a href="#"><FaFacebookF /></a>
             <a href="#"><FaTwitter /></a>
@@ -265,14 +265,14 @@ const Footer = () => {
         <FooterColumn>
           <SectionHeading>Contact Info</SectionHeading>
           <ContactItem>📍 Plot 734, Ahmadu Bello Way, Central Business District, Abuja, Nigeria.</ContactItem>
-          <ContactItem>📞 +234 (0) 700 JAIZ BANK (+234 700 5249 2265)</ContactItem>
-          <ContactItem>✉️ customercare@jaizbankplc.com</ContactItem>
+          <ContactItem>📞 +234 (0) 700 JIZ BANK (+234 700 5249 2265)</ContactItem>
+          <ContactItem>✉️ customercare@jizbankplc.com</ContactItem>
 
         </FooterColumn>
       </FooterGrid>
 
       <BottomBar>
-        © {new Date().getFullYear()}  Jaiz Bank . All Rights Reserved By Jaiz Bank™. 
+        © {new Date().getFullYear()}  Jiz Bank . All Rights Reserved By Jiz Bank™. 
         {/* <a href="/terms"> Terms</a> |  */}
         {/* <a href="/privacy"> Privacy Policy</a> */}
       </BottomBar>

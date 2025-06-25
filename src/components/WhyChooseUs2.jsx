@@ -203,7 +203,7 @@ const features = [
   {
     icon: <FaMoneyCheckAlt size={24} color="#2C4B2F" />,
     title: "Fast Money Transfers",
-    text: "Transfer money instantly within and outside the country using Jaiz’s secure and smart platform.",
+    text: "Transfer money instantly within and outside the country using Jiz’s secure and smart platform.",
   },
   {
     icon: <FaLock size={24} color="#2C4B2F" />,
@@ -233,7 +233,7 @@ const WhyChooseUs2 = () => {
       <ContentWrapper>
         <TitleSection>
           <MainTitle>
-            Why Choose Jaiz Bank Plc<br />
+            Why Choose Jiz Bank Plc<br />
             <span style={{ fontSize: "1.8rem", color: "#C4A207" }}>
               Trusted banking at your fingertips.
             </span>

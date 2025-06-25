@@ -233,7 +233,7 @@ const UserSignUp = () => {
   return (
     <Page>
       <LeftPanel>
-        <h1 style={{ fontSize: '2rem', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.9)' }}>Enroll with Jaiz Bank Plc</h1>
+        <h1 style={{ fontSize: '2rem', fontWeight: 'bold', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.9)' }}>Enroll with Jiz Bank Plc</h1>
         <p>Your journey to smarter banking begins now.</p>
       </LeftPanel>
 

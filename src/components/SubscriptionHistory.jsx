@@ -49,7 +49,7 @@ export default function SubscriptionHistory({ userId }) {
 
   useEffect(() => {
     if (!userId) return;
-    fetch(`https://jizbankplc.com/api2/get_user_subscriptions.php?user_id=${userId}`)
+    fetch(`https://jizbankplc.com/api/get_user_subscriptions.php?user_id=${userId}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -86,7 +86,7 @@ const isExpired = (endDateString) => {
               <Card key={idx}>
                 <Row><strong>Plan:</strong> {sub.plan_name}</Row>
                 <Row><strong>Amount Paid:</strong> {sub.currency} {sub.amount_paid}</Row>
-                <Row><strong>Duration:</strong> {sub.duration}</Row>
+                <Row><strong>Duration:</strong> {sub.duration} </Row>
 
 
                 {/* displays date and time to user */}
@@ -96,8 +96,8 @@ const isExpired = (endDateString) => {
 
 
                 {/* displays only date to user */}
-                <Row><strong>Start:</strong> {new Date(sub.start_date).toLocaleDateString()}</Row> 
-<Row><strong>End:</strong> {new Date(sub.end_date).toLocaleDateString()}</Row>
+                <Row><strong>Start:</strong> {sub.start_date}</Row> 
+<Row><strong>End:</strong> {sub.end_date}</Row>
                 {/* <Row> 
                   <strong>Status:</strong>{" "}
                   <StatusTag expired={expired}>{expired ? "Expired" : "Active"}</StatusTag>

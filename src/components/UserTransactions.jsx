@@ -77,7 +77,7 @@ const UserTransactions = () => {
       return;
     }
 
-    axios.get(`https://jizbankplc.com/api2/get_user_transactions.php?user_id=${user.id}`)
+    axios.get(`https://jizbankplc.com/api/get_user_transactions.php?user_id=${user.id}`)
       .then(res => {
         if (res.data.success) {
           setTxns(res.data.transactions);

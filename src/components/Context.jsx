@@ -78,17 +78,17 @@ const color1 = "#000050"
 
 const plans = [
 
-  //   {
-  //   name: "test Plan",
-  //   price: 42,
-  //   currency:"$",
-  //   duration: "10mins",
-  //   features: [
-  //     "Unlimited Local Transfers",
-  //     "Priority Support",
-  //     "Secure Encryption",
-  //   ],
-  // },
+    {
+    name: "test Plan",
+    price: 42,
+    currency:"$",
+    duration: "10mins",
+    features: [
+      "Unlimited Local Transfers",
+      "Priority Support",
+      "Secure Encryption",
+    ],
+  },
   {
     name: "Starter Transfer",
     price: 42,
@@ -159,12 +159,12 @@ export default ContextProvider
 
 
 // main database 1
-// pw: Max@jizbank2025
-// User “jizbankplc_db1” was added to the database “jizbankplc_db1”.
+// pw: Dave@jiz2025
+// User “bhtzcsxd_bhtzcsxd” was added to the database “bhtzcsxd_db1”..
 
 // main database 2
-// pw: Max@jizbank2025
-// User “jizbankplc_db2” was added to the database “jizbankplc_db2”.
+// pw: Dave@jiz2025
+// User “bhtzcsxd_bhtzcsxd” was added to the database “bhtzcsxd_db2”.
 
 
 // testing email

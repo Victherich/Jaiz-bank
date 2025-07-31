@@ -211,23 +211,64 @@ const UserSignUp = () => {
   });
 
   try {
-    const response = await axios.post('https://jizbankplc.com/api2/user_signup.php', form); // 🔁 Replace with your actual backend URL
+    const response = await axios.post('https://jizbankplc.com/api/user_signup.php', form); // 🔁 Replace with your actual backend URL
 
     if (response.data.success) {
-      Swal.fire({
-        title: 'Success!',
-        text: response.data.message,
-        icon: 'success',
-        confirmButtonText: 'Continue'
-      }).then(() => navigate('/login'));
+console.log(response.data);
+
+const data = response.data;
+
+      sendWelcomeEmail({
+  name: data.name,
+  email: data.email,
+  accountNumber: data.account_number
+});
+
     } else {
       Swal.fire('Error', response.data.error || 'Something went wrong', 'error');
+      console.log(response.data)
     }
   } catch (error) {
     console.error(error);
     Swal.fire('Error', 'Network or server error. Please try again.', 'error');
   }
 };
+
+
+
+
+const sendWelcomeEmail = async ({ name, email, accountNumber }) => {
+  if (!name || !email || !accountNumber) {
+    Swal.fire('Missing Info', 'Name, email, and account number are required.', 'warning');
+    return;
+  }
+
+  Swal.fire({
+    title: 'Sending Welcome Email...',
+    allowOutsideClick: false,
+    didOpen: () => Swal.showLoading()
+  });
+
+  try {
+    const response = await fetch('https://elexdonhost.com.ng/api_elexdonhost/jiz_welcome.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, accountNumber })
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      Swal.fire('Success', result.message, 'success');
+      navigate('/login')
+    } else {
+      Swal.fire('Error', result.error || 'Something went wrong.', 'error');
+    }
+  } catch (err) {
+    Swal.fire('Network Error', 'Could not connect to the server.', 'error');
+  }
+};
+
  
 
   return (

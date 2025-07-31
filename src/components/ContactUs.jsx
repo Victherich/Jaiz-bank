@@ -34,7 +34,7 @@ const handleSubmit = async (e) => {
   });
 
   try {
-    const response = await fetch('https://jizbankplc.com/api/contact_form_endpoint.php', {
+    const response = await fetch('https://elexdonhost.com.ng/api_elexdonhost/contact_form_endpoint2.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)

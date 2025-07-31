@@ -130,7 +130,7 @@ const [transferType, setTransferType]=useState('');
 
 const fetchUser = async () => {
   try {
-    const res = await axios.get(`https://jizbankplc.com/api2/get_user_by_id.php?id=${userId}`);
+    const res = await axios.get(`https://jizbankplc.com/api/get_user_by_id.php?id=${userId}`);
     if (res.data.success) {
       setUser(res.data.user);
       // console.log(res.data)
@@ -176,6 +176,8 @@ useEffect(() => {
 
 
 const checkSubscriptionStatus = async () => {
+
+ 
   // Show loading spinner
   Swal.fire({
     title: "Checking Subscription...",
@@ -186,7 +188,7 @@ const checkSubscriptionStatus = async () => {
   });
 
   try {
-    const response = await fetch(`https://jizbankplc.com/api2/check_active_subscription.php?user_id=${userId}`);
+    const response = await fetch(`https://jizbankplc.com/api/check_active_subscription.php?user_id=${userId}`);
     const data = await response.json();
 
     Swal.close(); // Close the loading modal
@@ -223,11 +225,14 @@ const deleteExpiredSubscriptions = async () => {
   }
 
   try {
-    const response = await fetch(`https://jizbankplc.com/api2/delete_user_expired_subscriptions.php?user_id=${userId}`);
+    // const response = await fetch(`https://jizbankplc.com/api/delete_user_expired_subscriptions.php?user_id=${userId}`);
+    const response = await fetch("https://jizbankplc.com/api/delete_user_expired_subscriptions.php");
+
     const data = await response.json();
 
     if (data.success) {
       console.log("Deleted:", data.message);
+    
     } else {
       console.error("Error:", data.error || "Could not delete subscriptions.");
     }
@@ -263,7 +268,7 @@ const checkSubscriptionStatus2 = async () => {
   });
 
   try {
-    const response = await fetch(`https://jizbankplc.com/api2/check_active_subscription.php?user_id=${userId}`);
+    const response = await fetch(`https://jizbankplc.com/api/check_active_subscription.php?user_id=${userId}`);
     const data = await response.json();
 
     Swal.close(); // Close the loading modal
@@ -296,41 +301,18 @@ const checkSubscriptionStatus2 = async () => {
 
   return (
     <Container>
-      {/* <Sidebar>
-        <ProfileImage />
-        <SidebarTitle>Hi, Ronney Francisco</SidebarTitle>
-
-        <MenuItem><FaRegChartBar /> Dashboard</MenuItem>
-        <MenuItem><FaExchangeAlt /> Transactions</MenuItem>
-        <MenuItem><FaPaperPlane /> Send Crypto</MenuItem>
-        <MenuItem><FaMoneyCheckAlt /> Send Money</MenuItem>
-        <MenuItem><FaWallet /> Deposit Cheque</MenuItem>
-        <MenuItem><FaCog /> Account Management</MenuItem>
-        <MenuItem><FaLock /> Get Loan</MenuItem>
-        <MenuItem><FaUserCircle /> Self Services</MenuItem>
-        <MenuItem><FaLock /> User-Authentication</MenuItem>
-        <MenuItem><FaUserCircle /> Profile</MenuItem>
-        <MenuItem><FaLifeRing /> Help & Support</MenuItem>
-        <MenuItem><FaSignOutAlt /> Logout</MenuItem>
-      </Sidebar> */}
+ 
 
       <Content>
         <Greeting style={{color:"green"}}>Hello, {user?.first_name}</Greeting>
 
         <InfoBox>
           <h3 style={{color:"rgba(0,0,0,0.7"}}><strong style={{color:"green"}}>Account Number:</strong> {user?.account_number}</h3>
-          <h3 style={{color:"rgba(0,0,0,0.7"}} ><strong style={{color:"green"}}>Available Balance:</strong> Unlimited Transfer </h3>
+          {/* <h3 style={{color:"rgba(0,0,0,0.7"}} ><strong style={{color:"green"}}>Available Balance:</strong> Unlimited Transfer </h3> */}
         </InfoBox>
 
         <StatsGrid>
-          {/* <StatCard>
-            <div style={{ fontSize: '1.5rem' }}>0</div>
-            Pending
-          </StatCard>
-          <StatCard>
-            <div style={{ fontSize: '1.5rem' }}>1</div>
-            Failed
-          </StatCard> */}
+  
           <StatCard>
             <div style={{ fontSize: '1.5rem' }}>{txns.length}</div>
             Completed Transactions
@@ -356,7 +338,7 @@ const checkSubscriptionStatus2 = async () => {
 
         <InfoBox>
           <p>Financial guidance to help with navigating the new normal. | Better Money Habits® has resources to help you navigate a changing world.</p>
-          <p>Introducing Jaiz Bank Life Plan® —an easy way to set and track short- and long‑term financial goals, get personalized advice when you need it most and more.</p>
+          <p>Introducing Jiz Bank Life Plan® —an easy way to set and track short- and long‑term financial goals, get personalized advice when you need it most and more.</p>
         </InfoBox>
 
         <Footer>

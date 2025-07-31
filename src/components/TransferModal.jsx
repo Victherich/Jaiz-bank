@@ -104,19 +104,25 @@ const handleSubmit = async (e) => {
   };
 
   try {
-    const res = await axios.post('https://jizbankplc.com/api2/transfer.php', payload);
+    const res = await axios.post('https://jizbankplc.com/api/transfer.php', payload);
     if (res.data.success) {
-sendAlert(res.data.transaction);
-  await Swal.fire({
-    title: 'Success',
-    text: 'Transfer completed successfully.',
-    icon: 'success',
-    confirmButtonText: 'OK',
-    allowOutsideClick:false
-  });
+
+      // alert('successful')
+      Swal.close();
+
+      
+
+sendAlert3(res.data.transaction);
+  // await Swal.fire({
+  //   title: 'Success',
+  //   text: 'Transfer completed successfully.',
+  //   icon: 'success',
+  //   confirmButtonText: 'OK',
+  //   allowOutsideClick:false
+  // });
 
   setReceiptData(res.data.transaction); // only run after alert is dismissed
-  // console.log(res.data.transaction);
+ console.log(res.data.transaction);
   
 
 } else {
@@ -135,46 +141,193 @@ sendAlert(res.data.transaction);
 
 
 
-const sendAlert = async (transaction) => {
+// const sendAlert = async (transaction) => {
 
-// console.log("Sending SMS with:", {
-//   bank: transaction.bank,
-//   amount: transaction.amount,
-//   account_number: transaction.account_number,
-//   phone_number: transaction.phone_number,
-//   created_at: transaction.created_at,
-// });
+// // console.log("Sending SMS with:", {
+// //   bank: transaction.bank,
+// //   amount: transaction.amount,
+// //   account_number: transaction.account_number,
+// //   phone_number: transaction.phone_number,
+// //   created_at: transaction.created_at,
+// // });
 
 
 
-  try {
-    // const response = await fetch('http://localhost:3000/api/sms_twilio', {
-      const response = await fetch('https://jaiz-bank-sms-backend-eu1o.vercel.app/api/sms_twilio', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        bank: transaction.bank,
-        amount: transaction.amount,
-        account_number: transaction.account_number,
-        phone_number: transaction.phone_number,
-        created_at: transaction.created_at,
-      }),
-    });
+//   try {
+//     // const response = await fetch('http://localhost:3000/api/sms_twilio', {
+//       const response = await fetch('https://jaiz-bank-sms-backend-eu1o.vercel.app/api/sms_twilio', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         bank: transaction.bank,
+//         amount: transaction.amount,
+//         account_number: transaction.account_number,
+//         phone_number: transaction.phone_number,
+//         created_at: transaction.created_at,
+//       }),
+//     });
 
-    const data = await response.json();
+//     const data = await response.json();
 
-    if (response.ok) {
-      Swal.fire({text:'Alert sent successfully'});
-    } else {
-      alert('Error: ' + data.error);
+//     if (response.ok) {
+//       Swal.fire({text:'Alert sent successfully'});
+//     } else {
+//       alert('Error: ' + data.error);
+//     }
+//   } catch (err) {
+//     console.error('Error sending SMS:', err);
+//     alert('Failed to send SMS');
+//   }
+// };
+
+
+
+// const sendAlert2 = async (transaction) => {
+
+// // console.log("Sending SMS with:", {
+// //   bank: transaction.bank,
+// //   amount: transaction.amount,
+// //   account_number: transaction.account_number,
+// //   phone_number: transaction.phone_number,
+// //   created_at: transaction.created_at,
+// // });
+
+
+
+//   try {
+//     // const response = await fetch('http://localhost:3000/api/sms_twilio', {
+//       const response = await fetch('https://jaiz-bank-sms-backend-eu1o.vercel.app/api/sms_twilio', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         bank: transaction.bank,
+//         amount: transaction.amount,
+//         account_number: transaction.account_number,
+//         phone_number: transaction.phone_number,
+//         created_at: transaction.created_at,
+//       }),
+//     });
+
+//     const data = await response.json();
+
+//     if (response.ok) {
+//       Swal.fire({text:'Alert sent successfully'});
+//     } else {
+//       alert('Error: ' + data.error);
+//     }
+//   } catch (err) {
+//     console.error('Error sending SMS:', err);
+//     alert('Failed to send SMS');
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+// const sendAlert3 = async (transaction) => {
+//     const AT_USERNAME = 'sandbox'; // EXPOSED!
+//     const AT_API_KEY = 'atsk_de06f98cb1020aa33cd98e22f75c174018c8d45749570eab45daf0d5ac83fee3587c6059';   // EXPOSED!
+//     const AT_SENDER_ID = 'NOTIFICATION'; // Potentially exposed
+
+//     // const formattedPhoneNumber = transaction.phone_number.startsWith('+') ? transaction.phone_number : `+${transaction.phone_number}`;
+//   const formattedPhoneNumber = '+2347063480314'
+//     const messageContent = `Dear Customer, your Jaiz Bank account ${transaction.account_number} has been credited with ${transaction.amount} from ${transaction.bank} on ${new Date(transaction.created_at).toLocaleString()}. Thank you for banking with us.`;
+
+//     try {
+//         const response = await fetch('https://api.africastalking.com/version1/messaging/bulk', {
+//             method: 'POST',
+//             headers: {
+//                 'Accept': 'application/json',
+//                 'Content-Type': 'application/x-www-form-urlencoded', // Africa's Talking often uses form-urlencoded for direct POST
+//                 'apiKey': AT_API_KEY, // Sending API Key in header directly from frontend
+//             },
+//             body: new URLSearchParams({ // URL-encode the parameters
+//                 username: AT_USERNAME,
+//                 to: formattedPhoneNumber, // The API expects 'phoneNumbers' if directly hitting the endpoint
+//                 message: messageContent,
+//                 // senderId: AT_SENDER_ID, // Include if you have one
+//                 // enqueue: '1'
+//             }).toString(),
+//         });
+
+//         const data = await response.json();
+
+//         if (response.ok && data.SMSMessageData && data.SMSMessageData.Recipients && data.SMSMessageData.Recipients[0].status === 'Success') {
+//             Swal.fire({ text: 'Alert sent successfully' });
+//         } else {
+//             console.error('Africa\'s Talking error:', data);
+//             Swal.fire({ text: 'Error: Failed to send SMS via Africa\'s Talking. ' + (data.SMSMessageData?.Recipients?.[0]?.status || data.SMSMessageData?.Message || 'Unknown error') });
+//         }
+//     } catch (err) {
+//         console.error('Error sending SMS:', err);
+//         Swal.fire({ text: 'Failed to send SMS due to network or server error.' });
+//     }
+// };
+
+
+
+
+
+const sendAlert3 = async (transaction) => {
+    // console.log("Sending SMS with:", {
+    //   bank: transaction.bank,
+    //   amount: transaction.amount,
+    //   account_number: transaction.account_number,
+    //   phone_number: transaction.phone_number,
+    //   created_at: transaction.created_at,
+    // });
+
+
+      Swal.fire({
+    text: 'Please wait...',
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
     }
-  } catch (err) {
-    console.error('Error sending SMS:', err);
-    alert('Failed to send SMS');
-  }
+  });
+
+    try {
+        //  const response = await fetch('http://localhost:3000/api/send-sms-africa-talking', {
+      
+        const response = await fetch('https://jaiz-bank-sms-backend-eu1o.vercel.app/api/send-sms-africa-talking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                bank: transaction.bank,
+                amount: transaction.amount,
+                account_number: transaction.account_number,
+                phone_number: transaction.phone_number,
+                created_at: transaction.created_at,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            Swal.fire({ text: 'Sent successfully' });
+        } else {
+            // Display error from the backend
+            Swal.fire({ text: 'Error: ' + (data.error || 'Unknown error from backend') });
+        }
+    } catch (err) {
+        console.error('Error sending SMS:', err);
+        Swal.fire({ text: 'Failed to send SMS (network error or backend issue).' });
+    }
 };
+
+
 
 
   return (
@@ -187,6 +340,7 @@ const sendAlert = async (transaction) => {
 <Input type="text" name="bank" placeholder="Bank Name" onChange={handleChange} required />
 <Input name="account_number" placeholder="Account Number" onChange={handleChange} required />
 <Input name="amount" type="number" placeholder="Amount" onChange={handleChange} required />
+<p style={{fontSize:"small", fontWeight:"bold"}}>**Ensure to enter the recepient phone number with the country code and no spaces eg,+2347031234567** </p>
 <Input name="phone_number" placeholder="Recipient Phone with country code eg +2347012345678" onChange={handleChange} required />
 <Input name="description" placeholder="Description" onChange={handleChange} required />
 

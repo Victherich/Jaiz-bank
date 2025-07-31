@@ -146,7 +146,7 @@ const UserLogin = () => {
     });
 
     try {
-      const response = await axios.post('https://jizbankplc.com/api2/user_login.php', {
+      const response = await axios.post('https://jizbankplc.com/api/user_login.php', {
         accountNumber,
         password
       });

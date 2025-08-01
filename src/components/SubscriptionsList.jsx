@@ -55,7 +55,7 @@ const SubscriptionList = () => {
   const [searchEmail, setSearchEmail] = useState('');
 
   useEffect(() => {
-    axios.get('https://jizbankplc.com/api2/get_all_current_subscriptions.php')
+    axios.get('https://jizbankplc.com/api/get_all_current_subscriptions.php')
       .then(response => {
         if (response.data.success) {
           setSubscriptions(response.data.subscriptions);
@@ -87,7 +87,9 @@ const SubscriptionList = () => {
           filtered.map(sub => (
             <Card key={sub.subscription_id}>
               <Title>{sub.plan_name}</Title>
-              <Detail><Label>User:</Label> {`${sub.first_name} ${sub.middle_name || ''} ${sub.last_name}`}</Detail>
+              {/* <Detail><Label>User:</Label> {`${sub.first_name} ${sub.middle_name || ''} ${sub.last_name}`}</Detail> */}
+             <Detail><Label>User:</Label> {sub.name}</Detail>
+
               <Detail><Label>Email:</Label> {sub.email}</Detail>
               <Detail><Label>Phone:</Label> {sub.phone}</Detail>
               <Detail><Label>Amount Paid:</Label> {sub.amount_paid} {sub.sub_currency}</Detail>

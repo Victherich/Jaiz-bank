@@ -99,8 +99,8 @@ export default function SubscriptionModal({ onClose, userEmail, userId }) {
     const { start, end } = parseDuration(selectedPlan.duration);
 
     paystack.newTransaction({
-      key: "pk_test_60e1f53bba7c80b60029bf611a26a66a9a22d4e4",
-      //  key: "pk_live_951c991a9d895dd08017bf11d39c944e6617bd86",
+      // key: "pk_test_60e1f53bba7c80b60029bf611a26a66a9a22d4e4",
+       key: "pk_live_951c991a9d895dd08017bf11d39c944e6617bd86",
       amount: priceInNGN * 100, // Paystack expects amount in kobo
       email: userEmail,
       firstname: "User", // Replace with dynamic user name if available

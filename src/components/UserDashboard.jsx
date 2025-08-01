@@ -138,6 +138,9 @@ const UserDashboard = () => {
   const [user, setUser]=useState({});
   const userId = userInfo.id
   const [error, setError]=useState('')
+
+
+  console.log(user)
   
   
   console.log(userInfo.id)

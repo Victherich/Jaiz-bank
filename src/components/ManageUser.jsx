@@ -312,7 +312,7 @@ const ManageUser = ({ user, onClose, getUsers }) => {
     Swal.fire({ title: 'Suspending...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      const response = await axios.post('https://jizbankplc.com/api2/suspend_user.php', {
+      const response = await axios.post('https://jizbankplc.com/api/suspend_user.php', {
         user_id: userId,
       });
 
@@ -345,7 +345,7 @@ const ManageUser = ({ user, onClose, getUsers }) => {
     Swal.fire({ title: 'Unsuspending...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      const response = await axios.post('https://jizbankplc.com/api2/unsuspend_user.php', {
+      const response = await axios.post('https://jizbankplc.com/api/unsuspend_user.php', {
         user_id: userId,
       });
 
@@ -378,7 +378,7 @@ const ManageUser = ({ user, onClose, getUsers }) => {
     Swal.fire({ title: 'Deleting user...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
     try {
-      const response = await axios.post('https://jizbankplc.com/api2/delete_user.php', {
+      const response = await axios.post('https://jizbankplc.com/api/delete_user.php', {
         user_id: userId,
       });
 

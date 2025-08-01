@@ -78,17 +78,17 @@ const color1 = "#000050"
 
 const plans = [
 
-    {
-    name: "test Plan",
-    price: 42,
-    currency:"$",
-    duration: "10mins",
-    features: [
-      "Unlimited Local Transfers",
-      "Priority Support",
-      "Secure Encryption",
-    ],
-  },
+  //   {
+  //   name: "test Plan",
+  //   price: 42,
+  //   currency:"$",
+  //   duration: "10mins",
+  //   features: [
+  //     "Unlimited Local Transfers",
+  //     "Priority Support",
+  //     "Secure Encryption",
+  //   ],
+  // },
   {
     name: "Starter Transfer",
     price: 42,

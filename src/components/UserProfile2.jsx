@@ -10,6 +10,7 @@ import { Context } from './Context';
 import SubscriptionModal from './SubscriptionModal';
 import SubscriptionHistory from './SubscriptionHistory';
 import Swal from 'sweetalert2';
+import RechargeAndEarnComponent from './RechargeAndEarnComponent';
 
 const Container = styled.div`
   display: flex;
@@ -113,7 +114,7 @@ const Button = styled.button`
   }
 `
 
-const UserProfile2 = ({userId}) => {
+const UserProfile2 = ({userId, handleMenuClick}) => {
 
 // const [openTransferModal, setOpenTransferModal]= useState(false);
 const [transferType, setTransferType]=useState('');
@@ -324,8 +325,9 @@ const checkSubscriptionStatus2 = async () => {
         <Button onClick={checkSubscriptionStatus} >Subscribe for Transfer</Button>
 
         <Button onClick={checkSubscriptionStatus2}>Make Transfer</Button>
+        <Button onClick={()=>handleMenuClick('transactions')}>Your Transfer History</Button>
 
-
+<RechargeAndEarnComponent/>
 
         <InfoBox>
           <h3 style={{color:"green"}}>Account Holder</h3>

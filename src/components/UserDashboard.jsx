@@ -193,7 +193,7 @@ const UserDashboard = () => {
   const renderContent = () => {
     switch (activeMenu) {
       case 'profile':
-        return <UserProfile2 userId={userInfo.id}/>;
+        return <UserProfile2 userId={userInfo.id} handleMenuClick={handleMenuClick}/>;
       
  case 'transactions':
         return <UserTransactions/>;

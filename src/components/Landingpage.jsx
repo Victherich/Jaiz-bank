@@ -27,6 +27,7 @@ import WhyChooseUs2 from './WhyChooseUs2';
 import InfoCards from './InfoCards';
 import AutoPlayVideo from './AutoPlayVideo'
 import AccountFeatures from './AccountFeatures';
+import RechargeAndEarn from './RechargeAndEarn';
 
 const Landingpage = () => {
 
@@ -73,6 +74,7 @@ const Landingpage = () => {
         {/* <ChampionsDay/> */}
         {/* <OnlineCourses/> */}
         <Testimonial2/>
+        <RechargeAndEarn/>
   {/* <YouTubeShowcase/> */}
   {/* <AutoPlayVideo/> */}
       </div>

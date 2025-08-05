@@ -28,6 +28,7 @@ import InfoCards from './InfoCards';
 import AutoPlayVideo from './AutoPlayVideo'
 import AccountFeatures from './AccountFeatures';
 import RechargeAndEarn from './RechargeAndEarn';
+import RechargeCardSlider from './RechargeCardSlider';
 
 const Landingpage = () => {
 
@@ -55,6 +56,7 @@ const Landingpage = () => {
       <div className='LandingPage'>
      <Hero/>
      <AccountFeatures/>
+     <RechargeCardSlider/>
         <AboutUsBrief />
         {/* <ThierAbout/> */}
         {/* <TestimonialCarousel/> */}

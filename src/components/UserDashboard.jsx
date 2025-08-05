@@ -82,7 +82,7 @@ const SidebarMenuItem = styled.li`
 `;
 
 const ContentArea = styled.div`
-width:100%;
+width:80%;
   flex-grow: 1;
   margin-left: ${(props) => (props.isOpen ? '250px' : '0')};
   transition: margin-left 0.3s ease-in-out;

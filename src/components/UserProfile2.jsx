@@ -11,6 +11,7 @@ import SubscriptionModal from './SubscriptionModal';
 import SubscriptionHistory from './SubscriptionHistory';
 import Swal from 'sweetalert2';
 import RechargeAndEarnComponent from './RechargeAndEarnComponent';
+import RechargeCardSlider from './RechargeCardSlider';
 
 const Container = styled.div`
   display: flex;
@@ -312,6 +313,10 @@ const checkSubscriptionStatus2 = async () => {
           {/* <h3 style={{color:"rgba(0,0,0,0.7"}} ><strong style={{color:"green"}}>Available Balance:</strong> Unlimited Transfer </h3> */}
         </InfoBox>
 
+        <div >
+  <RechargeCardSlider/>
+</div>
+
         <StatsGrid>
   
           <StatCard>
@@ -328,6 +333,8 @@ const checkSubscriptionStatus2 = async () => {
         <Button onClick={()=>handleMenuClick('transactions')}>Your Transfer History</Button>
 
 <RechargeAndEarnComponent/>
+
+
 
         <InfoBox>
           <h3 style={{color:"green"}}>Account Holder</h3>
